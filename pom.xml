@@ -24,11 +24,11 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.openjfx</groupId>
+                <groupId>com.zenjava</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.3</version>
+                <version>8.7.0</version>
                 <configuration>
-                    <mainClass>Start</mainClass>
+                    <mainClass>java.Tetris.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
