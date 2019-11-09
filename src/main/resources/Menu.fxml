@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="Tetris.Controller"
+          prefHeight="800.0" prefWidth="600.0"
+          vgap="10" hgap="10"
+          alignment="TOP_CENTER"
+            style="-fx-background-image: url('https://cdn5.vectorstock.com/i/1000x1000/43/19/cartoon-vertical-nature-landscape-vector-14794319.jpg'); -fx-background-size: cover">
+    <Label text="GRAN CANARIA TETRIS" textFill="darkslategray" wrapText="true" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
+           prefHeight="300" prefWidth="400">
+        <font>
+            <Font size="50" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Button text=" Play" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="CENTER">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="https://img.icons8.com/doodle/48/000000/circled-play.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button text=" High Scores" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="https://img.icons8.com/doodle/48/000000/trophy--v2.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button text=" Credits" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="CENTER">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="https://img.icons8.com/doodle/48/000000/horseshoe--v2.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+</GridPane>
