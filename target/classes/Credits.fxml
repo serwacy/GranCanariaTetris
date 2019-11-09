@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="Tetris.Controller"
+          prefHeight="800.0" prefWidth="600.0"
+          vgap="10" hgap="10"
+          alignment="TOP_CENTER"
+            style="-fx-background-image: url('https://cdn5.vectorstock.com/i/1000x1000/43/19/cartoon-vertical-nature-landscape-vector-14794319.jpg'); -fx-background-size: cover">
+    <Label text="CREDITS" textFill="darkslategray" wrapText="true" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
+           minHeight="200" >
+        <font>
+            <Font size="50" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label text=" This project is an integral part of the rescue operation called:"
+           textFill="darkslategray" wrapText="true" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="CENTER"
+           minHeight="100" prefWidth="300">
+        <font>
+            <Font size="20" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label text="Authors:"
+           maxHeight="30"
+           textFill="darkslategray" wrapText="true" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER">
+        <font>
+            <Font size="20" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label text="1.Łukasz_Matuszewski 2.Bartosz_Matuszewski 3.Grzegorz_Wanat 4.Oskar_Przymus"
+           textFill="darkslategray" wrapText="true" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="CENTER"
+           minHeight="200" prefWidth="200">
+        <font>
+            <Font size="20" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="4" alignment="CENTER" minHeight="300" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+        <graphic>
+            <ImageView>
+                <Image url="https://img.icons8.com/office/100/000000/horse.png" requestedHeight="100" requestedWidth="100"/>
+            </ImageView>
+        </graphic>
+    </Label>
+
+</GridPane>

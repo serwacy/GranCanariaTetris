@@ -42,7 +42,8 @@
             </ImageView>
         </graphic>
     </Button>
-    <Button text=" Credits" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="CENTER">
+    <Button fx:id="creditsButton" text=" Credits" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="CENTER"
+                onAction="#showCredits">
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
