@@ -17,7 +17,7 @@
           vgap="10" hgap="10"
           alignment="TOP_CENTER"
           style="-fx-background-image: url('images/background.jpg'); -fx-background-position: bottom,center"
-          gridLinesVisible="true">
+          gridLinesVisible="false">
     <Label text=" GRAN CANARIA TETRIS"
            textFill="darkslategray"
            wrapText="true"

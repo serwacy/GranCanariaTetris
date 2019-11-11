@@ -1,16 +1,25 @@
 package Tetris;
 
+import Services.Score;
+import Services.ScoreCounter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import sun.rmi.runtime.Log;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.*;
+
+public class Controller{
 
 
-
-public class Controller {
 
     @FXML
     private Button creditsButton;
@@ -18,6 +27,9 @@ public class Controller {
     private Button highScoresButton;
     @FXML
     private Button backButton;
+    @FXML
+    private Label highScores = new Label();
+
 
     // ON BUTTON CLICK METHOD TO BE USED IN ANY CASE OF BUTTON EVENT IN OUR PROGRAM
     public void onButtonClick(ActionEvent event){
@@ -57,4 +69,11 @@ public class Controller {
         stage.setResizable(false);
         stage.show();
     }
+    @FXML
+    private void initialize(){
+        highScores.setText(ScoreCounter.getScores());
+    }
+
+
+
 }

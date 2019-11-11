@@ -17,7 +17,7 @@
           vgap="10" hgap="10"
           alignment="TOP_CENTER"
           style="-fx-background-image: url('images/background.jpg'); -fx-background-position: bottom,center"
-          gridLinesVisible="true">
+          gridLinesVisible="false">
     <Label text=" GRAN CANARIA TETRIS"
            textFill="darkslategray"
            wrapText="true"
@@ -34,35 +34,54 @@
             <Font size="60" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label text="CREDITS" minHeight="50" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="CENTER">
+    <Label  GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3">
+        <graphic>
+            <ImageView>
+                <Image url="images/board.png" requestedHeight="490" preserveRatio="true"/>
+            </ImageView>
+        </graphic>
+    </Label>
+    <Label text="Credits:" minHeight="70" GridPane.columnIndex="0" GridPane.rowIndex="1"
+           textFill="darkslategray"
+           GridPane.halignment="CENTER">
+        <padding>
+            <Insets top="30"/>
+        </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
     <Label GridPane.valignment="TOP"
+           GridPane.halignment="CENTER"
            textAlignment="CENTER"
+           textFill="darkslategray"
            text="Project developed as an integral part of liberation plan named: Freedom35"
-           wrapText="true" minHeight="100" GridPane.columnIndex="0" GridPane.rowIndex="2"
-            maxWidth="500">
+           wrapText="true" minHeight="180" GridPane.columnIndex="0" GridPane.rowIndex="2"
+            maxWidth="200">
         <font>
             <Font size="20" name="AR CHRISTY"/>
         </font>
     </Label>
+
     <Label GridPane.valignment="TOP"
            GridPane.halignment="CENTER"
            alignment="TOP_CENTER"
            textAlignment="CENTER"
+           textFill="darkslategray"
            text="        Authors:       Bartek Matuszewski, Lukasz Matuszewski, Grzegorz Wanat"
-           wrapText="true" minHeight="240" GridPane.columnIndex="0" GridPane.rowIndex="3"
+           wrapText="true" minHeight="120" GridPane.columnIndex="0" GridPane.rowIndex="3"
            maxWidth="200">
+        <padding>
+            <Insets top="20"/>
+        </padding>
         <font>
             <Font size="20" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label GridPane.halignment="CENTER" minHeight="160" GridPane.columnIndex="0" GridPane.rowIndex="4">
+    <Label GridPane.halignment="CENTER" minHeight="80" GridPane.columnIndex="0" GridPane.rowIndex="4">
         <graphic>
             <ImageView GridPane.valignment="TOP">
-                <Image url="images/mariachi.png" preserveRatio="true" requestedHeight="120" />
+                <Image url="images/horse.png" preserveRatio="true" requestedHeight="80" />
             </ImageView>
         </graphic>
     </Label>
