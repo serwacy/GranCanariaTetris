@@ -19,8 +19,6 @@ import java.util.*;
 
 public class Controller{
 
-
-
     @FXML
     private Button creditsButton;
     @FXML

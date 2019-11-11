@@ -79,11 +79,11 @@
         </font>
     </Label>
     <Label GridPane.halignment="CENTER" minHeight="80" GridPane.columnIndex="0" GridPane.rowIndex="4">
-        <graphic>
-            <ImageView GridPane.valignment="TOP">
-                <Image url="images/horse.png" preserveRatio="true" requestedHeight="80" />
-            </ImageView>
-        </graphic>
+<!--        <graphic>-->
+<!--            <ImageView GridPane.valignment="TOP">-->
+<!--                <Image url="images/horse.png" preserveRatio="true" requestedHeight="80" />-->
+<!--            </ImageView>-->
+<!--        </graphic>-->
     </Label>
     <Button fx:id="backButton"
             text=" Back"

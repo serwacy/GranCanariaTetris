@@ -3,6 +3,8 @@ package Services;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class ScoreCounter {
@@ -19,9 +21,11 @@ public class ScoreCounter {
     public int getScore() {
         return score;
     }
+
     public static String getScores(){
         List<Score> scores = new LinkedList<>();
-        File file = new File("C:\\Users\\bartm\\OneDrive\\Documents\\IntelijiProjects\\GranCanariaTetris\\src\\main\\resources\\scores.txt");
+
+        File file = new File("./src/main/resources/scores.txt");
         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(file)))){
             while (scanner.hasNextLine()) {
                 String[] line = scanner.nextLine().split(";");
@@ -34,7 +38,7 @@ public class ScoreCounter {
         }finally {
             Collections.sort(scores, new SortScores());
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < scores.size(); i++) {
+            for (int i = 0; i < scores.size()&&i<9; i++) {
                 result.append(i+1);
                 result.append(". ");
                 result.append(scores.get(i).getNickname());
