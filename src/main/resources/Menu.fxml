@@ -35,7 +35,7 @@
         </font>
     </Label>
     <Label minHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="1"></Label>
-    <Button text=" Play" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER">
+    <Button fx:id="playButton" text=" Play" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER" onAction="#onButtonClick">
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
