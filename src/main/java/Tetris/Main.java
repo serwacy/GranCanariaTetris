@@ -10,8 +10,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Menu.fxml"));
-        primaryStage.setScene(new Scene(root,600,800));
+        primaryStage.setScene(new Scene(root,550,850));
         primaryStage.setTitle("Gran Canaria Tetris - version 1.0");
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

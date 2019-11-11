@@ -34,44 +34,12 @@
             <Font size="60" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label text="CREDITS" minHeight="50" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="CENTER">
-        <font>
-            <Font size="30" name="AR CHRISTY"/>
-        </font>
-    </Label>
-    <Label GridPane.valignment="TOP"
-           textAlignment="CENTER"
-           text="Project developed as an integral part of liberation plan named: Freedom35"
-           wrapText="true" minHeight="100" GridPane.columnIndex="0" GridPane.rowIndex="2"
-            maxWidth="500">
-        <font>
-            <Font size="20" name="AR CHRISTY"/>
-        </font>
-    </Label>
-    <Label GridPane.valignment="TOP"
-           GridPane.halignment="CENTER"
-           alignment="TOP_CENTER"
-           textAlignment="CENTER"
-           text="        Authors:       Bartek Matuszewski, Lukasz Matuszewski, Grzegorz Wanat"
-           wrapText="true" minHeight="240" GridPane.columnIndex="0" GridPane.rowIndex="3"
-           maxWidth="200">
-        <font>
-            <Font size="20" name="AR CHRISTY"/>
-        </font>
-    </Label>
-    <Label GridPane.halignment="CENTER" minHeight="160" GridPane.columnIndex="0" GridPane.rowIndex="4">
-        <graphic>
-            <ImageView GridPane.valignment="TOP">
-                <Image url="images/mariachi.png" preserveRatio="true" requestedHeight="120" />
-            </ImageView>
-        </graphic>
-    </Label>
+    <Label minHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="1"></Label>
     <Button fx:id="backButton"
             text=" Back"
             GridPane.columnIndex="0"
-            GridPane.rowIndex="4"
-            GridPane.halignment="RIGHT"
-            GridPane.valignment="BOTTOM"
+            GridPane.rowIndex="2"
+            GridPane.halignment="CENTER"
             onAction="#onButtonClick">
         <font>
             <Font size="30" name="AR CHRISTY"/>
