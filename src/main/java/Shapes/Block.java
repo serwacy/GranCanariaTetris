@@ -17,6 +17,10 @@ public class Block {
         return x;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
     public void setX(int x) {
         this.x = x;
     }

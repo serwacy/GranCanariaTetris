@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Rectangle?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="Tetris.Controller"
+          prefHeight="850.0" prefWidth="550.0"
+          vgap="10" hgap="10"
+          alignment="TOP_CENTER"
+          style="-fx-background-image: url('images/background.jpg'); -fx-background-position: bottom,center"
+          gridLinesVisible="false">
+    <Label text=" GRAN CANARIA TETRIS"
+           textFill="darkslategray"
+           wrapText="true"
+           textAlignment="CENTER"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="0"
+           alignment="CENTER"
+           GridPane.halignment="CENTER"
+           GridPane.valignment="BOTTOM"
+           GridPane.columnSpan="2"
+           minHeight="70" >
+        <padding>
+            <Insets top="20"/>
+        </padding>
+        <font>
+            <Font size="50" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label  GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="1">
+        <graphic>
+            <ImageView>
+                <Image url="images/board.png" requestedHeight="750" preserveRatio="true"/>
+            </ImageView>
+        </graphic>
+    </Label>
+    <GridPane  GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="1" minHeight="700">
+        <padding>
+            <Insets top="40" left="50"/>
+        </padding>
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="3" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="4" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="5" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="6" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="7" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="8" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="9" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="10" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="11" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="12" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="13" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="14" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="15" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="16" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="17" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="18" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="19" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="3" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="4" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="5" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="6" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="7" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="8" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="9" GridPane.rowIndex="20" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+    </GridPane>
+    <Label text="SCORE" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="TOP_RIGHT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <padding>
+            <Insets right="45" top="40"/>
+        </padding>
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label text="0000" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="TOP_RIGHT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <padding>
+            <Insets right="30" top="100"/>
+        </padding>
+        <font>
+            <Font size="40" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label text="NEXT" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="TOP_RIGHT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <padding>
+            <Insets right="45" top="210"/>
+        </padding>
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="TOP_RIGHT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <padding>
+            <Insets right="40" top="270"/>
+        </padding>
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+
+        <Rectangle GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+        <Rectangle GridPane.columnIndex="2" GridPane.rowIndex="2" style="-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5" height="30" width="30"/>
+    </GridPane>
+    <Label text="PAUSE" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="TOP_RIGHT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <padding>
+            <Insets right="45" top="420"/>
+        </padding>
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+    </Label>
+
+    <Pane  GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <Button layoutX="415" layoutY="480">
+            <graphic>
+                <ImageView>
+                    <Image url="images/pause.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </Pane>
+    <Label text="STOP" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="TOP_RIGHT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <padding>
+            <Insets right="45" top="565"/>
+        </padding>
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+    </Label>
+
+    <Pane GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <Button layoutX="415" layoutY="620" fx:id="stopButton" onAction="#onButtonClick">
+            <graphic>
+                <ImageView>
+                    <Image url="images/stop.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </Pane>
+
+</GridPane>

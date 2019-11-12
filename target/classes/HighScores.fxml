@@ -34,36 +34,45 @@
             <Font size="60" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label minHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="1"></Label>
-    <Button fx:id="playButton" text=" Play" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER" onAction="#onButtonClick">
-        <font>
-            <Font size="30" name="AR CHRISTY"/>
-        </font>
+    <Label  GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
         <graphic>
             <ImageView>
-                <Image url="images/play.png"/>
+                <Image url="images/board.png" requestedHeight="490" preserveRatio="true"/>
             </ImageView>
         </graphic>
-    </Button>
-    <Button fx:id="highScoresButton" text=" High Scores" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="CENTER"
-                onAction="#showScores">
+    </Label>
+    <Label text="High Scores List:" minHeight="70" GridPane.columnIndex="0" GridPane.rowIndex="1"
+           textFill="darkslategray"
+           GridPane.halignment="CENTER">
+        <padding>
+            <Insets top="30"/>
+        </padding>
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+    </Label>
+
+    <Label fx:id="highScores" minHeight="420" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER" textFill="darkslategray">
+        <padding>
+            <Insets bottom="30"/>
+        </padding>
+        <font>
+            <Font size="24" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Button fx:id="backButton"
+            text=" Back"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="3"
+            GridPane.halignment="RIGHT"
+            GridPane.valignment="BOTTOM"
+            onAction="#onButtonClick">
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
         <graphic>
             <ImageView>
-                <Image url="images/trophy.png"/>
-            </ImageView>
-        </graphic>
-    </Button>
-    <Button fx:id="creditsButton" text=" Credits" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="CENTER"
-                onAction="#showCredits">
-        <font>
-            <Font size="30" name="AR CHRISTY"/>
-        </font>
-        <graphic>
-            <ImageView>
-                <Image url="images/credits.png"/>
+                <Image url="images/return.png"/>
             </ImageView>
         </graphic>
     </Button>

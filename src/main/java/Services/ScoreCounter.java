@@ -49,7 +49,7 @@ public class ScoreCounter {
                 result.append(scores.get(i).getScore());
                 result.append("\n");
             }
-            System.out.println(result.toString());
+            //System.out.println(result.toString());
             return result.toString();
         }
     }

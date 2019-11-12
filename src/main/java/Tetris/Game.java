@@ -8,10 +8,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class Game extends Application {
+public class Game {
     private static Block[][] tetrion;
-    private Shape currentShape;
-    private Shape nextShape;
+    public Shape currentShape;
+    public Shape nextShape;
     private int level;
 
     public Game() {
@@ -22,17 +22,6 @@ public class Game extends Application {
         ScoreCounter scoreCounter = new ScoreCounter();
     }
 
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.LEFT) {
-                currentShape.moveLeft();
-            } else if (event.getCode() == KeyCode.RIGHT) {
-                currentShape.moveRight();
-            } else if (event.getCode() == KeyCode.SPACE) {
-                currentShape.rotate();
-            }
-        });
-    }
 
     private boolean canGoIn() {
         return currentShape.getBlocks().stream()
