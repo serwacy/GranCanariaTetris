@@ -9,10 +9,11 @@ public abstract class Shape {
     protected List<Block> blocks;
     private List<Block> ghostBlocks;
     private int rotation;
+    private int ghostRotation;
 
     public Shape() {
         blocks = new ArrayList<Block>();
-        rotation = 1;
+        ghostBlocks = new ArrayList<Block>();
     }
 
     public void fall() {
@@ -56,8 +57,9 @@ public abstract class Shape {
                                 && x.getX() < Game.getTetrion().length - 1);
     }
 
-    public boolean canRotate(){
+    public void initRotation(){
         ghostBlocks = blocks;
+        ghostRotation = rotation;
         rotate();
         if(blocks.stream().anyMatch(x ->
                 Game.getTetrion()[x.getX()][x.getY()] != null ||
@@ -66,10 +68,7 @@ public abstract class Shape {
                 x.getY() < 0 ||
                 x.getY() > Game.getTetrion()[0].length -1)){
             blocks = ghostBlocks;
-            return false;
-        }
-        else{
-            return true;
+            rotation = ghostRotation;
         }
     }
 

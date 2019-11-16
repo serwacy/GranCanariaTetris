@@ -3,18 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bcadc2fa-7d71-410d-b3f5-a64b89e2bbdb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/IShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/IShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/JShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/JShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/LShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/LShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/OShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/OShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/SShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/SShape.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/Shape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/TShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/TShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/ZShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/ZShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Credits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Credits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Play.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Play.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Services/ScoreCounter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Services/ScoreCounter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Shapes/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Shapes/Block.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Shapes/IShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Shapes/IShape.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Shapes/JShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Shapes/JShape.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Shapes/LShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Shapes/LShape.class" afterDir="false" />
@@ -23,10 +12,6 @@
       <change beforePath="$PROJECT_DIR$/target/classes/Shapes/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Shapes/Shape.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Shapes/TShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Shapes/TShape.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Shapes/ZShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Shapes/ZShape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Tetris/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Tetris/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Tetris/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Tetris/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Tetris/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Tetris/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Tetris/ShapeFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Tetris/ShapeFactory.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,11 +40,12 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="ProjectId" id="1TgohsGB36p3nEiqaGJtsIAnASs" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Algorithms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -134,7 +120,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
