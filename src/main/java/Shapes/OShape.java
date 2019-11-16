@@ -16,7 +16,7 @@ public class OShape extends Shape {
         //nothing happens
     }
 
-//    public boolean canRotate() {
-//        return false;
-//    }
+    public boolean canRotate() {
+        return false;
+    }
 }

@@ -20,6 +20,69 @@ public class Controller{
 
     private Game game = new Game();
 
+    public void test(){
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 10; j++) {
+                int finalJ = j;
+                int finalI = i;
+                if(game.currentShape.getBlocks().stream().anyMatch(x->x.getX()== finalJ && x.getY()== finalI)){
+                    System.out.print("X ");
+                }
+                else{
+                    System.out.print("O ");
+                }
+            }
+            System.out.println();
+        }
+        game.currentShape.rotate();
+        System.out.println("\n");
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 10; j++) {
+                int finalJ = j;
+                int finalI = i;
+                if(game.currentShape.getBlocks().stream().anyMatch(x->x.getX()== finalJ && x.getY()== finalI)){
+                    System.out.print("X ");
+                }
+                else{
+                    System.out.print("O ");
+                }
+            }
+            System.out.println();
+        }
+        game.currentShape.fall();
+        game.currentShape.fall();
+        game.currentShape.moveRight();
+        game.currentShape.moveRight();
+        System.out.println("\n");
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 10; j++) {
+                int finalJ = j;
+                int finalI = i;
+                if(game.currentShape.getBlocks().stream().anyMatch(x->x.getX()== finalJ && x.getY()== finalI)){
+                    System.out.print("X ");
+                }
+                else{
+                    System.out.print("O ");
+                }
+            }
+            System.out.println();
+        }
+        game.currentShape.rotate();
+        System.out.println("\n");
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 10; j++) {
+                int finalJ = j;
+                int finalI = i;
+                if(game.currentShape.getBlocks().stream().anyMatch(x->x.getX()== finalJ && x.getY()== finalI)){
+                    System.out.print("X ");
+                }
+                else{
+                    System.out.print("O ");
+                }
+            }
+            System.out.println();
+        }
+    }
     @FXML
     private Button playButton;
     @FXML
@@ -160,6 +223,7 @@ public class Controller{
     }
     //END OF HELP METHODS OF THE INITIALIZER
     public void start(Stage primaryStage) throws Exception {
+        test();
         primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.LEFT) {
                 //game.currentShape.moveLeft();
