@@ -3,9 +3,6 @@ package Shapes;
 import Tetris.Game;
 import javafx.scene.paint.Color;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TShape extends Shape {
     public TShape() {
         super();
@@ -57,45 +54,42 @@ public class TShape extends Shape {
     public boolean canRotate() {
         initGhostBlocks();
         if (getRotation() == 1) {
-            ghostBlocks.get(0).setX(ghostBlocks.get(0).getX() + 1);
-            ghostBlocks.get(0).setY(ghostBlocks.get(0).getY() + 1);
-            ghostBlocks.get(1).setX(ghostBlocks.get(1).getX() + 1);
-            ghostBlocks.get(1).setY(ghostBlocks.get(1).getY() - 1);
-            ghostBlocks.get(3).setX(ghostBlocks.get(3).getX() - 1);
-            ghostBlocks.get(3).setY(ghostBlocks.get(3).getY() + 1);
+            getGhostBlocks().get(0).setX(getGhostBlocks().get(0).getX() + 1);
+            getGhostBlocks().get(0).setY(getGhostBlocks().get(0).getY() + 1);
+            getGhostBlocks().get(1).setX(getGhostBlocks().get(1).getX() + 1);
+            getGhostBlocks().get(1).setY(getGhostBlocks().get(1).getY() - 1);
+            getGhostBlocks().get(3).setX(getGhostBlocks().get(3).getX() - 1);
+            getGhostBlocks().get(3).setY(getGhostBlocks().get(3).getY() + 1);
         } else if (getRotation() == 2) {
-            ghostBlocks.get(0).setX(ghostBlocks.get(0).getX() - 1);
-            ghostBlocks.get(0).setY(ghostBlocks.get(0).getY() + 1);
-            ghostBlocks.get(1).setX(ghostBlocks.get(1).getX() + 1);
-            ghostBlocks.get(1).setY(ghostBlocks.get(1).getY() + 1);
-            ghostBlocks.get(3).setX(ghostBlocks.get(3).getX() - 1);
-            ghostBlocks.get(3).setY(ghostBlocks.get(3).getY() - 1);
+            getGhostBlocks().get(0).setX(getGhostBlocks().get(0).getX() - 1);
+            getGhostBlocks().get(0).setY(getGhostBlocks().get(0).getY() + 1);
+            getGhostBlocks().get(1).setX(getGhostBlocks().get(1).getX() + 1);
+            getGhostBlocks().get(1).setY(getGhostBlocks().get(1).getY() + 1);
+            getGhostBlocks().get(3).setX(getGhostBlocks().get(3).getX() - 1);
+            getGhostBlocks().get(3).setY(getGhostBlocks().get(3).getY() - 1);
         } else if (getRotation() == 3) {
-            ghostBlocks.get(0).setX(ghostBlocks.get(0).getX() - 1);
-            ghostBlocks.get(0).setY(ghostBlocks.get(0).getY() - 1);
-            ghostBlocks.get(1).setX(ghostBlocks.get(1).getX() - 1);
-            ghostBlocks.get(1).setY(ghostBlocks.get(1).getY() + 1);
-            ghostBlocks.get(3).setX(ghostBlocks.get(3).getX() + 1);
-            ghostBlocks.get(3).setY(ghostBlocks.get(3).getY() - 1);
+            getGhostBlocks().get(0).setX(getGhostBlocks().get(0).getX() - 1);
+            getGhostBlocks().get(0).setY(getGhostBlocks().get(0).getY() - 1);
+            getGhostBlocks().get(1).setX(getGhostBlocks().get(1).getX() - 1);
+            getGhostBlocks().get(1).setY(getGhostBlocks().get(1).getY() + 1);
+            getGhostBlocks().get(3).setX(getGhostBlocks().get(3).getX() + 1);
+            getGhostBlocks().get(3).setY(getGhostBlocks().get(3).getY() - 1);
         } else if (getRotation() == 4) {
-            ghostBlocks.get(0).setX(ghostBlocks.get(0).getX() + 1);
-            ghostBlocks.get(0).setY(ghostBlocks.get(0).getY() - 1);
-            ghostBlocks.get(1).setX(ghostBlocks.get(1).getX() - 1);
-            ghostBlocks.get(1).setY(ghostBlocks.get(1).getY() - 1);
-            ghostBlocks.get(3).setX(ghostBlocks.get(3).getX() + 1);
-            ghostBlocks.get(3).setY(ghostBlocks.get(3).getY() + 1);
+            getGhostBlocks().get(0).setX(getGhostBlocks().get(0).getX() + 1);
+            getGhostBlocks().get(0).setY(getGhostBlocks().get(0).getY() - 1);
+            getGhostBlocks().get(1).setX(getGhostBlocks().get(1).getX() - 1);
+            getGhostBlocks().get(1).setY(getGhostBlocks().get(1).getY() - 1);
+            getGhostBlocks().get(3).setX(getGhostBlocks().get(3).getX() + 1);
+            getGhostBlocks().get(3).setY(getGhostBlocks().get(3).getY() + 1);
         }
-        if(ghostBlocks.stream().anyMatch(x ->
-                Game.getTetrion()[x.getX()][x.getY()] != null ||
-                        x.getX() < 0 ||
+        if(getGhostBlocks().stream().anyMatch(x ->
+                x.getX() < 0 ||
                         x.getX() > Game.getTetrion().length -1 ||
                         x.getY() < 0 ||
                         x.getY() > Game.getTetrion()[0].length -1)){
             return false;
         }
-        else{
-            return true;
-        }
-//        return true;
+        else return getGhostBlocks().stream().noneMatch(x ->
+                Game.getTetrion()[x.getX()][x.getY()] != null);
     }
 }
