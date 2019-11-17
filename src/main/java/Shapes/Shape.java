@@ -1,19 +1,18 @@
 package Shapes;
 
 import Tetris.Game;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Shape {
-    protected List<Block> blocks;
-    private List<Block> ghostBlocks;
+    private List<Block> blocks;
+    protected List<Block> ghostBlocks;
     private int rotation;
-    private int ghostRotation;
 
     public Shape() {
         blocks = new ArrayList<Block>();
-        ghostBlocks = new ArrayList<Block>();
     }
 
     public void fall() {
@@ -57,20 +56,7 @@ public abstract class Shape {
                                 && x.getX() < Game.getTetrion().length - 1);
     }
 
-    public void initRotation(){
-        ghostBlocks = blocks;
-        ghostRotation = rotation;
-        rotate();
-        if(blocks.stream().anyMatch(x ->
-                Game.getTetrion()[x.getX()][x.getY()] != null ||
-                x.getX() < 0 ||
-                x.getX() > Game.getTetrion().length -1 ||
-                x.getY() < 0 ||
-                x.getY() > Game.getTetrion()[0].length -1)){
-            blocks = ghostBlocks;
-            rotation = ghostRotation;
-        }
-    }
+    public abstract boolean canRotate();
 
     public void addBlocks(Block block) {
         this.blocks.add(block);
@@ -86,5 +72,25 @@ public abstract class Shape {
 
     public List<Block> getBlocks() {
         return blocks;
+    }
+
+    public List<Block> getGhostBlocks() {
+        return ghostBlocks;
+    }
+
+    public void setGhostBlocks(List<Block> ghostBlocks) {
+        this.ghostBlocks = ghostBlocks;
+    }
+
+    public void initGhostBlocks(){
+        this.ghostBlocks = new ArrayList<Block>();
+        addGhostBlocks(new Block(blocks.get(0).getX(),blocks.get(0).getY(), Color.GREEN));
+        addGhostBlocks(new Block(blocks.get(1).getX(),blocks.get(1).getY(), Color.GREEN));
+        addGhostBlocks(new Block(blocks.get(2).getX(),blocks.get(2).getY(), Color.GREEN));
+        addGhostBlocks(new Block(blocks.get(3).getX(),blocks.get(3).getY(), Color.GREEN));
+    }
+
+    public void addGhostBlocks(Block block) {
+        this.ghostBlocks.add(block);
     }
 }

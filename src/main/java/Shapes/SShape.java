@@ -51,8 +51,7 @@ public class SShape extends Shape {
     }
 
     public boolean canRotate() {
-        List<Block> ghostBlocks = new ArrayList<Block>();
-        ghostBlocks.addAll(getBlocks());
+        initGhostBlocks();
         if (getRotation() == 1) {
             ghostBlocks.get(0).setY(ghostBlocks.get(0).getY() + 2);
             ghostBlocks.get(1).setX(ghostBlocks.get(1).getX() + 1);

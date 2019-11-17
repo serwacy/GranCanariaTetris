@@ -51,8 +51,7 @@ public class ZShape extends Shape {
     }
 
     public boolean canRotate() {
-        List<Block> ghostBlocks = new ArrayList<Block>();
-        ghostBlocks.addAll(getBlocks());
+        initGhostBlocks();
         if (getRotation() == 1) {
             ghostBlocks.get(0).setX(ghostBlocks.get(0).getX() + 2);
             ghostBlocks.get(1).setX(ghostBlocks.get(1).getX() + 1);

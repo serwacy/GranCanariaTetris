@@ -55,8 +55,7 @@ public class IShape extends Shape {
     }
 
     public boolean canRotate() {
-        List<Block> ghostBlocks = new ArrayList<Block>();
-        ghostBlocks.addAll(getBlocks());
+        initGhostBlocks();
         if (getRotation() == 1) {
             ghostBlocks.get(0).setX(ghostBlocks.get(0).getX() + 2);
             ghostBlocks.get(0).setY(ghostBlocks.get(0).getY() - 1);
@@ -87,11 +86,14 @@ public class IShape extends Shape {
             ghostBlocks.get(3).setY(ghostBlocks.get(3).getY() + 1);
         }
         if(ghostBlocks.stream().anyMatch(x ->
-                Game.getTetrion()[x.getX()][x.getY()] != null ||
                 x.getX() < 0 ||
                 x.getX() > Game.getTetrion().length -1 ||
                 x.getY() < 0 ||
                 x.getY() > Game.getTetrion()[0].length -1)){
+            return false;
+        }
+        else if(ghostBlocks.stream().anyMatch(x ->
+                Game.getTetrion()[x.getX()][x.getY()] != null)){
             return false;
         }
         else{

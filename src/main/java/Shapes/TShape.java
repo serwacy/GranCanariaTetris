@@ -55,8 +55,7 @@ public class TShape extends Shape {
     }
 
     public boolean canRotate() {
-        List<Block> ghostBlocks = new ArrayList<Block>();
-        ghostBlocks.addAll(getBlocks());
+        initGhostBlocks();
         if (getRotation() == 1) {
             ghostBlocks.get(0).setX(ghostBlocks.get(0).getX() + 1);
             ghostBlocks.get(0).setY(ghostBlocks.get(0).getY() + 1);
