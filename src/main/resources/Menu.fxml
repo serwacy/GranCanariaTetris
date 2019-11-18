@@ -46,7 +46,7 @@
         </graphic>
     </Button>
     <Button fx:id="highScoresButton" text=" High Scores" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="CENTER"
-                onAction="#showScores">
+                onAction="#onButtonClick">
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
@@ -57,13 +57,24 @@
         </graphic>
     </Button>
     <Button fx:id="creditsButton" text=" Credits" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="CENTER"
-                onAction="#showCredits">
+                onAction="#onButtonClick">
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
         <graphic>
             <ImageView>
                 <Image url="images/credits.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="exitButton" text=" Quit Game" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="CENTER"
+            onAction="#onButtonClick">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="images/exit.png"/>
             </ImageView>
         </graphic>
     </Button>

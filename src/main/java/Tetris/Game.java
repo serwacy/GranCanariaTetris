@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 
 public class Game {
     private static Block[][] tetrion;
-    public Shape currentShape;
-    public Shape nextShape;
+    private Shape currentShape;
+    private Shape nextShape;
     private int level;
 
     public Game() {
@@ -22,6 +22,13 @@ public class Game {
         ScoreCounter scoreCounter = new ScoreCounter();
     }
 
+    public Shape getCurrentShape() {
+        return currentShape;
+    }
+
+    public Shape getNextShape() {
+        return nextShape;
+    }
 
     private boolean canGoIn() {
         return currentShape.getBlocks().stream()

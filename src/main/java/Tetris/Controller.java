@@ -3,16 +3,20 @@ package Tetris;
 import Services.Score;
 import Services.ScoreCounter;
 import Shapes.Shape;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -27,6 +31,8 @@ public class Controller{
     @FXML
     private Button highScoresButton;
     @FXML
+    private Button exitButton;
+    @FXML
     private Button backButton;
     @FXML
     private Button stopButton;
@@ -39,7 +45,8 @@ public class Controller{
     @FXML
     private GridPane bigPane = new GridPane();
     @FXML
-    private int currentScore;
+    private Canvas canvas = new Canvas();
+
 
 
     // ON BUTTON CLICK METHOD TO BE USED IN ANY CASE OF BUTTON EVENT IN OUR PROGRAM
@@ -54,6 +61,9 @@ public class Controller{
             if (event.getSource().equals(highScoresButton)){
                 showScores();
             }
+            if (event.getSource().equals(exitButton)){
+                exitGame();
+            }
             if (event.getSource().equals(backButton)){
                 showMenu();
             }
@@ -63,8 +73,6 @@ public class Controller{
             if (event.getSource().equals(pauseButton)){
                 pauseGame();
             }
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -75,9 +83,24 @@ public class Controller{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Play.fxml"));
         stage.setScene(new Scene(root,550,850));
         stage.setResizable(false);
+
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        drawShapes(gc);
+        bigPane.getChildren().add(canvas);
+
         this.start(stage);
         stage.show();
-
+    }
+    private void drawShapes(GraphicsContext gc) {
+        gc.setFill(Color.GREEN);
+        gc.setStroke(Color.BLUE);
+        gc.setLineWidth(5);
+        gc.strokeLine(40, 10, 10, 40);
+        gc.fillOval(10, 60, 30, 30);
+        gc.strokeOval(60, 60, 30, 30);
+        gc.fillRoundRect(110, 60, 30, 30, 10, 10);
+        gc.strokeRoundRect(160, 60, 30, 30, 10, 10);
     }
     public void showCredits() throws Exception {
         Stage stage = (Stage) creditsButton.getScene().getWindow();
@@ -110,6 +133,9 @@ public class Controller{
     public void pauseGame(){
         System.out.println("paused game");
     }
+    public void exitGame(){
+        Platform.exit();
+    }
     //END OF SCENE SETTING
 
     //INITIALIZER - RELOADED EVERY TIME WE TOUCH THIS CLASS
@@ -118,12 +144,11 @@ public class Controller{
         highScores.setText(ScoreCounter.getScores());
         this.generateBigPane();
         this.generateSmallPane();
-        this.printShapeOnGrid(bigPane,game.currentShape);
         //this.printShapeOnGrid(smallPane,game.nextShape); HERE BUG BEACUSE SHAPE HAS X AND Y ADJUSTED TO THE MIDDLE OF THE BIG PANE
     }
     //HELP METHODS FOR THE INITIALIZER
     private void generateSmallPane(){
-        for (int i = 0; i <= 2; i++) {
+        for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 2; j++) {
                 Rectangle rec = new Rectangle();
                 rec.setWidth(30);
@@ -144,16 +169,14 @@ public class Controller{
             }
         }
     }
-    private void printShapeOnGrid(GridPane pane,Shape shape){
+    private void printShapeOnGrid(GraphicsContext graphicsContext, Shape shape){
         Rectangle r1 = new Rectangle(30,30,shape.getBlocks().get(0).getColor());
         Rectangle r2 = new Rectangle(30,30,shape.getBlocks().get(0).getColor());
         Rectangle r3 = new Rectangle(30,30,shape.getBlocks().get(0).getColor());
         Rectangle r4 = new Rectangle(30,30,shape.getBlocks().get(0).getColor());
         //System.out.println("in print "+shape.getBlocks().get(0).getY());
-        pane.add(r1,game.currentShape.getBlocks().get(0).getX(),game.currentShape.getBlocks().get(0).getY());
-        pane.add(r2,game.currentShape.getBlocks().get(1).getX(),game.currentShape.getBlocks().get(1).getY());
-        pane.add(r3,game.currentShape.getBlocks().get(2).getX(),game.currentShape.getBlocks().get(2).getY());
-        pane.add(r4,game.currentShape.getBlocks().get(3).getX(),game.currentShape.getBlocks().get(3).getY());
+        //pane.add(r1,game.getCurrentShape().getBlocks().get(0).getX(),game.getCurrentShape().getBlocks().get(0).getY());
+
     }
     private void printTetrionOnGrid(){
 
@@ -163,14 +186,14 @@ public class Controller{
         primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.LEFT) {
                 //game.currentShape.moveLeft();
-                System.out.println("before "+game.currentShape.getBlocks().get(0).getY());
-                game.currentShape.getBlocks().get(0).setY(7);
+                System.out.println("before "+game.getCurrentShape().getBlocks().get(0).getY());
+                game.getCurrentShape().getBlocks().get(0).setY(7);
                 System.out.println("im here");
-                System.out.println("after "+game.currentShape.getBlocks().get(0).getY());
+                System.out.println("after "+game.getCurrentShape().getBlocks().get(0).getY());
             } else if (event.getCode() == KeyCode.RIGHT) {
-                game.currentShape.moveRight();
+                game.getCurrentShape().moveRight();
             } else if (event.getCode() == KeyCode.SPACE) {
-                game.currentShape.rotate();
+                game.getCurrentShape().rotate();
             }
         });
     }
