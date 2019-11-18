@@ -12,7 +12,7 @@
 <?import javafx.geometry.Insets?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="Tetris.Controller"
+          fx:controller="Controlers.CreditsController"
           prefHeight="850.0" prefWidth="550.0"
           vgap="10" hgap="10"
           alignment="TOP_CENTER"
