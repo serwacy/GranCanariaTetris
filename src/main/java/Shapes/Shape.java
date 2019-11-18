@@ -36,24 +36,33 @@ public abstract class Shape {
     public abstract void rotate();
 
     private boolean canFall() {
-        return blocks.stream()
-                .allMatch(x ->
-                        Game.getTetrion()[x.getX()][x.getY() + 1] == null
-                                && x.getY() < Game.getTetrion()[0].length - 1);
+        if(blocks.stream().allMatch(x->x.getY() < Game.getTetrion()[0].length-1)) {
+            return blocks.stream()
+                    .allMatch(x -> Game.getTetrion()[x.getX()][x.getY() + 1] == null);
+        }
+        else{
+            return false;
+        }
     }
 
     private boolean canMoveLeft() {
-        return blocks.stream()
-                .allMatch(x ->
-                        Game.getTetrion()[x.getX() - 1][x.getY()] == null
-                                && x.getX() > 0);
+        if(blocks.stream().allMatch(x -> x.getX() > 0)) {
+            return blocks.stream()
+                    .allMatch(x -> Game.getTetrion()[x.getX() - 1][x.getY()] == null);
+        }
+        else {
+            return false;
+        }
     }
 
     private boolean canMoveRight() {
-        return blocks.stream()
-                .allMatch(x ->
-                        Game.getTetrion()[x.getX() + 1][x.getY()] == null
-                                && x.getX() < Game.getTetrion().length - 1);
+        if(blocks.stream().allMatch(x->x.getX() < Game.getTetrion().length -1)) {
+            return blocks.stream()
+                    .allMatch(x -> Game.getTetrion()[x.getX() + 1][x.getY()] == null);
+        }
+        else{
+            return false;
+        }
     }
 
     public abstract boolean canRotate();
