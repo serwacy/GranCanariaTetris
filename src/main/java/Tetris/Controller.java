@@ -77,6 +77,7 @@ public class Controller{
         stage.setResizable(false);
         this.start(stage);
         stage.show();
+        game.startGame();
 
     }
     public void showCredits() throws Exception {

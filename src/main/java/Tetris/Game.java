@@ -1,17 +1,15 @@
 package Tetris;
 
 import Services.ScoreCounter;
+import Services.ShapeDynamics;
 import Shapes.Block;
 import Shapes.Shape;
-import javafx.application.Application;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 public class Game {
     private static Block[][] tetrion;
     public Shape currentShape;
     public Shape nextShape;
+    private ShapeDynamics shapeDynamics;
     private int level;
 
     public Game() {
@@ -20,6 +18,17 @@ public class Game {
         currentShape = ShapeFactory.createShape();
         nextShape = ShapeFactory.createShape();
         ScoreCounter scoreCounter = new ScoreCounter();
+        shapeDynamics = new ShapeDynamics(currentShape);
+
+    }
+
+    public void startGame(){
+        shapeDynamics.setInterval(level);
+        shapeDynamics.start();
+    }
+
+    public void endGame(){
+        shapeDynamics.stop();
     }
 
 
