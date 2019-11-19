@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -20,6 +21,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Font.loadFont(this.getClass().getResource("/fonts/ARCHRISTY.ttf").toExternalForm(), 10);
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Menu.fxml"));
         primaryStage.setScene(new Scene(root,550,850));
         primaryStage.setTitle("Gran Canaria Tetris - version 1.0");
