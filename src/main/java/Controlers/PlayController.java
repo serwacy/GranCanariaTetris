@@ -1,6 +1,5 @@
 package Controlers;
 
-import Shapes.Shape;
 import Tetris.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,10 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -37,51 +33,53 @@ public class PlayController implements Initializable {
     private Canvas canvas;
     private GraphicsContext gc;
 
+    public Game getGame() {
+        return game;
+    }
+
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         generateBigPane();
         generateSmallPane();
         gc = canvas.getGraphicsContext2D();
-        printCurrentShapeOnGrid(gc);
+        ControllerManager.setPlayController(this);
+       // printCurrentShapeOnGrid();
+        game.startGame();
     }
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.LEFT) {
-                //game.currentShape.moveLeft();
-                System.out.println("before "+game.getCurrentShape().getBlocks().get(0).getY());
-                game.getCurrentShape().getBlocks().get(0).setY(7);
-                System.out.println("im here");
-                System.out.println("after "+game.getCurrentShape().getBlocks().get(0).getY());
-            } else if (event.getCode() == KeyCode.RIGHT) {
-                game.getCurrentShape().moveRight();
-            } else if (event.getCode() == KeyCode.SPACE) {
-                game.getCurrentShape().rotate();
-            }
-        });
-    }
+
+//    private void addKeyControls() {
+//        Stage stage = (Stage) stopButton.getScene().getWindow();
+//        stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+//            if (event.getCode() == KeyCode.LEFT) {
+//                game.getCurrentShape().moveLeft();
+//            } else if (event.getCode() == KeyCode.RIGHT) {
+//                game.getCurrentShape().moveRight();
+//            } else if (event.getCode() == KeyCode.SPACE) {
+//                game.getCurrentShape().rotate();
+//            }
+//        });
+//    }
 
     @FXML
     public void onButtonClick(ActionEvent event){
         try {
             if (event.getSource().equals(stopButton)){
-                finishGame();
+                game.endGame();
+                goBackToMainMenu();
             }
             if (event.getSource().equals(pauseButton)){
-                pauseGame();
+                game.pauseGame();
             }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
-    public void finishGame() throws Exception {
+    private void goBackToMainMenu() throws Exception {
         Stage stage = (Stage) stopButton.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Menu.fxml"));
         stage.setScene(new Scene(root,550,850));
         stage.setResizable(false);
         stage.show();
-    }
-    public void pauseGame(){
-        System.out.println("paused game");
     }
 
     private void generateSmallPane(){
@@ -107,14 +105,19 @@ public class PlayController implements Initializable {
         }
     }
 
-    private void printCurrentShapeOnGrid(GraphicsContext graphicsContext){
-        graphicsContext.setFill(game.getCurrentShape().getBlocks().get(0).getColor());
-        //System.out.println("in print "+shape.getBlocks().get(0).getY());
-        graphicsContext.fillRect(game.getCurrentShape().getBlocks().get(0).getX()*30,game.getCurrentShape().getBlocks().get(0).getY()*30,30,30);
-        graphicsContext.fillRect(game.getCurrentShape().getBlocks().get(1).getX()*30,game.getCurrentShape().getBlocks().get(1).getY()*30,30,30);
-        graphicsContext.fillRect(game.getCurrentShape().getBlocks().get(2).getX()*30,game.getCurrentShape().getBlocks().get(2).getY()*30,30,30);
-        graphicsContext.fillRect(game.getCurrentShape().getBlocks().get(3).getX()*30,game.getCurrentShape().getBlocks().get(3).getY()*30,30,30);
-            //graphicsContext.fillRect(0,0, 30,30);
+    public void printCurrentShapeOnGrid(){
+        gc.setFill(game.getCurrentShape().getBlocks().get(0).getColor());
+        gc.fillRect(game.getCurrentShape().getBlocks().get(0).getX()*30,game.getCurrentShape().getBlocks().get(0).getY()*30,30,30);
+        gc.fillRect(game.getCurrentShape().getBlocks().get(1).getX()*30,game.getCurrentShape().getBlocks().get(1).getY()*30,30,30);
+        gc.fillRect(game.getCurrentShape().getBlocks().get(2).getX()*30,game.getCurrentShape().getBlocks().get(2).getY()*30,30,30);
+        gc.fillRect(game.getCurrentShape().getBlocks().get(3).getX()*30,game.getCurrentShape().getBlocks().get(3).getY()*30,30,30);
+    }
 
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    public GraphicsContext getGc() {
+        return gc;
     }
 }
