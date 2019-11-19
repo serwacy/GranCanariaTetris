@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="Controlers.MainMenuController"
+          prefHeight="850.0" prefWidth="550.0"
+          vgap="10" hgap="10"
+          alignment="TOP_CENTER"
+          style="-fx-background-image: url('images/background.jpg'); -fx-background-position: bottom,center"
+          gridLinesVisible="false">
+    <Label text=" GRAN CANARIA TETRIS"
+           textFill="darkslategray"
+           wrapText="true"
+           textAlignment="CENTER"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="0"
+           GridPane.halignment="CENTER"
+           GridPane.valignment="BOTTOM"
+           minHeight="200" prefWidth="500">
+        <padding>
+            <Insets top="80"/>
+        </padding>
+        <font>
+            <Font size="60" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label minHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="1"></Label>
+    <Button fx:id="playButton" text=" Play" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER" onAction="#onButtonClick">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="images/play.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="highScoresButton" text=" High Scores" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="CENTER"
+                onAction="#onButtonClick">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="images/trophy.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="creditsButton" text=" Credits" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="CENTER"
+                onAction="#onButtonClick">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="images/credits.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="exitButton" text=" Quit Game" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="CENTER"
+            onAction="#onButtonClick">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="images/exit.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+</GridPane>

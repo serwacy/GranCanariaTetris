@@ -1,0 +1,10 @@
+Bartek;100
+Bartek;129
+Grzegorz;80
+Bartek;145
+Lukasz;234
+Bartek;180
+Bartek;169
+Grzegorz;130
+Bartek;148
+Lukasz;139

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="Controlers.CreditsController"
+          prefHeight="850.0" prefWidth="550.0"
+          vgap="10" hgap="10"
+          alignment="TOP_CENTER"
+          style="-fx-background-image: url('images/background.jpg'); -fx-background-position: bottom,center"
+          gridLinesVisible="false">
+    <Label text=" GRAN CANARIA TETRIS"
+           textFill="darkslategray"
+           wrapText="true"
+           textAlignment="CENTER"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="0"
+           GridPane.halignment="CENTER"
+           GridPane.valignment="BOTTOM"
+           minHeight="200" prefWidth="500">
+        <padding>
+            <Insets top="80"/>
+        </padding>
+        <font>
+            <Font size="60" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label  GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3">
+        <graphic>
+            <ImageView>
+                <Image url="images/board.png" requestedHeight="490" preserveRatio="true"/>
+            </ImageView>
+        </graphic>
+    </Label>
+    <Label text="Credits:" minHeight="70" GridPane.columnIndex="0" GridPane.rowIndex="1"
+           textFill="darkslategray"
+           GridPane.halignment="CENTER">
+        <padding>
+            <Insets top="30"/>
+        </padding>
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label GridPane.valignment="TOP"
+           GridPane.halignment="CENTER"
+           textAlignment="CENTER"
+           textFill="darkslategray"
+           text="Project developed as an integral part of liberation plan named: Freedom35"
+           wrapText="true" minHeight="180" GridPane.columnIndex="0" GridPane.rowIndex="2"
+            maxWidth="200">
+        <font>
+            <Font size="20" name="AR CHRISTY"/>
+        </font>
+    </Label>
+
+    <Label GridPane.valignment="TOP"
+           GridPane.halignment="CENTER"
+           alignment="TOP_CENTER"
+           textAlignment="CENTER"
+           textFill="darkslategray"
+           text="        Authors:       Bartek Matuszewski, Lukasz Matuszewski, Grzegorz Wanat"
+           wrapText="true" minHeight="120" GridPane.columnIndex="0" GridPane.rowIndex="3"
+           maxWidth="200">
+        <padding>
+            <Insets top="20"/>
+        </padding>
+        <font>
+            <Font size="20" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label GridPane.halignment="CENTER" minHeight="80" GridPane.columnIndex="0" GridPane.rowIndex="4">
+<!--        <graphic>-->
+<!--            <ImageView GridPane.valignment="TOP">-->
+<!--                <Image url="images/horse.png" preserveRatio="true" requestedHeight="80" />-->
+<!--            </ImageView>-->
+<!--        </graphic>-->
+    </Label>
+    <Button fx:id="backButton"
+            text=" Back"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="4"
+            GridPane.halignment="RIGHT"
+            GridPane.valignment="BOTTOM"
+            onAction="#onButtonClick">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="images/return.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+</GridPane>
