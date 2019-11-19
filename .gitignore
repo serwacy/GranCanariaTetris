@@ -92,7 +92,16 @@ modules.xml
 .idea/**/markdown-navigator/
 
 ### Maven ###
+*/target/**
 target/
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+*.iml
+.idea/
+.eclipse
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
