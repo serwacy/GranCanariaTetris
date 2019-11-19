@@ -1,17 +1,18 @@
 package Shapes;
 
 import Tetris.Game;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Shape {
     private List<Block> blocks;
+    private List<Block> ghostBlocks;
     private int rotation;
 
     public Shape() {
         blocks = new ArrayList<Block>();
-        rotation = 1;
     }
 
     public void fall() {
@@ -37,24 +38,33 @@ public abstract class Shape {
     public abstract void rotate();
 
     private boolean canFall() {
-        return blocks.stream()
-                .allMatch(x ->
-                        Game.getTetrion()[x.getX()][x.getY() + 1] == null
-                                && x.getY() < Game.getTetrion()[0].length - 1);
+        if(blocks.stream().allMatch(x->x.getY() < Game.getTetrion()[0].length-1)) {
+            return blocks.stream()
+                    .allMatch(x -> Game.getTetrion()[x.getX()][x.getY() + 1] == null);
+        }
+        else{
+            return false;
+        }
     }
 
     private boolean canMoveLeft() {
-        return blocks.stream()
-                .allMatch(x ->
-                        Game.getTetrion()[x.getX() - 1][x.getY()] == null
-                                && x.getX() > 0);
+        if(blocks.stream().allMatch(x -> x.getX() > 0)) {
+            return blocks.stream()
+                    .allMatch(x -> Game.getTetrion()[x.getX() - 1][x.getY()] == null);
+        }
+        else {
+            return false;
+        }
     }
 
     private boolean canMoveRight() {
-        return blocks.stream()
-                .allMatch(x ->
-                        Game.getTetrion()[x.getX() + 1][x.getY()] == null
-                                && x.getX() < Game.getTetrion().length - 1);
+        if(blocks.stream().allMatch(x->x.getX() < Game.getTetrion().length -1)) {
+            return blocks.stream()
+                    .allMatch(x -> Game.getTetrion()[x.getX() + 1][x.getY()] == null);
+        }
+        else{
+            return false;
+        }
     }
 
     public abstract boolean canRotate();
@@ -67,7 +77,28 @@ public abstract class Shape {
         this.rotation = rotation;
     }
 
+    public int getRotation() {
+        return rotation;
+    }
+
     public List<Block> getBlocks() {
         return blocks;
+    }
+
+    public List<Block> getGhostBlocks() {
+        return ghostBlocks;
+    }
+
+
+    public void initGhostBlocks(){
+        this.ghostBlocks = new ArrayList<Block>();
+        addGhostBlocks(new Block(blocks.get(0).getX(),blocks.get(0).getY(), Color.WHITE));
+        addGhostBlocks(new Block(blocks.get(1).getX(),blocks.get(1).getY(), Color.WHITE));
+        addGhostBlocks(new Block(blocks.get(2).getX(),blocks.get(2).getY(), Color.WHITE));
+        addGhostBlocks(new Block(blocks.get(3).getX(),blocks.get(3).getY(), Color.WHITE));
+    }
+
+    public void addGhostBlocks(Block block) {
+        this.ghostBlocks.add(block);
     }
 }
