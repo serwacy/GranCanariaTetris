@@ -92,7 +92,7 @@ modules.xml
 .idea/**/markdown-navigator/
 
 ### Maven ###
-*/target/**
+target/
 target/**/*.fxml
 target/**/*.png
 *.class
