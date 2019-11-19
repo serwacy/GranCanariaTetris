@@ -52,7 +52,7 @@
         <padding>
             <Insets top="50" left="55"/>
         </padding>
-        <Canvas fx:id="canvas" GridPane.columnIndex="0" GridPane.rowIndex="0" width="300" height="630" GridPane.columnSpan="10" GridPane.rowSpan="21" GridPane.halignment="LEFT" GridPane.valignment="TOP"/>
+        <Canvas fx:id="canvasForBigPane" GridPane.columnIndex="0" GridPane.rowIndex="0" width="300" height="630" GridPane.columnSpan="10" GridPane.rowSpan="21" GridPane.halignment="LEFT" GridPane.valignment="TOP"/>
     </GridPane>
     <Label text="SCORE" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
@@ -82,10 +82,11 @@
         <padding>
             <Insets left="0" top="0"/>
         </padding>
+        <Canvas fx:id="canvasForSmallPane" GridPane.columnIndex="0" GridPane.rowIndex="0" width="120" height="90" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.columnSpan="4" GridPane.rowSpan="4"/>
     </GridPane>
     <Label text="PAUSE" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="25" top="115"/>
+            <Insets left="25" top="85"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
