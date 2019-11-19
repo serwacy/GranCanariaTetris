@@ -34,8 +34,9 @@ public class Game {
         return nextShape;
     }
     public void endGame(){
-    }
         shapeDynamics.stop();
+    }
+
     private boolean canGoIn() {
         return currentShape.getBlocks().stream()
                 .allMatch(x -> tetrion[x.getX()][x.getY()] == null);

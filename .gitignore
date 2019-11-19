@@ -93,7 +93,8 @@ modules.xml
 
 ### Maven ###
 */target/**
-target/
+target/**/*.fxml
+target/**/*.png
 *.class
 *.jar
 *.war
