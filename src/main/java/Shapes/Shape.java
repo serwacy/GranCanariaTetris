@@ -18,8 +18,8 @@ public abstract class Shape {
     public void fall() {
         if (canFall()) {
             blocks.forEach(x -> x.setY(x.getY() + 1));
+            System.out.println("falling block " + blocks.get(0).getY());
         }
-        System.out.println("falling block " + blocks.get(0).getY());
     }
 
     public void moveLeft() {

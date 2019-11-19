@@ -1,6 +1,6 @@
 package Controlers;
 
-import Services.ScoreCounter;
+import Services.HighestRecordsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,6 +40,6 @@ public class HighScoresController implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        highScores.setText(ScoreCounter.getScores());
+        highScores.setText(HighestRecordsManager.getScores());
     }
 }

@@ -11,23 +11,23 @@ public class Game {
     private Shape nextShape;
     private ShapeDynamics shapeDynamics;
     private int level;
+    private ScoreCounter scoreCounter;
 
     public Game() {
         tetrion = new Block[10][20];
         level = 1;
         currentShape = ShapeFactory.createShape();
         nextShape = ShapeFactory.createShape();
-        ScoreCounter scoreCounter = new ScoreCounter();
+        scoreCounter = new ScoreCounter();
         shapeDynamics = new ShapeDynamics(currentShape);
-
     }
 
-    public Shape getCurrentShape() {
-        return currentShape;
-    }
     public void startGame(){
         shapeDynamics.setInterval(level);
         shapeDynamics.start();
+    }
+    public void pauseGame(){
+        System.out.println("paused game");
     }
 
     public Shape getNextShape() {
@@ -49,6 +49,9 @@ public class Game {
     }
     private void lineRemove(){
 
+    }
+    public Shape getCurrentShape() {
+        return currentShape;
     }
 
     public static Block[][] getTetrion() {
