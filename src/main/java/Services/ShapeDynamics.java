@@ -1,9 +1,7 @@
 package Services;
 
 import Controlers.ControllerManager;
-import Controlers.PlayController;
 import Shapes.Shape;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -32,7 +30,9 @@ public class ShapeDynamics implements Runnable {
         running.set(true);
         while (running.get()) {
             try {
-                printing();
+                clearCanvas();
+                printTetrion();
+                printFallingShape();
                 Thread.sleep(interval);
                 this.movingShape.fall();
             } catch (InterruptedException e) {
@@ -40,10 +40,15 @@ public class ShapeDynamics implements Runnable {
             }
         }
     }
-
-    private void printing(){
+    private void clearCanvas(){
         Canvas canvas = ControllerManager.getPlayController().getCanvas();
         ControllerManager.getPlayController().getGc().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+    //print tetrion
+    private void printTetrion(){
+        ControllerManager.getPlayController().printTetrionOnGrid();
+    }
+    private void printFallingShape(){
         ControllerManager.getPlayController().printCurrentShapeOnGrid();
     }
 
