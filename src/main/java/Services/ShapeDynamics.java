@@ -1,9 +1,7 @@
 package Services;
 
 import Controlers.ControllerManager;
-import Controlers.PlayController;
 import Shapes.Shape;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -42,9 +40,10 @@ public class ShapeDynamics implements Runnable {
     }
 
     private void printing(){
-        Canvas canvas = ControllerManager.getPlayController().getCanvas();
-        ControllerManager.getPlayController().getGc().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        Canvas canvas = ControllerManager.getPlayController().getCanvasForBigPane();
+        ControllerManager.getPlayController().getGraphicsContextForBigPane().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         ControllerManager.getPlayController().printCurrentShapeOnGrid();
+        ControllerManager.getPlayController().printNextShapeOnGrid();
     }
 
     public void setInterval(int level) {

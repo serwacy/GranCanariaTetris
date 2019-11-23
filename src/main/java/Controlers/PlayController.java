@@ -30,18 +30,30 @@ public class PlayController implements Initializable {
     @FXML
     private GridPane bigPane;
     @FXML
-    private Canvas canvas;
-    private GraphicsContext gc;
+    private Canvas canvasForBigPane;
+    private GraphicsContext graphicsContextForBigPane;
+    @FXML
+    private Canvas canvasForSmallPane;
+    private GraphicsContext graphicsContextForSmallPane;
 
     public Game getGame() {
         return game;
+    }
+
+    public Canvas getCanvasForBigPane() {
+        return canvasForBigPane;
+    }
+
+    public GraphicsContext getGraphicsContextForBigPane() {
+        return graphicsContextForBigPane;
     }
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         generateBigPane();
         generateSmallPane();
-        gc = canvas.getGraphicsContext2D();
+        graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
+        graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
         ControllerManager.setPlayController(this);
        // printCurrentShapeOnGrid();
         game.startGame();
@@ -84,7 +96,7 @@ public class PlayController implements Initializable {
 
     private void generateSmallPane(){
         for (int i = 0; i <= 3; i++) {
-            for (int j = 0; j <= 2; j++) {
+            for (int j = 0; j <= 3; j++) {
                 Rectangle rec = new Rectangle();
                 rec.setWidth(29);
                 rec.setHeight(29);
@@ -106,18 +118,20 @@ public class PlayController implements Initializable {
     }
 
     public void printCurrentShapeOnGrid(){
-        gc.setFill(game.getCurrentShape().getBlocks().get(0).getColor());
-        gc.fillRect(game.getCurrentShape().getBlocks().get(0).getX()*30,game.getCurrentShape().getBlocks().get(0).getY()*30,30,30);
-        gc.fillRect(game.getCurrentShape().getBlocks().get(1).getX()*30,game.getCurrentShape().getBlocks().get(1).getY()*30,30,30);
-        gc.fillRect(game.getCurrentShape().getBlocks().get(2).getX()*30,game.getCurrentShape().getBlocks().get(2).getY()*30,30,30);
-        gc.fillRect(game.getCurrentShape().getBlocks().get(3).getX()*30,game.getCurrentShape().getBlocks().get(3).getY()*30,30,30);
+        graphicsContextForBigPane.setFill(game.getCurrentShape().getBlocks().get(0).getColor());
+        graphicsContextForBigPane.fillRect(game.getCurrentShape().getBlocks().get(0).getX()*30,game.getCurrentShape().getBlocks().get(0).getY()*30,30,30);
+        graphicsContextForBigPane.fillRect(game.getCurrentShape().getBlocks().get(1).getX()*30,game.getCurrentShape().getBlocks().get(1).getY()*30,30,30);
+        graphicsContextForBigPane.fillRect(game.getCurrentShape().getBlocks().get(2).getX()*30,game.getCurrentShape().getBlocks().get(2).getY()*30,30,30);
+        graphicsContextForBigPane.fillRect(game.getCurrentShape().getBlocks().get(3).getX()*30,game.getCurrentShape().getBlocks().get(3).getY()*30,30,30);
+    }
+    public void printNextShapeOnGrid(){
+        graphicsContextForSmallPane.setFill(game.getNextShape().getBlocks().get(0).getColor());
+        graphicsContextForSmallPane.fillRect(game.getNextShape().getBlocks().get(0).getX()*30,game.getNextShape().getBlocks().get(0).getY()*30,30,30);
+        graphicsContextForSmallPane.fillRect(game.getNextShape().getBlocks().get(1).getX()*30,game.getNextShape().getBlocks().get(1).getY()*30,30,30);
+        graphicsContextForSmallPane.fillRect(game.getNextShape().getBlocks().get(2).getX()*30,game.getNextShape().getBlocks().get(2).getY()*30,30,30);
+        graphicsContextForSmallPane.fillRect(game.getNextShape().getBlocks().get(3).getX()*30,game.getNextShape().getBlocks().get(3).getY()*30,30,30);
     }
 
-    public Canvas getCanvas() {
-        return canvas;
-    }
 
-    public GraphicsContext getGc() {
-        return gc;
-    }
+
 }
