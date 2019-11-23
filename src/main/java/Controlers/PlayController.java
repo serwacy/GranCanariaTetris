@@ -155,8 +155,8 @@ public class PlayController implements Initializable {
         for (int i = 0; i < Game.getTetrion().length; i++) {
             for (int j = 0; j < Game.getTetrion()[i].length; j++) {
                 if (Game.getTetrion()[i][j]!=null){
-                    gc.setFill(Game.getTetrion()[i][j].getColor());
-                    gc.fillRect(Game.getTetrion()[i][j].getX()*30, Game.getTetrion()[i][j].getY()*30,30,30);
+                    getGraphicsContextForBigPane().setFill(Game.getTetrion()[i][j].getColor());
+                    getGraphicsContextForBigPane().fillRect(Game.getTetrion()[i][j].getX()*30, Game.getTetrion()[i][j].getY()*30,30,30);
                 }
             }
         }

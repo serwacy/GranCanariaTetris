@@ -41,8 +41,8 @@ public class ShapeDynamics implements Runnable {
         }
     }
     private void clearCanvas(){
-        Canvas canvas = ControllerManager.getPlayController().getCanvas();
-        ControllerManager.getPlayController().getGc().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        Canvas canvas = ControllerManager.getPlayController().getCanvasForBigPane();
+        ControllerManager.getPlayController().getGraphicsContextForBigPane().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
     //print tetrion
     private void printTetrion(){
