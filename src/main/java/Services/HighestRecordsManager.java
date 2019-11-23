@@ -17,25 +17,24 @@ public class HighestRecordsManager {
                 int score = Integer.parseInt(line[1]);
                 scores.add(new Record(nickname,score));
             }
-        }catch (Exception e){
-            System.out.println("exception in reading scores");;
-        }finally {
-            Collections.sort(scores, new SortScores());
-            StringBuilder result = new StringBuilder();
-            for (int i = 0; i < scores.size() && i < 10; i++) {
-                result.append(i+1);
-                result.append(". ");
-                result.append(scores.get(i).getNickname());
-                int dots = 20-scores.get(i).getNickname().length()-(Integer.toString(scores.get(i).getScore())).length();
-                for (int j = 0; j < dots; j++) {
-                    result.append(" ");
-                }
-                result.append(scores.get(i).getScore());
-                result.append("\n");
-            }
-            //System.out.println(result.toString());
-            return result.toString();
         }
+        catch (Exception e) {
+            System.out.println("exception in reading scores");
+        }
+        scores.sort(new SortScores());
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < scores.size() && i < 10; i++) {
+            result.append(i+1);
+            result.append(". ");
+            result.append(scores.get(i).getNickname());
+            int dots = 20-scores.get(i).getNickname().length()-(Integer.toString(scores.get(i).getScore())).length();
+            for (int j = 0; j < dots; j++) {
+                result.append(" ");
+            }
+            result.append(scores.get(i).getScore());
+            result.append("\n");
+        }
+        return result.toString();
     }
     static class SortScores implements Comparator<Record> {
         @Override

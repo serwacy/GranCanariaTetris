@@ -17,7 +17,7 @@ public class ScoreCounter {
         return score;
     }
 
-    public void addScore(int scoreAdder) {
+    public void addScore(final int scoreAdder) {
         this.score += scoreAdder;
     }
 
