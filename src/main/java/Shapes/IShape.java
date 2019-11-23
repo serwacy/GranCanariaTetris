@@ -16,36 +16,28 @@ public class IShape extends Shape {
     public void rotate() {
         if(canRotate()) {
             if (getRotation() == 1) {
-                getBlocks().get(0).setX(getBlocks().get(0).getX() + 2);
-                getBlocks().get(0).setY(getBlocks().get(0).getY() - 1);
-                getBlocks().get(1).setX(getBlocks().get(1).getX() + 1);
-                getBlocks().get(2).setY(getBlocks().get(2).getY() + 1);
-                getBlocks().get(3).setX(getBlocks().get(3).getX() - 1);
-                getBlocks().get(3).setY(getBlocks().get(3).getY() + 2);
+                translateRealBlockOfGivenShape(0, 2, -1);
+                translateRealBlockOfGivenShape(1, 1, 0);
+                translateRealBlockOfGivenShape(2, 0, 1);
+                translateRealBlockOfGivenShape(3, -1, 2);
                 super.setRotation(2);
             } else if (getRotation() == 2) {
-                getBlocks().get(0).setX(getBlocks().get(0).getX() + 1);
-                getBlocks().get(0).setY(getBlocks().get(0).getY() + 2);
-                getBlocks().get(1).setY(getBlocks().get(1).getY() + 1);
-                getBlocks().get(2).setX(getBlocks().get(2).getX() - 1);
-                getBlocks().get(3).setX(getBlocks().get(3).getX() - 2);
-                getBlocks().get(3).setY(getBlocks().get(3).getY() - 1);
+                translateRealBlockOfGivenShape(0, 1, 2);
+                translateRealBlockOfGivenShape(1, 0, 1);
+                translateRealBlockOfGivenShape(2, -1, 0);
+                translateRealBlockOfGivenShape(3, -2, -1);
                 super.setRotation(3);
             } else if (getRotation() == 3) {
-                getBlocks().get(0).setX(getBlocks().get(0).getX() - 2);
-                getBlocks().get(0).setY(getBlocks().get(0).getY() + 1);
-                getBlocks().get(1).setX(getBlocks().get(1).getX() - 1);
-                getBlocks().get(2).setY(getBlocks().get(2).getY() - 1);
-                getBlocks().get(3).setX(getBlocks().get(3).getX() + 1);
-                getBlocks().get(3).setY(getBlocks().get(3).getY() - 2);
+                translateRealBlockOfGivenShape(0, -2, 1);
+                translateRealBlockOfGivenShape(1, -1, 0);
+                translateRealBlockOfGivenShape(2, 0, -1);
+                translateRealBlockOfGivenShape(3, 1, -2);
                 super.setRotation(4);
             } else if (getRotation() == 4) {
-                getBlocks().get(0).setX(getBlocks().get(0).getX() - 1);
-                getBlocks().get(0).setY(getBlocks().get(0).getY() - 2);
-                getBlocks().get(1).setY(getBlocks().get(1).getY() - 1);
-                getBlocks().get(2).setX(getBlocks().get(2).getX() + 1);
-                getBlocks().get(3).setX(getBlocks().get(3).getX() + 2);
-                getBlocks().get(3).setY(getBlocks().get(3).getY() + 1);
+                translateRealBlockOfGivenShape(0, -1, -2);
+                translateRealBlockOfGivenShape(1, 0, -1);
+                translateRealBlockOfGivenShape(2, 1, 0);
+                translateRealBlockOfGivenShape(3, 2, 1);
                 super.setRotation(1);
             }
         }
@@ -54,33 +46,25 @@ public class IShape extends Shape {
     public boolean canRotate() {
         initGhostBlocks();
         if (getRotation() == 1) {
-            getGhostBlocks().get(0).setX(getGhostBlocks().get(0).getX() + 2);
-            getGhostBlocks().get(0).setY(getGhostBlocks().get(0).getY() - 1);
-            getGhostBlocks().get(1).setX(getGhostBlocks().get(1).getX() + 1);
-            getGhostBlocks().get(2).setY(getGhostBlocks().get(2).getY() + 1);
-            getGhostBlocks().get(3).setX(getGhostBlocks().get(3).getX() - 1);
-            getGhostBlocks().get(3).setY(getGhostBlocks().get(3).getY() + 2);
+            translateGhostBlockOfGivenShape(0, 2, -1);
+            translateGhostBlockOfGivenShape(1, 1, 0);
+            translateGhostBlockOfGivenShape(2, 0, 1);
+            translateGhostBlockOfGivenShape(3, -1, 2);
         } else if (getRotation() == 2) {
-            getGhostBlocks().get(0).setX(getGhostBlocks().get(0).getX() + 1);
-            getGhostBlocks().get(0).setY(getGhostBlocks().get(0).getY() + 2);
-            getGhostBlocks().get(1).setY(getGhostBlocks().get(1).getY() + 1);
-            getGhostBlocks().get(2).setX(getGhostBlocks().get(2).getX() - 1);
-            getGhostBlocks().get(3).setX(getGhostBlocks().get(3).getX() - 2);
-            getGhostBlocks().get(3).setY(getGhostBlocks().get(3).getY() - 1);
+            translateGhostBlockOfGivenShape(0, 1, 2);
+            translateGhostBlockOfGivenShape(1, 0, 1);
+            translateGhostBlockOfGivenShape(2, -1, 0);
+            translateGhostBlockOfGivenShape(3, -2, -1);
         } else if (getRotation() == 3) {
-            getGhostBlocks().get(0).setX(getGhostBlocks().get(0).getX() - 2);
-            getGhostBlocks().get(0).setY(getGhostBlocks().get(0).getY() + 1);
-            getGhostBlocks().get(1).setX(getGhostBlocks().get(1).getX() - 1);
-            getGhostBlocks().get(2).setY(getGhostBlocks().get(2).getY() - 1);
-            getGhostBlocks().get(3).setX(getGhostBlocks().get(3).getX() + 1);
-            getGhostBlocks().get(3).setY(getGhostBlocks().get(3).getY() - 2);
+            translateGhostBlockOfGivenShape(0, -2, 1);
+            translateGhostBlockOfGivenShape(1, -1, 0);
+            translateGhostBlockOfGivenShape(2, 0, -1);
+            translateGhostBlockOfGivenShape(3, 1, -2);
         } else if (getRotation() == 4) {
-            getGhostBlocks().get(0).setX(getGhostBlocks().get(0).getX() - 1);
-            getGhostBlocks().get(0).setY(getGhostBlocks().get(0).getY() - 2);
-            getGhostBlocks().get(1).setY(getGhostBlocks().get(1).getY() - 1);
-            getGhostBlocks().get(2).setX(getGhostBlocks().get(2).getX() + 1);
-            getGhostBlocks().get(3).setX(getGhostBlocks().get(3).getX() + 2);
-            getGhostBlocks().get(3).setY(getGhostBlocks().get(3).getY() + 1);
+            translateGhostBlockOfGivenShape(0, -1, -2);
+            translateGhostBlockOfGivenShape(1, 0, -1);
+            translateGhostBlockOfGivenShape(2, 1, 0);
+            translateGhostBlockOfGivenShape(3, 2, 1);
         }
         if(getGhostBlocks().stream().anyMatch(x ->
                 x.getX() < 0 ||

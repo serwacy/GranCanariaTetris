@@ -22,7 +22,7 @@ public class HighestRecordsManager {
         }finally {
             Collections.sort(scores, new SortScores());
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < scores.size()&&i<9; i++) {
+            for (int i = 0; i < scores.size() && i < 10; i++) {
                 result.append(i+1);
                 result.append(". ");
                 result.append(scores.get(i).getNickname());
