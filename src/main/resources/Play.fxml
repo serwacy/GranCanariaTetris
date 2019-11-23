@@ -18,7 +18,7 @@
           prefHeight="850.0" prefWidth="550.0"
           vgap="10" hgap="10"
           style="-fx-background-image: url('images/background.jpg'); -fx-background-position: bottom,center"
-          gridLinesVisible="true">
+          gridLinesVisible="false">
     <Label text=" GRAN CANARIA TETRIS"
            textFill="darkslategray"
            wrapText="true"
@@ -29,7 +29,7 @@
            GridPane.halignment="CENTER"
            GridPane.valignment="BOTTOM"
            GridPane.columnSpan="2"
-           minHeight="70"
+           minHeight="90"
     minWidth="550">
         <padding>
             <Insets top="20"/>
@@ -38,7 +38,7 @@
             <Font size="50" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label  GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="1" minWidth="370" maxWidth="370">
+    <Label  GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="9" minWidth="370" maxWidth="370">
         <padding>
             <Insets left="5"/>
         </padding>
@@ -48,51 +48,52 @@
             </ImageView>
         </graphic>
     </Label>
-    <GridPane fx:id="bigPane" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="1" minHeight="700">
+    <GridPane fx:id="bigPane" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="9"  >
         <padding>
-            <Insets top="40" left="50"/>
+            <Insets top="50" left="55"/>
         </padding>
-        <Canvas fx:id="canvas" GridPane.columnIndex="0" GridPane.rowIndex="0" width="300" height="630" GridPane.columnSpan="10" GridPane.rowSpan="21" GridPane.halignment="LEFT" GridPane.valignment="TOP"/>
+        <Canvas fx:id="canvasForBigPane" GridPane.columnIndex="0" GridPane.rowIndex="0" width="300" height="630" GridPane.columnSpan="10" GridPane.rowSpan="21" GridPane.halignment="LEFT" GridPane.valignment="TOP"/>
     </GridPane>
-    <Label text="SCORE"  maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label text="SCORE" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="25" top="40"/>
+            <Insets left="25" top="50"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label maxWidth="200" text="0000" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label maxWidth="200" text="0000" GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="10" top="100"/>
+            <Insets left="10" top="0"/>
         </padding>
         <font>
             <Font size="40" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label text="NEXT" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label text="NEXT" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="25" top="210"/>
+            <Insets left="25" top="0"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
-    <GridPane fx:id="smallPane" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <GridPane fx:id="smallPane" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="0" top="270"/>
+            <Insets left="0" top="0"/>
         </padding>
+        <Canvas fx:id="canvasForSmallPane" GridPane.columnIndex="0" GridPane.rowIndex="0" width="120" height="90" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.columnSpan="4" GridPane.rowSpan="4"/>
     </GridPane>
-    <Label text="PAUSE" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label text="PAUSE" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="35" top="420"/>
+            <Insets left="25" top="85"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
-        <Button layoutX="15" layoutY="480" fx:id="pauseButton" onAction="#onButtonClick">
+    <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <Button layoutX="30" layoutY="20" fx:id="pauseButton" onAction="#onButtonClick">
             <graphic>
                 <ImageView>
                     <Image url="images/pause.png"/>
@@ -100,16 +101,16 @@
             </graphic>
         </Button>
     </Pane>
-    <Label maxWidth="200" text="STOP" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label maxWidth="200" text="STOP" GridPane.columnIndex="1" GridPane.rowIndex="7" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="35" top="565"/>
+            <Insets left="35" top="0"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
-        <Button layoutX="15" layoutY="620" fx:id="stopButton" onAction="#onButtonClick">
+    <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <Button layoutX="30" layoutY="0" fx:id="stopButton" onAction="#onButtonClick">
             <graphic>
                 <ImageView>
                     <Image url="images/stop.png"/>

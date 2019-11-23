@@ -1,5 +1,6 @@
 package Controlers;
 
+import Shapes.Block;
 import Tetris.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -30,21 +32,66 @@ public class PlayController implements Initializable {
     @FXML
     private GridPane bigPane;
     @FXML
-    private Canvas canvas;
-    private GraphicsContext gc;
+    private Canvas canvasForBigPane;
+    private GraphicsContext graphicsContextForBigPane;
+    @FXML
+    private Canvas canvasForSmallPane;
+    private GraphicsContext graphicsContextForSmallPane;
 
     public Game getGame() {
         return game;
+    }
+
+    public Canvas getCanvasForBigPane() {
+        return canvasForBigPane;
+    }
+
+    public GraphicsContext getGraphicsContextForBigPane() {
+        return graphicsContextForBigPane;
     }
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         generateBigPane();
         generateSmallPane();
-        gc = canvas.getGraphicsContext2D();
+        graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
+        graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
         ControllerManager.setPlayController(this);
-       // printCurrentShapeOnGrid();
         game.startGame();
+        TEMP_addBlockToTetrion();
+
+    }
+    //temp method that adds some block to tetrion - to be deleted
+    private void TEMP_addBlockToTetrion(){
+        Block b1 = new Block(4,17, Color.RED);
+        Block b2 = new Block(5,17, Color.RED);
+        Block b3 = new Block(5,18, Color.RED);
+        Block b4 = new Block(5,19, Color.RED);
+
+        game.addBlockToTetrion(b1);
+        game.addBlockToTetrion(b2);
+        game.addBlockToTetrion(b3);
+        game.addBlockToTetrion(b4);
+
+        Block c1 = new Block(7,17, Color.YELLOW);
+        Block c2 = new Block(7,18, Color.YELLOW);
+        Block c3 = new Block(6,18, Color.YELLOW);
+        Block c4 = new Block(6,19, Color.YELLOW);
+
+        game.addBlockToTetrion(c1);
+        game.addBlockToTetrion(c2);
+        game.addBlockToTetrion(c3);
+        game.addBlockToTetrion(c4);
+
+        Block d1 = new Block(3,18, Color.MAGENTA);
+        Block d2 = new Block(4,18, Color.MAGENTA);
+        Block d3 = new Block(3,19, Color.MAGENTA);
+        Block d4 = new Block(4,19, Color.MAGENTA);
+
+        game.addBlockToTetrion(d1);
+        game.addBlockToTetrion(d2);
+        game.addBlockToTetrion(d3);
+        game.addBlockToTetrion(d4);
     }
 
 //    private void addKeyControls() {
@@ -84,7 +131,7 @@ public class PlayController implements Initializable {
 
     private void generateSmallPane(){
         for (int i = 0; i <= 3; i++) {
-            for (int j = 0; j <= 2; j++) {
+            for (int j = 0; j <= 3; j++) {
                 Rectangle rec = new Rectangle();
                 rec.setWidth(29);
                 rec.setHeight(29);
@@ -104,20 +151,32 @@ public class PlayController implements Initializable {
             }
         }
     }
+    public void printTetrionOnGrid(){
+        for (int i = 0; i < Game.getTetrion().length; i++) {
+            for (int j = 0; j < Game.getTetrion()[i].length; j++) {
+                if (Game.getTetrion()[i][j]!=null){
+                    getGraphicsContextForBigPane().setFill(Game.getTetrion()[i][j].getColor());
+                    getGraphicsContextForBigPane().fillRect(Game.getTetrion()[i][j].getX()*30, Game.getTetrion()[i][j].getY()*30,30,30);
+                }
+            }
+        }
+    }
 
     public void printCurrentShapeOnGrid(){
-        gc.setFill(game.getCurrentShape().getBlocks().get(0).getColor());
-        gc.fillRect(game.getCurrentShape().getBlocks().get(0).getX()*30,game.getCurrentShape().getBlocks().get(0).getY()*30,30,30);
-        gc.fillRect(game.getCurrentShape().getBlocks().get(1).getX()*30,game.getCurrentShape().getBlocks().get(1).getY()*30,30,30);
-        gc.fillRect(game.getCurrentShape().getBlocks().get(2).getX()*30,game.getCurrentShape().getBlocks().get(2).getY()*30,30,30);
-        gc.fillRect(game.getCurrentShape().getBlocks().get(3).getX()*30,game.getCurrentShape().getBlocks().get(3).getY()*30,30,30);
+        graphicsContextForBigPane.setFill(game.getCurrentShape().getBlocks().get(0).getColor());
+        graphicsContextForBigPane.fillRect(game.getCurrentShape().getBlocks().get(0).getX()*30,game.getCurrentShape().getBlocks().get(0).getY()*30,30,30);
+        graphicsContextForBigPane.fillRect(game.getCurrentShape().getBlocks().get(1).getX()*30,game.getCurrentShape().getBlocks().get(1).getY()*30,30,30);
+        graphicsContextForBigPane.fillRect(game.getCurrentShape().getBlocks().get(2).getX()*30,game.getCurrentShape().getBlocks().get(2).getY()*30,30,30);
+        graphicsContextForBigPane.fillRect(game.getCurrentShape().getBlocks().get(3).getX()*30,game.getCurrentShape().getBlocks().get(3).getY()*30,30,30);
+    }
+    public void printNextShapeOnGrid(){
+        graphicsContextForSmallPane.setFill(game.getNextShape().getBlocks().get(0).getColor());
+        graphicsContextForSmallPane.fillRect(game.getNextShape().getBlocks().get(0).getX()*30,game.getNextShape().getBlocks().get(0).getY()*30,30,30);
+        graphicsContextForSmallPane.fillRect(game.getNextShape().getBlocks().get(1).getX()*30,game.getNextShape().getBlocks().get(1).getY()*30,30,30);
+        graphicsContextForSmallPane.fillRect(game.getNextShape().getBlocks().get(2).getX()*30,game.getNextShape().getBlocks().get(2).getY()*30,30,30);
+        graphicsContextForSmallPane.fillRect(game.getNextShape().getBlocks().get(3).getX()*30,game.getNextShape().getBlocks().get(3).getY()*30,30,30);
     }
 
-    public Canvas getCanvas() {
-        return canvas;
-    }
 
-    public GraphicsContext getGc() {
-        return gc;
-    }
+
 }

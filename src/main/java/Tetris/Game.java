@@ -57,4 +57,8 @@ public class Game {
     public static Block[][] getTetrion() {
         return tetrion;
     }
+
+    public void addBlockToTetrion(Block block){
+        tetrion[block.getX()][block.getY()]=new Block(block.getX(),block.getY(),block.getColor());
+    }
 }
