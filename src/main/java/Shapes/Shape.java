@@ -2,7 +2,6 @@ package Shapes;
 
 import Tetris.Game;
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +11,12 @@ public abstract class Shape {
     private int rotation;
 
     public Shape() {
-        blocks = new ArrayList<Block>();
+        blocks = new ArrayList<>();
     }
 
     public void fall() {
         if (canFall()) {
             blocks.forEach(x -> x.setY(x.getY() + 1));
-            System.out.println("falling block " + blocks.get(0).getY());
         }
     }
 
@@ -26,7 +24,6 @@ public abstract class Shape {
         if (canMoveLeft()) {
             blocks.forEach(x -> x.setX(x.getX() - 1));
         }
-        System.out.println("moving block " + blocks.get(0).getX());
     }
 
     public void moveRight() {
@@ -100,5 +97,17 @@ public abstract class Shape {
 
     public void addGhostBlocks(Block block) {
         this.ghostBlocks.add(block);
+    }
+
+    public void translateBlockOfGivenShape(List<Block> givenBlocks, int blockIndex, int translateX, int translateY){
+        givenBlocks.get(blockIndex).setX(givenBlocks.get(blockIndex).getX() + translateX);
+        givenBlocks.get(blockIndex).setY(givenBlocks.get(blockIndex).getY() + translateY);
+    }
+
+    public void translateRealBlockOfGivenShape(int blockIndex, int translateX, int translateY){
+        translateBlockOfGivenShape(blocks, blockIndex, translateX, translateY);
+    }
+    public void translateGhostBlockOfGivenShape(int blockIndex, int translateX, int translateY){
+        translateBlockOfGivenShape(ghostBlocks, blockIndex, translateX, translateY);
     }
 }

@@ -18,7 +18,7 @@ public class Game {
         level = 1;
         currentShape = ShapeFactory.createShape();
         nextShape = ShapeFactory.createShape();
-        scoreCounter = new ScoreCounter();
+        scoreCounter = ScoreCounter.getInstance();
         shapeDynamics = new ShapeDynamics(currentShape);
     }
 

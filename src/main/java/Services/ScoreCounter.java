@@ -1,22 +1,27 @@
 package Services;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.*;
-
 public class ScoreCounter {
+    private static final ScoreCounter INSTANCE = new ScoreCounter();
+
     private int score;
 
-    public ScoreCounter() {
-        score = 0;
+    private ScoreCounter() {
+        this.score = 0;
     }
 
-    private void increaseScore(int level) {
-        score += 10 * level;
+    public static ScoreCounter getInstance() {
+        return INSTANCE;
     }
 
     public int getScore() {
         return score;
+    }
+
+    public void addScore(final int scoreAdder) {
+        this.score += scoreAdder;
+    }
+
+    public void resetScore(){
+        this.score = 0;
     }
 }

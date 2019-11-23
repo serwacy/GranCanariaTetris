@@ -1,10 +1,10 @@
 package Services;
 
 public class Record {
-    String nickname;
-    int score;
+    private String nickname;
+    private int score;
 
-    public Record(String nickname, int score) {
+    public Record(final String nickname, final int score) {
         this.nickname = nickname;
         this.score = score;
     }
