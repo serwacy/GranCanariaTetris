@@ -17,6 +17,7 @@ public class Game {
         tetrion = new Block[10][20];
         level = 1;
         currentShape = ShapeFactory.createShape();
+        moveCurrentShapeToTheCenterOfTetrion(); //initial centering of currentShape, next centering will need to be initialized while setting nextShape as currentShape
         nextShape = ShapeFactory.createShape();
         scoreCounter = ScoreCounter.getInstance();
         shapeDynamics = new ShapeDynamics(currentShape);
@@ -60,5 +61,11 @@ public class Game {
 
     public void addBlockToTetrion(Block block){
         tetrion[block.getX()][block.getY()]=new Block(block.getX(),block.getY(),block.getColor());
+    }
+    public void moveCurrentShapeToTheCenterOfTetrion() {
+        currentShape.getBlocks().get(0).setX(currentShape.getBlocks().get(0).getX()+3);
+        currentShape.getBlocks().get(1).setX(currentShape.getBlocks().get(1).getX()+3);
+        currentShape.getBlocks().get(2).setX(currentShape.getBlocks().get(2).getX()+3);
+        currentShape.getBlocks().get(3).setX(currentShape.getBlocks().get(3).getX()+3);
     }
 }
