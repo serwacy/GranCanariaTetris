@@ -1,5 +1,6 @@
 package Controlers;
 
+import Services.ScoreCounter;
 import Shapes.Block;
 import Tetris.Game;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -21,8 +23,10 @@ import java.util.ResourceBundle;
 
 public class PlayController implements Initializable {
 
-    private Game game = new Game();
+    private Game game = new Game(this);
 
+    @FXML
+    private Label scoreLabel;
     @FXML
     private Button stopButton;
     @FXML
@@ -57,16 +61,15 @@ public class PlayController implements Initializable {
         graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
         graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
         ControllerManager.setPlayController(this);
-        game.startGame();
         TEMP_addBlockToTetrion();
 
     }
     //temp method that adds some block to tetrion - to be deleted
-    private void TEMP_addBlockToTetrion(){
-        Block b1 = new Block(4,17, Color.RED);
-        Block b2 = new Block(5,17, Color.RED);
-        Block b3 = new Block(5,18, Color.RED);
-        Block b4 = new Block(5,19, Color.RED);
+    private void TEMP_addBlockToTetrion() {
+        Block b1 = new Block(4, 17, Color.RED);
+        Block b2 = new Block(5, 17, Color.RED);
+        Block b3 = new Block(5, 18, Color.RED);
+        Block b4 = new Block(5, 19, Color.RED);
 
         game.addBlockToTetrion(b1);
         game.addBlockToTetrion(b2);
@@ -94,18 +97,11 @@ public class PlayController implements Initializable {
         game.addBlockToTetrion(d4);
     }
 
-//    private void addKeyControls() {
-//        Stage stage = (Stage) stopButton.getScene().getWindow();
-//        stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-//            if (event.getCode() == KeyCode.LEFT) {
-//                game.getCurrentShape().moveLeft();
-//            } else if (event.getCode() == KeyCode.RIGHT) {
-//                game.getCurrentShape().moveRight();
-//            } else if (event.getCode() == KeyCode.SPACE) {
-//                game.getCurrentShape().rotate();
-//            }
-//        });
-//    }
+
+    @FXML
+    public void setScoreLabel(){
+        scoreLabel.setText(String.format("%04d",ScoreCounter.INSTANCE.getScore()));
+    }
 
     @FXML
     public void onButtonClick(ActionEvent event){

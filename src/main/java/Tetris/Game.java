@@ -1,5 +1,7 @@
 package Tetris;
 
+import Controlers.PlayController;
+import Services.KeyControls;
 import Services.ScoreCounter;
 import Services.ShapeDynamics;
 import Shapes.Block;
@@ -11,21 +13,24 @@ public class Game {
     private Shape nextShape;
     private ShapeDynamics shapeDynamics;
     private int level;
-    private ScoreCounter scoreCounter;
+    private PlayController playController;
 
-    public Game() {
+    public Game(final PlayController playController) {
+        this.playController = playController;
         tetrion = new Block[10][20];
         level = 1;
         currentShape = ShapeFactory.createShape();
         moveCurrentShapeToTheCenterOfTetrion(); //initial centering of currentShape, next centering will need to be initialized while setting nextShape as currentShape
         nextShape = ShapeFactory.createShape();
-        scoreCounter = ScoreCounter.getInstance();
         shapeDynamics = new ShapeDynamics(currentShape);
     }
 
     public void startGame(){
+        KeyControls keyControls = new KeyControls(playController, this);
+        keyControls.addKeyControls();
         shapeDynamics.setInterval(level);
         shapeDynamics.start();
+        ScoreCounter.INSTANCE.resetScore();
     }
     public void pauseGame(){
         System.out.println("paused game");

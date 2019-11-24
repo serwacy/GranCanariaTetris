@@ -2,6 +2,7 @@ package Services;
 
 import Controlers.ControllerManager;
 import Shapes.Shape;
+import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -33,6 +34,8 @@ public class ShapeDynamics implements Runnable {
                 clearCanvas();
                 printTetrion();
                 printFallingShape();
+                ScoreCounter.INSTANCE.addScore(1);
+                Platform.runLater(() -> ControllerManager.getPlayController().setScoreLabel());
                 Thread.sleep(interval);
                 this.movingShape.fall();
             } catch (InterruptedException e) {
