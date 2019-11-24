@@ -1,5 +1,7 @@
 package Tetris;
 
+import Controlers.PlayController;
+import Services.KeyControls;
 import Services.ScoreCounter;
 import Services.ShapeDynamics;
 import Shapes.Block;
@@ -12,8 +14,10 @@ public class Game {
     private ShapeDynamics shapeDynamics;
     private int level;
     private ScoreCounter scoreCounter;
+    private PlayController playController;
 
-    public Game() {
+    public Game(final PlayController playController) {
+        this.playController = playController;
         tetrion = new Block[10][20];
         level = 1;
         currentShape = ShapeFactory.createShape();
@@ -23,6 +27,8 @@ public class Game {
     }
 
     public void startGame(){
+        KeyControls keyControls = new KeyControls(playController, this);
+        keyControls.addKeyControls();
         shapeDynamics.setInterval(level);
         shapeDynamics.start();
     }

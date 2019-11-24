@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class PlayController implements Initializable {
 
-    private Game game = new Game();
+    private Game game = new Game(this);
 
     @FXML
     private Button stopButton;
@@ -44,21 +44,7 @@ public class PlayController implements Initializable {
         gc = canvas.getGraphicsContext2D();
         ControllerManager.setPlayController(this);
        // printCurrentShapeOnGrid();
-        game.startGame();
     }
-
-//    private void addKeyControls() {
-//        Stage stage = (Stage) stopButton.getScene().getWindow();
-//        stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-//            if (event.getCode() == KeyCode.LEFT) {
-//                game.getCurrentShape().moveLeft();
-//            } else if (event.getCode() == KeyCode.RIGHT) {
-//                game.getCurrentShape().moveRight();
-//            } else if (event.getCode() == KeyCode.SPACE) {
-//                game.getCurrentShape().rotate();
-//            }
-//        });
-//    }
 
     @FXML
     public void onButtonClick(ActionEvent event){

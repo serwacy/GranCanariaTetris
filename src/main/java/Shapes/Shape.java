@@ -18,7 +18,6 @@ public abstract class Shape {
     public void fall() {
         if (canFall()) {
             blocks.forEach(x -> x.setY(x.getY() + 1));
-            System.out.println("falling block " + blocks.get(0).getY());
         }
     }
 
@@ -26,7 +25,6 @@ public abstract class Shape {
         if (canMoveLeft()) {
             blocks.forEach(x -> x.setX(x.getX() - 1));
         }
-        System.out.println("moving block " + blocks.get(0).getX());
     }
 
     public void moveRight() {
