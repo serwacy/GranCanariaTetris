@@ -26,6 +26,10 @@ public class KeyControls {
             } else if (event.getCode() == KeyCode.UP) {
                 game.getCurrentShape().rotate();
                 game.getShapeDynamics().refreshCanvas();
+            } else if(event.getCode() == KeyCode.DOWN){
+                game.getCurrentShape().fall();
+                game.getShapeDynamics().refreshCanvas();
+                ScoreCounter.INSTANCE.addScore(1);
             } else {
                 System.out.println(event.getCode());
             }

@@ -1,20 +1,13 @@
 package Tetris;
 
-import Controlers.PlayController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.io.File;
 import java.io.FileInputStream;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
 
 public class Main extends Application {
 

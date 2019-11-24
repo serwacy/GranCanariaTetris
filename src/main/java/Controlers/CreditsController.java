@@ -3,7 +3,6 @@ package Controlers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
 import java.io.IOException;
 
 public class CreditsController extends Controller {
@@ -20,7 +19,7 @@ public class CreditsController extends Controller {
             e.printStackTrace();
         }
     }
-    public void showMenu() throws IOException {
+    private void showMenu() throws IOException {
         prepareScene(backButton, "Menu.fxml");
     }
 }

@@ -1,5 +1,8 @@
 package Services;
 
+import Controlers.ControllerManager;
+import javafx.application.Platform;
+
 public enum ScoreCounter {
     INSTANCE;
 
@@ -11,6 +14,7 @@ public enum ScoreCounter {
 
     public void addScore(final int scoreAdder) {
         this.score += scoreAdder;
+        Platform.runLater(ControllerManager.getPlayController()::setScoreLabel);
     }
 
     public void resetScore(){
