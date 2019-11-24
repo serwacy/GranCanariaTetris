@@ -61,11 +61,12 @@ public class PlayController implements Initializable {
 
     }
     //temp method that adds some block to tetrion - to be deleted
-    private void TEMP_addBlockToTetrion(){
-        Block b1 = new Block(4,17, Color.RED);
-        Block b2 = new Block(5,17, Color.RED);
-        Block b3 = new Block(5,18, Color.RED);
-        Block b4 = new Block(5,19, Color.RED);
+    private void TEMP_addBlockToTetrion() {
+        Block b1 = new Block(4, 17, Color.RED);
+        Block b2 = new Block(5, 17, Color.RED);
+        Block b3 = new Block(5, 18, Color.RED);
+        Block b4 = new Block(5, 19, Color.RED);
+    }
 
 //    private void addKeyControls() {
 //        Stage stage = (Stage) stopButton.getScene().getWindow();

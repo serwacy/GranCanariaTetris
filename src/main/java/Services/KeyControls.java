@@ -15,7 +15,7 @@ public class KeyControls {
     }
 
     public void addKeyControls() {
-        final Scene scene = playController.getCanvas().getScene();
+        final Scene scene = playController.getCanvasForBigPane().getScene();
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.LEFT) {
                 game.getCurrentShape().moveLeft();
