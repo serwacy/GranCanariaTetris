@@ -19,10 +19,13 @@ public class KeyControls {
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.LEFT) {
                 game.getCurrentShape().moveLeft();
+                game.getShapeDynamics().refreshCanvas();
             } else if (event.getCode() == KeyCode.RIGHT) {
                 game.getCurrentShape().moveRight();
+                game.getShapeDynamics().refreshCanvas();
             } else if (event.getCode() == KeyCode.UP) {
                 game.getCurrentShape().rotate();
+                game.getShapeDynamics().refreshCanvas();
             } else {
                 System.out.println(event.getCode());
             }

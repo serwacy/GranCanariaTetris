@@ -1,6 +1,6 @@
 package Services;
 
-import Controlers.ControllerManager;
+import Controlers.PlayController;
 import Shapes.Shape;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
@@ -9,12 +9,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ShapeDynamics implements Runnable {
 
-    private AtomicBoolean running = new AtomicBoolean(false);
+    private AtomicBoolean running;
     private Shape movingShape;
     private int interval;
+    private final PlayController playController;
 
-    public ShapeDynamics(Shape movingShape) {
+    public ShapeDynamics(Shape movingShape, final PlayController playController) {
         this.movingShape = movingShape;
+        this.playController = playController;
+        running = new AtomicBoolean(false);
+    }
+    public void setInterval(int level) {
+        this.interval = 1000/level;
     }
 
     public void start(){
@@ -31,11 +37,9 @@ public class ShapeDynamics implements Runnable {
         running.set(true);
         while (running.get()) {
             try {
-                clearCanvas();
-                printTetrion();
-                printFallingShape();
+                refreshCanvas();
                 ScoreCounter.INSTANCE.addScore(1);
-                Platform.runLater(() -> ControllerManager.getPlayController().setScoreLabel());
+                Platform.runLater(this.playController::setScoreLabel);
                 Thread.sleep(interval);
                 this.movingShape.fall();
             } catch (InterruptedException e) {
@@ -43,20 +47,24 @@ public class ShapeDynamics implements Runnable {
             }
         }
     }
+
+    void refreshCanvas(){
+        clearCanvas();
+        printTetrion();
+        printCurrentShape();
+        printNextShape();
+
+    }
     private void clearCanvas(){
-        Canvas canvas = ControllerManager.getPlayController().getCanvasForBigPane();
-        ControllerManager.getPlayController().getGraphicsContextForBigPane().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        Canvas canvas = this.playController.getCanvasForBigPane();
+        this.playController.getGraphicsContextForBigPane().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
-    //print tetrion
     private void printTetrion(){
-        ControllerManager.getPlayController().printTetrionOnGrid();
+        this.playController.printTetrion();
     }
-    private void printFallingShape(){
-        ControllerManager.getPlayController().printCurrentShapeOnGrid();
-        ControllerManager.getPlayController().printNextShapeOnGrid();
+    private void printCurrentShape(){ this.playController.printCurrentShape(); }
+    private void printNextShape(){
+        this.playController.printNextShapeOnGrid();
     }
 
-    public void setInterval(int level) {
-        this.interval = 1000/level;
-    }
 }
