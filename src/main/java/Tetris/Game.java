@@ -13,6 +13,7 @@ public class Game {
     private Shape nextShape;
     private ShapeDynamics shapeDynamics;
     private int level;
+    private PlayController playController;
 
     public Game(final PlayController playController) {
         this.playController = playController;
