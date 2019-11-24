@@ -44,8 +44,8 @@ public class MainMenuController {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Play.fxml"));
         stage.setScene(new Scene(root,550,850));
         stage.setResizable(false);
-
         stage.show();
+        ControllerManager.getPlayController().getGame().startGame();
     }
     public void showCredits() throws Exception {
         Stage stage = (Stage) creditsButton.getScene().getWindow();
