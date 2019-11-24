@@ -23,7 +23,7 @@ public class Game {
     public void startGame(){
         shapeDynamics.setInterval(level);
         shapeDynamics.start();
-        ScoreCounter.getInstance().resetScore();
+        ScoreCounter.INSTANCE.resetScore();
     }
     public void pauseGame(){
         System.out.println("paused game");

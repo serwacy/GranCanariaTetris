@@ -98,22 +98,10 @@ public class PlayController implements Initializable {
         game.addBlockToTetrion(d4);
     }
 
-//    private void addKeyControls() {
-//        Stage stage = (Stage) stopButton.getScene().getWindow();
-//        stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-//            if (event.getCode() == KeyCode.LEFT) {
-//                game.getCurrentShape().moveLeft();
-//            } else if (event.getCode() == KeyCode.RIGHT) {
-//                game.getCurrentShape().moveRight();
-//            } else if (event.getCode() == KeyCode.SPACE) {
-//                game.getCurrentShape().rotate();
-//            }
-//        });
-//    }
 
     @FXML
     public void setScoreLabel(){
-        scoreLabel.setText(String.format("%04d",ScoreCounter.getInstance().getScore()));
+        scoreLabel.setText(String.format("%04d",ScoreCounter.INSTANCE.getScore()));
     }
 
     @FXML

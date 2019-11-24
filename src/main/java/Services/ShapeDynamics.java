@@ -34,7 +34,7 @@ public class ShapeDynamics implements Runnable {
                 clearCanvas();
                 printTetrion();
                 printFallingShape();
-                ScoreCounter.getInstance().addScore(1);
+                ScoreCounter.INSTANCE.addScore(1);
                 Platform.runLater(() -> ControllerManager.getPlayController().setScoreLabel());
                 Thread.sleep(interval);
                 this.movingShape.fall();
