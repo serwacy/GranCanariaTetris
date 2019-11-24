@@ -1,5 +1,6 @@
 package Controlers;
 
+import Services.ScoreCounter;
 import Shapes.Block;
 import Tetris.Game;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -23,6 +25,8 @@ public class PlayController implements Initializable {
 
     private Game game = new Game();
 
+    @FXML
+    private Label scoreLabel;
     @FXML
     private Button stopButton;
     @FXML
@@ -94,18 +98,11 @@ public class PlayController implements Initializable {
         game.addBlockToTetrion(d4);
     }
 
-//    private void addKeyControls() {
-//        Stage stage = (Stage) stopButton.getScene().getWindow();
-//        stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-//            if (event.getCode() == KeyCode.LEFT) {
-//                game.getCurrentShape().moveLeft();
-//            } else if (event.getCode() == KeyCode.RIGHT) {
-//                game.getCurrentShape().moveRight();
-//            } else if (event.getCode() == KeyCode.SPACE) {
-//                game.getCurrentShape().rotate();
-//            }
-//        });
-//    }
+
+    @FXML
+    public void setScoreLabel(){
+        scoreLabel.setText(String.format("%04d",ScoreCounter.INSTANCE.getScore()));
+    }
 
     @FXML
     public void onButtonClick(ActionEvent event){

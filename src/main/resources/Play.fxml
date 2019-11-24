@@ -62,7 +62,7 @@
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label maxWidth="200" text="0000" GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label fx:id="scoreLabel" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
             <Insets left="10" top="0"/>
         </padding>

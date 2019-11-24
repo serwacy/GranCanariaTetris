@@ -11,20 +11,19 @@ public class Game {
     private Shape nextShape;
     private ShapeDynamics shapeDynamics;
     private int level;
-    private ScoreCounter scoreCounter;
 
     public Game() {
         tetrion = new Block[10][20];
         level = 1;
         currentShape = ShapeFactory.createShape();
         nextShape = ShapeFactory.createShape();
-        scoreCounter = ScoreCounter.getInstance();
         shapeDynamics = new ShapeDynamics(currentShape);
     }
 
     public void startGame(){
         shapeDynamics.setInterval(level);
         shapeDynamics.start();
+        ScoreCounter.INSTANCE.resetScore();
     }
     public void pauseGame(){
         System.out.println("paused game");
