@@ -70,6 +70,31 @@ public class PlayController implements Initializable {
         Block b2 = new Block(5, 17, Color.RED);
         Block b3 = new Block(5, 18, Color.RED);
         Block b4 = new Block(5, 19, Color.RED);
+
+        game.addBlockToTetrion(b1);
+        game.addBlockToTetrion(b2);
+        game.addBlockToTetrion(b3);
+        game.addBlockToTetrion(b4);
+
+        Block c1 = new Block(7,17, Color.YELLOW);
+        Block c2 = new Block(7,18, Color.YELLOW);
+        Block c3 = new Block(6,18, Color.YELLOW);
+        Block c4 = new Block(6,19, Color.YELLOW);
+
+        game.addBlockToTetrion(c1);
+        game.addBlockToTetrion(c2);
+        game.addBlockToTetrion(c3);
+        game.addBlockToTetrion(c4);
+
+        Block d1 = new Block(3,18, Color.MAGENTA);
+        Block d2 = new Block(4,18, Color.MAGENTA);
+        Block d3 = new Block(3,19, Color.MAGENTA);
+        Block d4 = new Block(4,19, Color.MAGENTA);
+
+        game.addBlockToTetrion(d1);
+        game.addBlockToTetrion(d2);
+        game.addBlockToTetrion(d3);
+        game.addBlockToTetrion(d4);
     }
 
 
