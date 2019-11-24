@@ -11,33 +11,35 @@ public abstract class Shape {
     private int rotation;
 
     public Shape() {
-        blocks = new ArrayList<>();
+        this.blocks = new ArrayList<>();
+        this.ghostBlocks = new ArrayList<>();
     }
+
+    public abstract void rotate();
+    public abstract boolean canRotate();
 
     public void fall() {
         if (canFall()) {
-            blocks.forEach(x -> x.setY(x.getY() + 1));
+            blocks.forEach(block -> block.setY(block.getY() + 1));
         }
     }
 
     public void moveLeft() {
         if (canMoveLeft()) {
-            blocks.forEach(x -> x.setX(x.getX() - 1));
+            blocks.forEach(block -> block.setX(block.getX() - 1));
         }
     }
 
     public void moveRight() {
         if (canMoveRight()) {
-            blocks.forEach(x -> x.setX(x.getX() + 1));
+            blocks.forEach(block -> block.setX(block.getX() + 1));
         }
     }
 
-    public abstract void rotate();
-
     private boolean canFall() {
-        if(blocks.stream().allMatch(x->x.getY() < Game.getTetrion()[0].length-1)) {
+        if(blocks.stream().allMatch(block -> block.getY() < Game.getTetrion()[0].length-1)) {
             return blocks.stream()
-                    .allMatch(x -> Game.getTetrion()[x.getX()][x.getY() + 1] == null);
+                    .allMatch(block -> Game.getTetrion()[block.getX()][block.getY() + 1] == null);
         }
         else{
             return false;
@@ -45,9 +47,9 @@ public abstract class Shape {
     }
 
     private boolean canMoveLeft() {
-        if(blocks.stream().allMatch(x -> x.getX() > 0)) {
+        if(blocks.stream().allMatch(block -> block.getX() > 0)) {
             return blocks.stream()
-                    .allMatch(x -> Game.getTetrion()[x.getX() - 1][x.getY()] == null);
+                    .allMatch(block -> Game.getTetrion()[block.getX() - 1][block.getY()] == null);
         }
         else {
             return false;
@@ -55,16 +57,14 @@ public abstract class Shape {
     }
 
     private boolean canMoveRight() {
-        if(blocks.stream().allMatch(x->x.getX() < Game.getTetrion().length -1)) {
+        if(blocks.stream().allMatch(block->block.getX() < Game.getTetrion().length -1)) {
             return blocks.stream()
-                    .allMatch(x -> Game.getTetrion()[x.getX() + 1][x.getY()] == null);
+                    .allMatch(block -> Game.getTetrion()[block.getX() + 1][block.getY()] == null);
         }
         else{
             return false;
         }
     }
-
-    public abstract boolean canRotate();
 
     public void addBlocks(Block block) {
         this.blocks.add(block);
@@ -86,13 +86,8 @@ public abstract class Shape {
         return ghostBlocks;
     }
 
-
-    public void initGhostBlocks(){
-        this.ghostBlocks = new ArrayList<Block>();
-        addGhostBlocks(new Block(blocks.get(0).getX(),blocks.get(0).getY(), Color.WHITE));
-        addGhostBlocks(new Block(blocks.get(1).getX(),blocks.get(1).getY(), Color.WHITE));
-        addGhostBlocks(new Block(blocks.get(2).getX(),blocks.get(2).getY(), Color.WHITE));
-        addGhostBlocks(new Block(blocks.get(3).getX(),blocks.get(3).getY(), Color.WHITE));
+    void initGhostBlocks(){
+        this.blocks.forEach(block -> addGhostBlocks(new Block(block.getX(),block.getY(),Color.WHITE)));
     }
 
     public void addGhostBlocks(Block block) {
@@ -109,5 +104,8 @@ public abstract class Shape {
     }
     public void translateGhostBlockOfGivenShape(int blockIndex, int translateX, int translateY){
         translateBlockOfGivenShape(ghostBlocks, blockIndex, translateX, translateY);
+    }
+    public void placeOnStartingPosition() {
+        this.blocks.forEach(block -> block.setX(block.getX()+3));
     }
 }

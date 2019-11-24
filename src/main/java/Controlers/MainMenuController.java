@@ -3,13 +3,11 @@ package Controlers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
-public class MainMenuController {
+import java.io.IOException;
+
+public class MainMenuController extends Controller {
     @FXML
     private Button playButton;
     @FXML
@@ -34,34 +32,26 @@ public class MainMenuController {
             if (event.getSource().equals(exitButton)) {
                 exitGame();
             }
-        } catch (Exception e){
-        e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    }
+
     // BELOW ARE THE METHODS RESPONSIBLE FOR SCENE CHANGING - I KNOW IT IS CODE REPETITION - TO BE FIXED LATER
-    public void showGame() throws Exception {
-        Stage stage = (Stage) playButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Play.fxml"));
-        stage.setScene(new Scene(root,550,850));
-        stage.setResizable(false);
-        stage.show();
+    private void showGame() throws IOException {
+        prepareScene(playButton, "Play.fxml");
         ControllerManager.getPlayController().getGame().startGame();
     }
-    public void showCredits() throws Exception {
-        Stage stage = (Stage) creditsButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Credits.fxml"));
-        stage.setScene(new Scene(root,550,850));
-        stage.setResizable(false);
-        stage.show();
+
+    private void showCredits() throws IOException {
+        prepareScene(creditsButton, "Credits.fxml");
     }
-    public void showScores() throws Exception {
-        Stage stage = (Stage) highScoresButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("HighScores.fxml"));
-        stage.setScene(new Scene(root,550,850));
-        stage.setResizable(false);
-        stage.show();
+
+    private void showScores() throws IOException {
+        prepareScene(highScoresButton, "HighScores.fxml");
     }
-    public void exitGame(){
+
+    private void exitGame() {
         Platform.exit();
     }
 }

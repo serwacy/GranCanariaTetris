@@ -11,14 +11,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HighScoresController implements Initializable {
+public class HighScoresController extends Controller implements Initializable {
+
     @FXML
     private Button backButton;
     @FXML
     private Label highScores;
+    private HighestRecordsManager recordsManager = HighestRecordsManager.INSTANCE;
 
     @FXML
     public void onButtonClick(ActionEvent event){
@@ -26,20 +29,16 @@ public class HighScoresController implements Initializable {
             if (event.getSource().equals(backButton)){
                 showMenu();
             }
-        }catch (Exception e){
+        }catch (IOException e){
             e.printStackTrace();
         }
     }
-    public void showMenu() throws Exception {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Menu.fxml"));
-        stage.setScene(new Scene(root,550,850));
-        stage.setResizable(false);
-        stage.show();
+    private void showMenu() throws IOException {
+        prepareScene(backButton, "Menu.fxml");
     }
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        highScores.setText(HighestRecordsManager.getScores());
+        highScores.setText(recordsManager.prepareContentForLabel());
     }
 }

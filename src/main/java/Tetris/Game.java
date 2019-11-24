@@ -9,36 +9,38 @@ import Shapes.Shape;
 
 public class Game {
     private static Block[][] tetrion;
+
     private Shape currentShape;
     private Shape nextShape;
     private ShapeDynamics shapeDynamics;
-    private int level;
     private PlayController playController;
+    private KeyControls keyControls;
+    private int level;
 
-    public Game(final PlayController playController) {
-        this.playController = playController;
+
+    public Game(final PlayController playController,Shape currentShape, Shape nextShape, int level) {
         tetrion = new Block[10][20];
-        level = 1;
-        currentShape = ShapeFactory.createShape();
-        moveCurrentShapeToTheCenterOfTetrion(); //initial centering of currentShape, next centering will need to be initialized while setting nextShape as currentShape
-        nextShape = ShapeFactory.createShape();
-        shapeDynamics = new ShapeDynamics(currentShape);
+
+        this.playController = playController;
+        this.currentShape = currentShape;
+        this.nextShape = nextShape;
+        this.level = level;
+
+        this.shapeDynamics = new ShapeDynamics(currentShape, playController);
+        this.keyControls = new KeyControls(playController, this);
     }
 
     public void startGame(){
-        KeyControls keyControls = new KeyControls(playController, this);
-        keyControls.addKeyControls();
-        shapeDynamics.setInterval(level);
-        shapeDynamics.start();
         ScoreCounter.INSTANCE.resetScore();
+        this.currentShape.placeOnStartingPosition();
+        this.keyControls.addKeyControls();
+        this.shapeDynamics.setInterval(level);
+        this.shapeDynamics.start();
     }
     public void pauseGame(){
         System.out.println("paused game");
     }
 
-    public Shape getNextShape() {
-        return nextShape;
-    }
     public void endGame(){
         shapeDynamics.stop();
     }
@@ -56,21 +58,21 @@ public class Game {
     private void lineRemove(){
 
     }
+    //TEMP METHOD
+    public void addBlockToTetrion(Block block){
+        tetrion[block.getX()][block.getY()] = new Block(block.getX(),block.getY(),block.getColor());
+    }
+
+    public Shape getNextShape() {
+        return nextShape;
+    }
+    public ShapeDynamics getShapeDynamics() {
+        return shapeDynamics;
+    }
     public Shape getCurrentShape() {
         return currentShape;
     }
-
     public static Block[][] getTetrion() {
         return tetrion;
-    }
-
-    public void addBlockToTetrion(Block block){
-        tetrion[block.getX()][block.getY()]=new Block(block.getX(),block.getY(),block.getColor());
-    }
-    public void moveCurrentShapeToTheCenterOfTetrion() {
-        currentShape.getBlocks().get(0).setX(currentShape.getBlocks().get(0).getX()+3);
-        currentShape.getBlocks().get(1).setX(currentShape.getBlocks().get(1).getX()+3);
-        currentShape.getBlocks().get(2).setX(currentShape.getBlocks().get(2).getX()+3);
-        currentShape.getBlocks().get(3).setX(currentShape.getBlocks().get(3).getX()+3);
     }
 }
