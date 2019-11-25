@@ -87,6 +87,7 @@ public abstract class Shape {
     }
 
     void initGhostBlocks(){
+        this.ghostBlocks.clear();
         this.blocks.forEach(block -> addGhostBlocks(new Block(block.getX(),block.getY(),Color.WHITE)));
     }
 
