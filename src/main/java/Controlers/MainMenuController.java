@@ -1,5 +1,6 @@
 package Controlers;
 
+import Tetris.Game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,7 +40,7 @@ public class MainMenuController extends Controller {
     // BELOW ARE THE METHODS RESPONSIBLE FOR SCENE CHANGING - I KNOW IT IS CODE REPETITION - TO BE FIXED LATER
     private void showGame() throws IOException {
         prepareScene(playButton, "Play.fxml");
-        ControllerManager.getPlayController().getGame().startGame();
+        Game.INSTANCE.startGame();
     }
 
     private void showCredits() throws IOException {

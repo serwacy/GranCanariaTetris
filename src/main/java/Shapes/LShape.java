@@ -60,12 +60,12 @@ public class LShape extends Shape {
         }
         if(getGhostBlocks().stream().anyMatch(x ->
                 x.getX() < 0 ||
-                        x.getX() > Game.getTetrion().length -1 ||
+                        x.getX() > tetrion.length -1 ||
                         x.getY() < 0 ||
-                        x.getY() > Game.getTetrion()[0].length -1)){
+                        x.getY() > tetrion[0].length -1)){
             return false;
         }
         else return getGhostBlocks().stream().noneMatch(x ->
-                Game.getTetrion()[x.getX()][x.getY()] != null);
+                tetrion[x.getX()][x.getY()] != null);
     }
 }

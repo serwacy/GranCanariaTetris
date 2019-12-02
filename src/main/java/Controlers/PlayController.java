@@ -4,7 +4,6 @@ import Services.ScoreCounter;
 import Shapes.Block;
 import Shapes.Shape;
 import Tetris.Game;
-import Tetris.ShapeFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class PlayController extends Controller implements Initializable {
 
-    private Game game = new Game(this, ShapeFactory.createShape(), ShapeFactory.createShape(), 1);
+    private Game game = Game.INSTANCE;
 
     @FXML
     private Label scoreLabel;
@@ -41,10 +40,6 @@ public class PlayController extends Controller implements Initializable {
     private Canvas canvasForSmallPane;
     private GraphicsContext graphicsContextForSmallPane;
 
-    public Game getGame() {
-        return game;
-    }
-
     public Canvas getCanvasForBigPane() {
         return canvasForBigPane;
     }
@@ -58,7 +53,7 @@ public class PlayController extends Controller implements Initializable {
         generateGrid(10, 20, bigPane);
         generateGrid(4, 3, smallPane);
         setGraphics();
-        ControllerManager.setPlayController(this);
+        Graphics.INSTANCE.setPlayController(this);
         TEMP_addBlockToTetrion();
     }
 
@@ -104,11 +99,11 @@ public class PlayController extends Controller implements Initializable {
     }
 
     public void printTetrion() {
-        for (int i = 0; i < Game.getTetrion().length; i++) {
-            for (int j = 0; j < Game.getTetrion()[i].length; j++) {
-                if (Game.getTetrion()[i][j] != null) {
-                    this.graphicsContextForBigPane.setFill(Game.getTetrion()[i][j].getColor());
-                    this.graphicsContextForBigPane.fillRect(Game.getTetrion()[i][j].getX() * 30, Game.getTetrion()[i][j].getY() * 30, 30, 30);
+        for (int i = 0; i < game.getTetrion().length; i++) {
+            for (int j = 0; j < game.getTetrion()[i].length; j++) {
+                if (game.getTetrion()[i][j] != null) {
+                    this.graphicsContextForBigPane.setFill(game.getTetrion()[i][j].getColor());
+                    this.graphicsContextForBigPane.fillRect(game.getTetrion()[i][j].getX() * 30, game.getTetrion()[i][j].getY() * 30, 30, 30);
                 }
             }
         }

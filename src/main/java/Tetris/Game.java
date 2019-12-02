@@ -1,78 +1,79 @@
 package Tetris;
 
-import Controlers.PlayController;
-import Services.KeyControls;
 import Services.ScoreCounter;
-import Services.ShapeDynamics;
+import Services.TetrisEngine;
 import Shapes.Block;
 import Shapes.Shape;
 
-public class Game {
-    private static Block[][] tetrion;
+public enum Game {
+    INSTANCE;
 
+    private Block[][] tetrion = new Block[10][20];
     private Shape currentShape;
     private Shape nextShape;
-    private ShapeDynamics shapeDynamics;
-    private PlayController playController;
-    private KeyControls keyControls;
-    private int level;
+    private int level = 1;
 
-
-    public Game(final PlayController playController,Shape currentShape, Shape nextShape, int level) {
-        tetrion = new Block[10][20];
-
-        this.playController = playController;
-        this.currentShape = currentShape;
-        this.nextShape = nextShape;
-        this.level = level;
-
-        this.shapeDynamics = new ShapeDynamics(currentShape, playController);
-        this.keyControls = new KeyControls(playController, this);
+    public void startGame() {
+        resetGame();
+        this.nextShape = ShapeFactory.createShape();
+        TetrisEngine.INSTANCE.setInterval(level);
+        TetrisEngine.INSTANCE.start();
     }
 
-    public void startGame(){
+    private void resetGame() {
+        this.level = 1;
         ScoreCounter.INSTANCE.resetScore();
-        this.currentShape.placeOnStartingPosition();
-        this.keyControls.addKeyControls();
-        this.shapeDynamics.setInterval(level);
-        this.shapeDynamics.start();
     }
-    public void pauseGame(){
+
+    public void nextShapeToCurrentShapeAndInitNext() {
+        this.currentShape = this.nextShape;
+        this.currentShape.placeOnStartingPosition();
+        this.nextShape = ShapeFactory.createShape();
+    }
+
+    public void pauseGame() {
         System.out.println("paused game");
     }
 
-    public void endGame(){
-        shapeDynamics.stop();
+    public void endGame() {
+        TetrisEngine.INSTANCE.stop();
     }
 
     private boolean canGoIn() {
         return currentShape.getBlocks().stream()
                 .allMatch(x -> tetrion[x.getX()][x.getY()] == null);
     }
-    private void lineCheck(){
+
+    private void lineCheck() {
 
     }
-    private void fallAll(){
+
+    private void fallAll() {
 
     }
-    private void lineRemove(){
+
+    private void lineRemove() {
 
     }
+
     //TEMP METHOD
-    public void addBlockToTetrion(Block block){
-        tetrion[block.getX()][block.getY()] = new Block(block.getX(),block.getY(),block.getColor());
+    public void addBlockToTetrion(Block block) {
+        tetrion[block.getX()][block.getY()] = new Block(block.getX(), block.getY(), block.getColor());
     }
 
     public Shape getNextShape() {
         return nextShape;
     }
-    public ShapeDynamics getShapeDynamics() {
-        return shapeDynamics;
-    }
+
+//    public TetrisEngine getTetrisEngine() {
+//        return tetrisEngine;
+//    }
+
     public Shape getCurrentShape() {
         return currentShape;
     }
-    public static Block[][] getTetrion() {
+
+    public Block[][] getTetrion() {
         return tetrion;
     }
 }

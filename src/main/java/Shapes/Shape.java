@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Shape {
+    protected Block[][] tetrion = Game.INSTANCE.getTetrion();
     private List<Block> blocks;
     private List<Block> ghostBlocks;
     private int rotation;
@@ -37,9 +38,9 @@ public abstract class Shape {
     }
 
     private boolean canFall() {
-        if(blocks.stream().allMatch(block -> block.getY() < Game.getTetrion()[0].length-1)) {
+        if(blocks.stream().allMatch(block -> block.getY() < tetrion[0].length-1)) {
             return blocks.stream()
-                    .allMatch(block -> Game.getTetrion()[block.getX()][block.getY() + 1] == null);
+                    .allMatch(block -> tetrion[block.getX()][block.getY() + 1] == null);
         }
         else{
             return false;
@@ -49,7 +50,7 @@ public abstract class Shape {
     private boolean canMoveLeft() {
         if(blocks.stream().allMatch(block -> block.getX() > 0)) {
             return blocks.stream()
-                    .allMatch(block -> Game.getTetrion()[block.getX() - 1][block.getY()] == null);
+                    .allMatch(block -> tetrion[block.getX() - 1][block.getY()] == null);
         }
         else {
             return false;
@@ -57,9 +58,9 @@ public abstract class Shape {
     }
 
     private boolean canMoveRight() {
-        if(blocks.stream().allMatch(block->block.getX() < Game.getTetrion().length -1)) {
+        if(blocks.stream().allMatch(block->block.getX() < tetrion.length -1)) {
             return blocks.stream()
-                    .allMatch(block -> Game.getTetrion()[block.getX() + 1][block.getY()] == null);
+                    .allMatch(block -> tetrion[block.getX() + 1][block.getY()] == null);
         }
         else{
             return false;
