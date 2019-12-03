@@ -33,8 +33,8 @@ public class Game {
         this.nextShape = shapeFactory.createShape();
         this.currentShape = shapeFactory.createShape();
         this.controls.AddAction(KeyCode.LEFT,()->{
-            getCurrentShape().moveLeft();
-            getEngine().refreshCanvas();
+            currentShape.moveLeft();
+            engine.refreshCanvas();
         });
         this.controls.AddAction(KeyCode.RIGHT,()->{
             getCurrentShape().moveRight();

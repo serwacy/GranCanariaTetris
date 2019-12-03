@@ -66,9 +66,9 @@ public class PlayController extends Controller implements Initializable {
         ShapeFactory shapeFactory = new ShapeFactory();
         ScoreCounter counter = new ScoreCounter();
         Engine engine = new Engine(shapeFactory.createShape());
-        KeyControls controls = new KeyControls(ControllerManager.getPlayController());
+        KeyControls controls = new KeyControls();
 
-        engine.OnTick(()->{
+        engine.onTick(()->{
             clearCanvas();
             printTetrion();
             printCurrentShape();
@@ -78,8 +78,6 @@ public class PlayController extends Controller implements Initializable {
 
         game = Game.builder().controls(controls).counter(counter).engine(engine).shapeFactory(shapeFactory).build();
         game.startGame();
-
-
 
     }
 

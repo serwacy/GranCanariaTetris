@@ -36,7 +36,7 @@ public class Engine extends GameComponent implements Runnable {
 
     private List<Runnable> onTick = new LinkedList<>();
 
-    public void OnTick(Runnable r){
+    public void onTick(Runnable r){
         onTick.add(r);
     }
 
