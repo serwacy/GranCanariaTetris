@@ -1,6 +1,6 @@
 package Services;
 
-import Controlers.Graphics;
+import Controlers.ControllerManager;
 import javafx.application.Platform;
 
 public enum ScoreCounter {
@@ -14,7 +14,7 @@ public enum ScoreCounter {
 
     public void addScore(final int scoreAdder) {
         this.score += scoreAdder;
-        Platform.runLater(Graphics.INSTANCE.getPlayController()::setScoreLabel);
+        Platform.runLater(ControllerManager.getPlayController()::setScoreLabel);
     }
 
     public void resetScore(){

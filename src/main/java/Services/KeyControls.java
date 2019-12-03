@@ -1,8 +1,6 @@
 package Services;
 
-import Controlers.Graphics;
-import Controlers.PlayController;
-import Shapes.Shape;
+import Controlers.ControllerManager;
 import Tetris.Game;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -10,7 +8,7 @@ import javafx.scene.input.KeyCode;
 public class KeyControls {
 
     public void addKeyControls() {
-        final Scene scene = Graphics.INSTANCE.getPlayController().getCanvasForBigPane().getScene();
+        final Scene scene = ControllerManager.getPlayController().getCanvasForBigPane().getScene();
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.LEFT) {
                 Game.INSTANCE.getCurrentShape().moveLeft();

@@ -1,34 +1,26 @@
 package Services;
 
-import Controlers.Graphics;
-import Controlers.PlayController;
 import Tetris.Game;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public enum TetrisEngine implements Runnable {
-    INSTANCE;
+public class TetrisEngine implements Runnable {
 
     private AtomicBoolean running = new AtomicBoolean(false);
     private int interval;
 
-    //    public TetrisEngine(Shape movingShape, final PlayController playController) {
-//        this.movingShape = movingShape;
-//        this.playController = playController;
-//        running = new AtomicBoolean(false);
-//    }
     public void setInterval(int level) {
-        this.interval = 500/level;
+        this.interval = 1000 / level;
     }
 
-    public void start(){
+    public void start() {
         KeyControls keyControls = new KeyControls();
         keyControls.addKeyControls();
         Thread gameFlow = new Thread(this);
         gameFlow.start();
     }
 
-    public void stop(){
+    public void stop() {
         running.set(false);
     }
 
@@ -47,7 +39,4 @@ public enum TetrisEngine implements Runnable {
             }
         }
     }
-
-
-
 }

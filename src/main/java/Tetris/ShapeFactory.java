@@ -4,7 +4,7 @@ import Shapes.*;
 
 import java.util.Random;
 
-public class ShapeFactory {
+public abstract class ShapeFactory {
     public static Shape createShape() {
         int random = new Random().nextInt(7)+1;
         switch (random) {

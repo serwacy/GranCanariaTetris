@@ -53,7 +53,7 @@ public class PlayController extends Controller implements Initializable {
         generateGrid(10, 20, bigPane);
         generateGrid(4, 3, smallPane);
         setGraphics();
-        Graphics.INSTANCE.setPlayController(this);
+        ControllerManager.setPlayController(this);
         TEMP_addBlockToTetrion();
     }
 

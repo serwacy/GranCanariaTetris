@@ -9,6 +9,7 @@ public enum Game {
     INSTANCE;
 
     private Block[][] tetrion = new Block[10][20];
+    private TetrisEngine tetrisEngine = new TetrisEngine();
     private Shape currentShape;
     private Shape nextShape;
     private int level = 1;
@@ -16,8 +17,8 @@ public enum Game {
     public void startGame() {
         resetGame();
         this.nextShape = ShapeFactory.createShape();
-        TetrisEngine.INSTANCE.setInterval(level);
-        TetrisEngine.INSTANCE.start();
+        tetrisEngine.setInterval(level);
+        tetrisEngine.start();
     }
 
     private void resetGame() {
@@ -36,7 +37,7 @@ public enum Game {
     }
 
     public void endGame() {
-        TetrisEngine.INSTANCE.stop();
+        tetrisEngine.stop();
     }
 
     private boolean canGoIn() {

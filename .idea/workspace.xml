@@ -2,22 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcadc2fa-7d71-410d-b3f5-a64b89e2bbdb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controlers/ControllerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controlers/ControllerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controlers/Graphics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controlers/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controlers/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controlers/Graphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/Graphics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controlers/PlayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controlers/PlayController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/KeyControls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/KeyControls.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/ScoreCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/ScoreCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/ShapeDynamics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/TetrisEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/IShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/IShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/JShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/JShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/LShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/LShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/SShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/SShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/Shape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/TShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/TShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Shapes/ZShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Shapes/ZShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/TetrisEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/TetrisEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Tetris/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tetris/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tetris/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tetris/ShapeFactory.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
