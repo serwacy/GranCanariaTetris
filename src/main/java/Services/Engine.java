@@ -46,8 +46,6 @@ public class Engine extends GameComponent implements Runnable {
         while (running.get()) {
             try {
                 onTick.stream().forEach(x->x.run());
-
-                refreshCanvas();
                 super.getCounter().addScore(1);
                 Thread.sleep(interval);
                 this.movingShape.fall();
@@ -56,24 +54,4 @@ public class Engine extends GameComponent implements Runnable {
             }
         }
     }
-
-    public void refreshCanvas(){
-        clearCanvas();
-        printTetrion();
-        printCurrentShape();
-        printNextShape();
-
-    }
-    private void clearCanvas(){
-        Canvas canvas = this.playController.getCanvasForBigPane();
-        this.playController.getGraphicsContextForBigPane().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    }
-    private void printTetrion(){
-        this.playController.printTetrion();
-    }
-    private void printCurrentShape(){ this.playController.printCurrentShape(); }
-    private void printNextShape(){
-        this.playController.printNextShapeOnGrid();
-    }
-
 }

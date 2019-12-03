@@ -62,23 +62,25 @@ public class PlayController extends Controller implements Initializable {
 
         initGame();
     }
-    private void initGame(){
+
+    private void initGame() {
         ShapeFactory shapeFactory = new ShapeFactory();
         ScoreCounter counter = new ScoreCounter();
         Engine engine = new Engine(shapeFactory.createShape());
         KeyControls controls = new KeyControls();
+        game = Game.builder().controls(controls).counter(counter).engine(engine).shapeFactory(shapeFactory).build();
 
-        engine.onTick(()->{
+        engine.onTick(() -> {
             clearCanvas();
             printTetrion();
             printCurrentShape();
             printNextShape();
-//            graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
         });
-
-        game = Game.builder().controls(controls).counter(counter).engine(engine).shapeFactory(shapeFactory).build();
         game.startGame();
+    }
 
+    private void clearCanvas() {
+        getGraphicsContextForBigPane().clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
     }
 
     private void setGraphics() {
@@ -122,29 +124,28 @@ public class PlayController extends Controller implements Initializable {
         }
     }
 
-    public void printTetrion() {
-        for (int i = 0; i < Game.getTetrion().length; i++) {
-            for (int j = 0; j < Game.getTetrion()[i].length; j++) {
-                if (Game.getTetrion()[i][j] != null) {
-                    this.graphicsContextForBigPane.setFill(Game.getTetrion()[i][j].getColor());
-                    this.graphicsContextForBigPane.fillRect(Game.getTetrion()[i][j].getX() * 30, Game.getTetrion()[i][j].getY() * 30, 30, 30);
+    private void printTetrion() {
+        for (int i = 0; i < game.getTetrion().length; i++) {
+            for (int j = 0; j < game.getTetrion()[i].length; j++) {
+                if (game.getTetrion()[i][j] != null) {
+                    this.graphicsContextForBigPane.setFill(game.getTetrion()[i][j].getColor());
+                    this.graphicsContextForBigPane.fillRect(game.getTetrion()[i][j].getX() * 30, game.getTetrion()[i][j].getY() * 30, 30, 30);
                 }
             }
         }
     }
 
-    private void printShape(Shape shape, GraphicsContext context){
+    private void printShape(Shape shape, GraphicsContext context) {
         context.setFill(shape.getBlocks().get(0).getColor());
-        shape.getBlocks().forEach(block -> context.fillRect(block.getX()*30,block.getY()*30,30,30));
+        shape.getBlocks().forEach(block -> context.fillRect(block.getX() * 30, block.getY() * 30, 30, 30));
     }
 
-
-    public void printCurrentShape() {
-        printShape(game.getCurrentShape(),graphicsContextForBigPane);
+    private void printCurrentShape() {
+        printShape(game.getCurrentShape(), graphicsContextForBigPane);
     }
 
-    public void printNextShapeOnGrid() {
-       printShape(game.getNextShape(),graphicsContextForSmallPane);
+    private void printNextShape() {
+        printShape(game.getNextShape(), graphicsContextForSmallPane);
     }
 
 

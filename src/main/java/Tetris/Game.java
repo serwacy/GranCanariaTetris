@@ -28,61 +28,60 @@ public class Game {
         this.tetrion = new Block[10][20];
     }
 
-    public void startGame(){
+    public void startGame() {
         counter.resetScore();
         this.nextShape = shapeFactory.createShape();
         this.currentShape = shapeFactory.createShape();
-        this.controls.AddAction(KeyCode.LEFT,()->{
-            currentShape.moveLeft();
-            engine.refreshCanvas();
-        });
-        this.controls.AddAction(KeyCode.RIGHT,()->{
-            getCurrentShape().moveRight();
-            getEngine().refreshCanvas();
-        });
-        this.controls.AddAction(KeyCode.UP,()->{
-            getCurrentShape().rotate();
-            getEngine().refreshCanvas();
-        });
-        //todo: add down
-        this.controls.addKeyControls(this);
+        defineActions();
+        this.controls.addKeyControls();
         this.engine.start();
     }
-    public void pauseGame(){
+
+    private void defineActions() {
+        this.controls.addAction(KeyCode.LEFT, () -> {
+            currentShape.moveLeft(tetrion);
+            engine.refreshCanvas();
+        });
+        this.controls.addAction(KeyCode.RIGHT, () -> {
+            currentShape.moveRight(tetrion);
+            engine.refreshCanvas();
+        });
+        this.controls.addAction(KeyCode.UP, () -> {
+            currentShape.rotate(tetrion);
+            engine.refreshCanvas();
+        });
+        this.controls.addAction(KeyCode.DOWN, () -> {
+            currentShape.fall(tetrion);
+            engine.refreshCanvas();
+            counter.addScore(1);
+        });
+    }
+
+    public void pauseGame() {
         System.out.println("paused game");
     }
 
-    public void endGame(){
+    public void endGame() {
         engine.stop();
     }
 
-    private boolean canGoIn() {
-        return currentShape.getBlocks().stream()
-                .allMatch(x -> tetrion[x.getX()][x.getY()] == null);
-    }
-    private void lineCheck(){
-
-    }
-    private void fallAll(){
-
-    }
-    private void lineRemove(){
-
-    }
     //TEMP METHOD
-    public void addBlockToTetrion(Block block){
-        tetrion[block.getX()][block.getY()] = new Block(block.getX(),block.getY(),block.getColor());
+    public void addBlockToTetrion(Block block) {
+        tetrion[block.getX()][block.getY()] = new Block(block.getX(), block.getY(), block.getColor());
     }
 
     public Shape getNextShape() {
         return nextShape;
     }
+
     public Engine getEngine() {
         return engine;
     }
+
     public Shape getCurrentShape() {
         return currentShape;
     }
+
     public Block[][] getTetrion() {
         return tetrion;
     }

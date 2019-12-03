@@ -1,43 +1,24 @@
 package Services;
 
-import Controlers.PlayController;
-import Tetris.Game;
+import Controlers.ControllerManager;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KeyControls extends GameComponent{
-    private PlayController playController;
+public class KeyControls {
+    private Map<KeyCode, Runnable> actions = new HashMap<>();
 
-    Map<KeyCode, Runnable> actions = new HashMap<>();
-    public void AddAction(KeyCode k, Runnable r)
-    {
-        actions.put(k,r);
+    public void addAction(KeyCode k, Runnable r) {
+        actions.put(k, r);
     }
 
-    public KeyControls(final PlayController playController) {
-        this.playController = playController;
-    }
-
-    public void addKeyControls(Game game) {
-        final Scene scene = playController.getCanvasForBigPane().getScene();
+    public void addKeyControls() {
+        final Scene scene = ControllerManager.getPlayController().getCanvasForBigPane().getScene();
         scene.setOnKeyPressed(event -> {
-
-            if(actions.containsKey(event.getCode()))
-            {
+            if (actions.containsKey(event.getCode())) {
                 actions.get(event.getCode()).run();
-            }
-
-            else if(event.getCode() == KeyCode.DOWN){
-                game.getCurrentShape().fall();
-                game.getEngine().refreshCanvas();
-
-                super.counter.addScore(1);
-            } else {
-                System.out.println(event.getCode());
             }
         });
     }
