@@ -18,8 +18,8 @@ public abstract class Shape {
     public abstract void rotate();
     public abstract boolean canRotate();
 
-    public void fall() {
-        if (canFall()) {
+    public void fall(Block[][] tetrion) {
+        if (canFall(tetrion)) {
             blocks.forEach(block -> block.setY(block.getY() + 1));
         }
     }
@@ -36,10 +36,10 @@ public abstract class Shape {
         }
     }
 
-    private boolean canFall() {
-        if(blocks.stream().allMatch(block -> block.getY() < Game.getTetrion()[0].length-1)) {
+    private boolean canFall(Block[][] tetrion) {
+        if(blocks.stream().allMatch(block -> block.getY() < tetrion[0].length-1)) {
             return blocks.stream()
-                    .allMatch(block -> Game.getTetrion()[block.getX()][block.getY() + 1] == null);
+                    .allMatch(block -> tetrion[block.getX()][block.getY() + 1] == null);
         }
         else{
             return false;

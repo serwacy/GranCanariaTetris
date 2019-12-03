@@ -5,6 +5,7 @@ import Services.KeyControls;
 import Services.ScoreCounter;
 import Shapes.Block;
 import Shapes.Shape;
+import javafx.scene.input.KeyCode;
 import lombok.Builder;
 
 @Builder
@@ -31,6 +32,19 @@ public class Game {
         counter.resetScore();
         this.nextShape = shapeFactory.createShape();
         this.currentShape = shapeFactory.createShape();
+        this.controls.AddAction(KeyCode.LEFT,()->{
+            getCurrentShape().moveLeft();
+            getEngine().refreshCanvas();
+        });
+        this.controls.AddAction(KeyCode.RIGHT,()->{
+            getCurrentShape().moveRight();
+            getEngine().refreshCanvas();
+        });
+        this.controls.AddAction(KeyCode.UP,()->{
+            getCurrentShape().rotate();
+            getEngine().refreshCanvas();
+        });
+        //todo: add down
         this.controls.addKeyControls(this);
         this.engine.start();
     }

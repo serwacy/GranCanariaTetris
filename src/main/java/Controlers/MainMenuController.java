@@ -59,13 +59,5 @@ public class MainMenuController extends Controller {
     private void exitProgram() {
         Platform.exit();
     }
-    private void initGame(){
-        ShapeFactory shapeFactory = new ShapeFactory();
-        ScoreCounter counter = new ScoreCounter();
-        Engine engine = new Engine(shapeFactory.createShape());
-        KeyControls controls = new KeyControls(ControllerManager.getPlayController());
 
-        Game game = Game.builder().controls(controls).counter(counter).engine(engine).shapeFactory(shapeFactory).build();
-        game.startGame();
-    }
 }

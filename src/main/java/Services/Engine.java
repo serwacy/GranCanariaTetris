@@ -4,6 +4,9 @@ import Controlers.ControllerManager;
 import Controlers.PlayController;
 import Shapes.Shape;
 import javafx.scene.canvas.Canvas;
+
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Engine extends GameComponent implements Runnable {
@@ -30,11 +33,20 @@ public class Engine extends GameComponent implements Runnable {
         running.set(false);
     }
 
+
+    private List<Runnable> onTick = new LinkedList<>();
+
+    public void OnTick(Runnable r){
+        onTick.add(r);
+    }
+
     @Override
     public void run() {
         running.set(true);
         while (running.get()) {
             try {
+                onTick.stream().forEach(x->x.run());
+
                 refreshCanvas();
                 super.getCounter().addScore(1);
                 Thread.sleep(interval);
@@ -45,7 +57,7 @@ public class Engine extends GameComponent implements Runnable {
         }
     }
 
-    void refreshCanvas(){
+    public void refreshCanvas(){
         clearCanvas();
         printTetrion();
         printCurrentShape();

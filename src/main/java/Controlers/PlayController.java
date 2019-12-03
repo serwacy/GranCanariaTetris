@@ -1,5 +1,7 @@
 package Controlers;
 
+import Services.Engine;
+import Services.KeyControls;
 import Services.ScoreCounter;
 import Shapes.Block;
 import Shapes.Shape;
@@ -40,6 +42,7 @@ public class PlayController extends Controller implements Initializable {
     private Canvas canvasForSmallPane;
     private GraphicsContext graphicsContextForSmallPane;
 
+    private Game game;
 
     public Canvas getCanvasForBigPane() {
         return canvasForBigPane;
@@ -56,6 +59,28 @@ public class PlayController extends Controller implements Initializable {
         setGraphics();
         ControllerManager.setPlayController(this);
         TEMP_addBlockToTetrion();
+
+        initGame();
+    }
+    private void initGame(){
+        ShapeFactory shapeFactory = new ShapeFactory();
+        ScoreCounter counter = new ScoreCounter();
+        Engine engine = new Engine(shapeFactory.createShape());
+        KeyControls controls = new KeyControls(ControllerManager.getPlayController());
+
+        engine.OnTick(()->{
+            clearCanvas();
+            printTetrion();
+            printCurrentShape();
+            printNextShape();
+//            graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
+        });
+
+        game = Game.builder().controls(controls).counter(counter).engine(engine).shapeFactory(shapeFactory).build();
+        game.startGame();
+
+
+
     }
 
     private void setGraphics() {
