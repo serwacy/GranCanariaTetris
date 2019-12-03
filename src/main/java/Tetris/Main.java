@@ -22,7 +22,6 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image(new FileInputStream("./src/main/resources/images/horse_icon.jpg")));
         primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {

@@ -1,48 +1,45 @@
 package Tetris;
 
-import Controlers.PlayController;
+import Services.Engine;
 import Services.KeyControls;
 import Services.ScoreCounter;
-import Services.ShapeDynamics;
 import Shapes.Block;
 import Shapes.Shape;
+import lombok.Builder;
 
+@Builder
 public class Game {
-    private static Block[][] tetrion;
+    private Block[][] tetrion;
 
     private Shape currentShape;
     private Shape nextShape;
-    private ShapeDynamics shapeDynamics;
-    private PlayController playController;
-    private KeyControls keyControls;
-    private int level;
 
+    private Engine engine;
+    private KeyControls controls;
+    private ScoreCounter counter;
+    private ShapeFactory shapeFactory;
 
-    public Game(final PlayController playController,Shape currentShape, Shape nextShape, int level) {
-        tetrion = new Block[10][20];
-
-        this.playController = playController;
-        this.currentShape = currentShape;
-        this.nextShape = nextShape;
-        this.level = level;
-
-        this.shapeDynamics = new ShapeDynamics(currentShape, playController);
-        this.keyControls = new KeyControls(playController, this);
+    public Game(final Engine engine, final KeyControls controls, final ScoreCounter counter, final ShapeFactory shapeFactory) {
+        this.engine = engine;
+        this.controls = controls;
+        this.counter = counter;
+        this.shapeFactory = shapeFactory;
+        this.tetrion = new Block[10][20];
     }
 
     public void startGame(){
-        ScoreCounter.INSTANCE.resetScore();
-        this.currentShape.placeOnStartingPosition();
-        this.keyControls.addKeyControls();
-        this.shapeDynamics.setInterval(level);
-        this.shapeDynamics.start();
+        counter.resetScore();
+        this.nextShape = shapeFactory.createShape();
+        this.currentShape = shapeFactory.createShape();
+        this.controls.addKeyControls(this);
+        this.engine.start();
     }
     public void pauseGame(){
         System.out.println("paused game");
     }
 
     public void endGame(){
-        shapeDynamics.stop();
+        engine.stop();
     }
 
     private boolean canGoIn() {
@@ -66,13 +63,13 @@ public class Game {
     public Shape getNextShape() {
         return nextShape;
     }
-    public ShapeDynamics getShapeDynamics() {
-        return shapeDynamics;
+    public Engine getEngine() {
+        return engine;
     }
     public Shape getCurrentShape() {
         return currentShape;
     }
-    public static Block[][] getTetrion() {
+    public Block[][] getTetrion() {
         return tetrion;
     }
 }

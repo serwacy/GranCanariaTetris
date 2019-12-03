@@ -3,8 +3,7 @@ package Services;
 import Controlers.ControllerManager;
 import javafx.application.Platform;
 
-public enum ScoreCounter {
-    INSTANCE;
+public class ScoreCounter {
 
     private int score;
 

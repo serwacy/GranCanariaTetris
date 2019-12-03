@@ -1,21 +1,21 @@
 package Services;
 
+import Controlers.ControllerManager;
 import Controlers.PlayController;
 import Shapes.Shape;
 import javafx.scene.canvas.Canvas;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class ShapeDynamics implements Runnable {
+public class Engine extends GameComponent implements Runnable {
 
-    private AtomicBoolean running;
+    private AtomicBoolean running = new AtomicBoolean(false);
     private Shape movingShape;
     private int interval;
     private final PlayController playController;
 
-    public ShapeDynamics(Shape movingShape, final PlayController playController) {
+    public Engine(Shape movingShape) {
         this.movingShape = movingShape;
-        this.playController = playController;
-        running = new AtomicBoolean(false);
+        this.playController = ControllerManager.getPlayController();
     }
     public void setInterval(int level) {
         this.interval = 1000/level;
@@ -36,7 +36,7 @@ public class ShapeDynamics implements Runnable {
         while (running.get()) {
             try {
                 refreshCanvas();
-                ScoreCounter.INSTANCE.addScore(1);
+                super.getCounter().addScore(1);
                 Thread.sleep(interval);
                 this.movingShape.fall();
             } catch (InterruptedException e) {

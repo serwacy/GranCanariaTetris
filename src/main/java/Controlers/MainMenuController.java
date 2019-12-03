@@ -1,5 +1,11 @@
 package Controlers;
 
+import Services.Engine;
+import Services.GameComponent;
+import Services.KeyControls;
+import Services.ScoreCounter;
+import Tetris.Game;
+import Tetris.ShapeFactory;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +35,7 @@ public class MainMenuController extends Controller {
                 showScores();
             }
             if (event.getSource().equals(exitButton)) {
-                exitGame();
+                exitProgram();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,7 +45,7 @@ public class MainMenuController extends Controller {
     // BELOW ARE THE METHODS RESPONSIBLE FOR SCENE CHANGING - I KNOW IT IS CODE REPETITION - TO BE FIXED LATER
     private void showGame() throws IOException {
         prepareScene(playButton, "Play.fxml");
-        ControllerManager.getPlayController().getGame().startGame();
+        initGame();//is this a good place to create game?
     }
 
     private void showCredits() throws IOException {
@@ -50,7 +56,16 @@ public class MainMenuController extends Controller {
         prepareScene(highScoresButton, "HighScores.fxml");
     }
 
-    private void exitGame() {
+    private void exitProgram() {
         Platform.exit();
+    }
+    private void initGame(){
+        ShapeFactory shapeFactory = new ShapeFactory();
+        ScoreCounter counter = new ScoreCounter();
+        Engine engine = new Engine(shapeFactory.createShape());
+        KeyControls controls = new KeyControls(ControllerManager.getPlayController());
+
+        Game game = Game.builder().controls(controls).counter(counter).engine(engine).shapeFactory(shapeFactory).build();
+        game.startGame();
     }
 }

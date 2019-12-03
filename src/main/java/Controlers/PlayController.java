@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 
 public class PlayController extends Controller implements Initializable {
 
-    private Game game = new Game(this, ShapeFactory.createShape(), ShapeFactory.createShape(), 1);
 
     @FXML
     private Label scoreLabel;
@@ -41,9 +40,6 @@ public class PlayController extends Controller implements Initializable {
     private Canvas canvasForSmallPane;
     private GraphicsContext graphicsContextForSmallPane;
 
-    public Game getGame() {
-        return game;
-    }
 
     public Canvas getCanvasForBigPane() {
         return canvasForBigPane;
@@ -69,18 +65,18 @@ public class PlayController extends Controller implements Initializable {
 
     @FXML
     public void setScoreLabel() {
-        scoreLabel.setText(String.format("%04d", ScoreCounter.INSTANCE.getScore()));
+        scoreLabel.setText(String.format("%04d", 236));
     }
 
     @FXML
     public void onButtonClick(ActionEvent event) {
         try {
             if (event.getSource().equals(stopButton)) {
-                game.endGame();
+                //game.endGame();
                 showMenu();
             }
             if (event.getSource().equals(pauseButton)) {
-                game.pauseGame();
+                //game.pauseGame();
             }
         } catch (IOException e) {
             e.printStackTrace();
