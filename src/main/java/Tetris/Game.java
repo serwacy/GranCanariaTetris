@@ -12,47 +12,48 @@ import lombok.Builder;
 public class Game {
     private Block[][] tetrion;
 
-    private Shape currentShape;
-    private Shape nextShape;
+    private Shape currentShape = null;
+    private Shape nextShape = null;
 
     private Engine engine;
     private KeyControls controls;
     private ScoreCounter counter;
     private ShapeFactory shapeFactory;
+    private Runnable refresh;
 
-    public Game(final Engine engine, final KeyControls controls, final ScoreCounter counter, final ShapeFactory shapeFactory) {
+    public Game(final Block[][] tetrion, Shape currentShape, Shape nextShape, final Engine engine, final KeyControls controls, final ScoreCounter counter, final ShapeFactory shapeFactory, Runnable refresh) {
+        this.tetrion = tetrion;
+        this.currentShape = currentShape;
+        this.nextShape = nextShape;
         this.engine = engine;
         this.controls = controls;
         this.counter = counter;
         this.shapeFactory = shapeFactory;
-        this.tetrion = new Block[10][20];
+        this.refresh = refresh;
     }
 
     public void startGame() {
         counter.resetScore();
-        this.nextShape = shapeFactory.createShape();
-        this.currentShape = shapeFactory.createShape();
         defineActions();
-        this.controls.addKeyControls();
         this.engine.start();
     }
 
     private void defineActions() {
         this.controls.addAction(KeyCode.LEFT, () -> {
             currentShape.moveLeft(tetrion);
-            engine.refreshCanvas();
+            refresh.run();
         });
         this.controls.addAction(KeyCode.RIGHT, () -> {
             currentShape.moveRight(tetrion);
-            engine.refreshCanvas();
+            refresh.run();
         });
         this.controls.addAction(KeyCode.UP, () -> {
             currentShape.rotate(tetrion);
-            engine.refreshCanvas();
+            refresh.run();
         });
         this.controls.addAction(KeyCode.DOWN, () -> {
             currentShape.fall(tetrion);
-            engine.refreshCanvas();
+            refresh.run();
             counter.addScore(1);
         });
     }

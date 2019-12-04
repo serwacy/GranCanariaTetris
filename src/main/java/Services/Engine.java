@@ -9,17 +9,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Engine extends GameComponent implements Runnable {
+public class Engine implements Runnable {
 
     private AtomicBoolean running = new AtomicBoolean(false);
-    private Shape movingShape;
     private int interval;
-    private final PlayController playController;
+    private KeyControls controls;
 
-    public Engine(Shape movingShape) {
-        this.movingShape = movingShape;
-        this.playController = ControllerManager.getPlayController();
+    public Engine(KeyControls controls) {
+        this.controls = controls;
     }
+
     public void setInterval(int level) {
         this.interval = 1000/level;
     }
@@ -33,7 +32,6 @@ public class Engine extends GameComponent implements Runnable {
         running.set(false);
     }
 
-
     private List<Runnable> onTick = new LinkedList<>();
 
     public void onTick(Runnable r){
@@ -43,12 +41,11 @@ public class Engine extends GameComponent implements Runnable {
     @Override
     public void run() {
         running.set(true);
+        controls.addKeyControls();
         while (running.get()) {
             try {
-                onTick.stream().forEach(x->x.run());
-                super.getCounter().addScore(1);
+                onTick.forEach(action->action.run());
                 Thread.sleep(interval);
-                this.movingShape.fall();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

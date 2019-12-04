@@ -1,11 +1,5 @@
 package Controlers;
 
-import Services.Engine;
-import Services.GameComponent;
-import Services.KeyControls;
-import Services.ScoreCounter;
-import Tetris.Game;
-import Tetris.ShapeFactory;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

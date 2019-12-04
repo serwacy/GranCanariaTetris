@@ -12,7 +12,7 @@ public abstract class Controller {
     protected void prepareScene(Button button, String resource) throws IOException {
         Stage stage = (Stage) button.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(resource));
-        stage.setScene(new Scene(root, 550, 850));
+        Scene scene = new Scene(root,550,850);
         stage.setResizable(false);
         stage.show();
     }
