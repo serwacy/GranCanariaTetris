@@ -19,10 +19,12 @@ public abstract class Shape {
     public abstract void rotate(Block[][] tetrion);
     public abstract boolean canRotate(Block[][] tetrion);
 
-    public void fall(Block[][] tetrion) {
+    public boolean fall(Block[][] tetrion) {
         if (canFall(tetrion)) {
             blocks.forEach(block -> block.setY(block.getY() + 1));
+            return true;
         }
+        return false;
     }
 
     private boolean canFall(Block[][] tetrion) {

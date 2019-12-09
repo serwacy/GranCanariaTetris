@@ -7,6 +7,7 @@ import Shapes.Block;
 import Shapes.Shape;
 import Tetris.Game;
 import Tetris.ShapeFactory;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,9 +21,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class PlayController extends Controller implements Initializable {
+public class PlayController extends Controller implements Initializable, Observer {
 
 
     @FXML
@@ -54,22 +57,19 @@ public class PlayController extends Controller implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-
         ControllerManager.setPlayController(this);
         generateGrid(10, 20, bigPane);
         generateGrid(4, 3, smallPane);
         setGraphics();
-
-
-        initGame();
-        TEMP_addBlockToTetrion();
+        Platform.runLater(this::initGame);
     }
 
     private void initGame() {
         ShapeFactory shapeFactory = new ShapeFactory();
         ScoreCounter counter = new ScoreCounter();
         KeyControls controls = new KeyControls();
-        Engine engine = new Engine(controls);
+        Engine engine = new Engine();
+
         game = Game.builder()
                 .tetrion(new Block[10][20])
                 .currentShape(shapeFactory.createShape())
@@ -81,24 +81,31 @@ public class PlayController extends Controller implements Initializable {
                 .refresh(this::refresh)
                 .build();
 
+        controls.addKeyControls();
+        counter.addObserver(this);
+
         engine.onTick(() -> {
             refresh();
             game.getCurrentShape().fall(game.getTetrion());
             counter.addScore(1);
         });
-
+        TEMP_addBlockToTetrion();
         game.startGame();
     }
     @FXML
-    public void setScoreLabel() {
-        scoreLabel.setText(String.format("%04d", 236));
+    public void setScoreLabel(int score) {
+        scoreLabel.setText(String.format("%04d", score));
     }
 
+    @Override
+    public void update(final Observable o, final Object arg) {
+        setScoreLabel((int)arg);
+    }
     @FXML
     public void onButtonClick(ActionEvent event) {
         try {
             if (event.getSource().equals(stopButton)) {
-                //game.endGame();
+                game.endGame();
                 showMenu();
             }
             if (event.getSource().equals(pauseButton)) {
@@ -149,8 +156,6 @@ public class PlayController extends Controller implements Initializable {
         graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
     }
 
-
-
     private void generateGrid(int width, int height, GridPane pane) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -162,11 +167,6 @@ public class PlayController extends Controller implements Initializable {
             }
         }
     }
-
-
-
-
-
 
     //temp method that adds some block to tetrion - to be deleted
     private void TEMP_addBlockToTetrion() {
@@ -200,4 +200,6 @@ public class PlayController extends Controller implements Initializable {
         game.addBlockToTetrion(d3);
         game.addBlockToTetrion(d4);
     }
+
+
 }

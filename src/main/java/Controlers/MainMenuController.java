@@ -16,6 +16,7 @@ public class MainMenuController extends Controller {
     @FXML
     private Button exitButton;
 
+
     @FXML
     public void onButtonClick(ActionEvent event) {
         try {
@@ -39,7 +40,6 @@ public class MainMenuController extends Controller {
     // BELOW ARE THE METHODS RESPONSIBLE FOR SCENE CHANGING - I KNOW IT IS CODE REPETITION - TO BE FIXED LATER
     private void showGame() throws IOException {
         prepareScene(playButton, "Play.fxml");
-        //initGame();//is this a good place to create game? no
     }
 
     private void showCredits() throws IOException {

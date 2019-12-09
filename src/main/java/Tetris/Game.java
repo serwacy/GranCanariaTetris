@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCode;
 import lombok.Builder;
 
 @Builder
-public class Game {
+public class Game{
     private Block[][] tetrion;
 
     private Shape currentShape = null;
@@ -52,9 +52,10 @@ public class Game {
             refresh.run();
         });
         this.controls.addAction(KeyCode.DOWN, () -> {
-            currentShape.fall(tetrion);
-            refresh.run();
-            counter.addScore(1);
+            if (currentShape.fall(tetrion)) {
+                refresh.run();
+                counter.addScore(1);
+            }
         });
     }
 
