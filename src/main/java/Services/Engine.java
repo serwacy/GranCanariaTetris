@@ -24,7 +24,7 @@ public class Engine implements Runnable {
 
     private List<Runnable> onTick = new LinkedList<>();
 
-    public void onTick(Runnable r){
+    public void addToOnTick(Runnable r){
         onTick.add(r);
     }
 

@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 
 public class PlayController extends Controller implements Initializable, Observer {
 
-
     @FXML
     private Label scoreLabel;
     @FXML
@@ -84,7 +83,7 @@ public class PlayController extends Controller implements Initializable, Observe
         controls.addKeyControls();
         counter.addObserver(this);
 
-        engine.onTick(() -> {
+        engine.addToOnTick(() -> {
             refresh();
             game.getCurrentShape().fall(game.getTetrion());
             counter.addScore(1);
