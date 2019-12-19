@@ -16,6 +16,7 @@ public class MainMenuController extends Controller {
     @FXML
     private Button exitButton;
 
+
     @FXML
     public void onButtonClick(ActionEvent event) {
         try {
@@ -29,7 +30,7 @@ public class MainMenuController extends Controller {
                 showScores();
             }
             if (event.getSource().equals(exitButton)) {
-                exitGame();
+                exitProgram();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,7 +40,6 @@ public class MainMenuController extends Controller {
     // BELOW ARE THE METHODS RESPONSIBLE FOR SCENE CHANGING - I KNOW IT IS CODE REPETITION - TO BE FIXED LATER
     private void showGame() throws IOException {
         prepareScene(playButton, "Play.fxml");
-        ControllerManager.getPlayController().getGame().startGame();
     }
 
     private void showCredits() throws IOException {
@@ -50,7 +50,8 @@ public class MainMenuController extends Controller {
         prepareScene(highScoresButton, "HighScores.fxml");
     }
 
-    private void exitGame() {
+    private void exitProgram() {
         Platform.exit();
     }
+
 }

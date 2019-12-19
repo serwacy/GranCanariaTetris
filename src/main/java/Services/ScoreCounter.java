@@ -1,11 +1,10 @@
 package Services;
 
-import Controlers.ControllerManager;
 import javafx.application.Platform;
 
-public enum ScoreCounter {
-    INSTANCE;
+import java.util.Observable;
 
+public class ScoreCounter extends Observable {
     private int score;
 
     public int getScore() {
@@ -14,10 +13,14 @@ public enum ScoreCounter {
 
     public void addScore(final int scoreAdder) {
         this.score += scoreAdder;
-        Platform.runLater(ControllerManager.getPlayController()::setScoreLabel);
-    }
+        Platform.runLater(()->{
+            setChanged();
+            notifyObservers(score);
+        });
 
+    }
     public void resetScore(){
         this.score = 0;
     }
+
 }

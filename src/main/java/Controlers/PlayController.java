@@ -1,10 +1,13 @@
 package Controlers;
 
+import Services.Engine;
+import Services.KeyControls;
 import Services.ScoreCounter;
 import Shapes.Block;
 import Shapes.Shape;
 import Tetris.Game;
 import Tetris.ShapeFactory;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,11 +21,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class PlayController extends Controller implements Initializable {
-
-    private Game game = new Game(this, ShapeFactory.createShape(), ShapeFactory.createShape(), 1);
+public class PlayController extends Controller implements Initializable, Observer {
 
     @FXML
     private Label scoreLabel;
@@ -41,9 +44,7 @@ public class PlayController extends Controller implements Initializable {
     private Canvas canvasForSmallPane;
     private GraphicsContext graphicsContextForSmallPane;
 
-    public Game getGame() {
-        return game;
-    }
+    private Game game;
 
     public Canvas getCanvasForBigPane() {
         return canvasForBigPane;
@@ -55,23 +56,50 @@ public class PlayController extends Controller implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
+        ControllerManager.setPlayController(this);
         generateGrid(10, 20, bigPane);
         generateGrid(4, 3, smallPane);
         setGraphics();
-        ControllerManager.setPlayController(this);
+        Platform.runLater(this::initGame);
+    }
+
+    private void initGame() {
+        ShapeFactory shapeFactory = new ShapeFactory();
+        ScoreCounter counter = new ScoreCounter();
+        KeyControls controls = new KeyControls();
+        Engine engine = new Engine();
+
+        game = Game.builder()
+                .tetrion(new Block[10][20])
+                .currentShape(shapeFactory.createShape())
+                .nextShape(shapeFactory.createShape())
+                .controls(controls)
+                .counter(counter)
+                .engine(engine)
+                .shapeFactory(shapeFactory)
+                .refresh(this::refresh)
+                .build();
+
+        controls.addKeyControls();
+        counter.addObserver(this);
+
+        engine.addToOnTick(() -> {
+            refresh();
+            game.getCurrentShape().fall(game.getTetrion());
+            counter.addScore(1);
+        });
         TEMP_addBlockToTetrion();
+        game.startGame();
     }
-
-    private void setGraphics() {
-        graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
-        graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
-    }
-
     @FXML
-    public void setScoreLabel() {
-        scoreLabel.setText(String.format("%04d", ScoreCounter.INSTANCE.getScore()));
+    public void setScoreLabel(int score) {
+        scoreLabel.setText(String.format("%04d", score));
     }
 
+    @Override
+    public void update(final Observable o, final Object arg) {
+        setScoreLabel((int)arg);
+    }
     @FXML
     public void onButtonClick(ActionEvent event) {
         try {
@@ -80,7 +108,7 @@ public class PlayController extends Controller implements Initializable {
                 showMenu();
             }
             if (event.getSource().equals(pauseButton)) {
-                game.pauseGame();
+                //game.pauseGame();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,6 +117,42 @@ public class PlayController extends Controller implements Initializable {
 
     private void showMenu() throws IOException {
         prepareScene(stopButton, "Menu.fxml");
+    }
+    private void refresh(){
+        clearCanvas();
+        printTetrion();
+        printCurrentShape();
+        printNextShape();
+    }
+
+    private void clearCanvas() {
+        getGraphicsContextForBigPane().clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
+    }
+    private void printTetrion() {
+        for (int i = 0; i < game.getTetrion().length; i++) {
+            for (int j = 0; j < game.getTetrion()[i].length; j++) {
+                if (game.getTetrion()[i][j] != null) {
+                    this.graphicsContextForBigPane.setFill(game.getTetrion()[i][j].getColor());
+                    this.graphicsContextForBigPane.fillRect(game.getTetrion()[i][j].getX() * 30, game.getTetrion()[i][j].getY() * 30, 30, 30);
+                }
+            }
+        }
+    }
+    private void printCurrentShape() {
+        printShape(game.getCurrentShape(), graphicsContextForBigPane);
+    }
+
+    private void printNextShape() {
+        printShape(game.getNextShape(), graphicsContextForSmallPane);
+    }
+    private void printShape(Shape shape, GraphicsContext context) {
+        context.setFill(shape.getBlocks().get(0).getColor());
+        shape.getBlocks().forEach(block -> context.fillRect(block.getX() * 30, block.getY() * 30, 30, 30));
+    }
+
+    private void setGraphics() {
+        graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
+        graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
     }
 
     private void generateGrid(int width, int height, GridPane pane) {
@@ -102,32 +166,6 @@ public class PlayController extends Controller implements Initializable {
             }
         }
     }
-
-    public void printTetrion() {
-        for (int i = 0; i < Game.getTetrion().length; i++) {
-            for (int j = 0; j < Game.getTetrion()[i].length; j++) {
-                if (Game.getTetrion()[i][j] != null) {
-                    this.graphicsContextForBigPane.setFill(Game.getTetrion()[i][j].getColor());
-                    this.graphicsContextForBigPane.fillRect(Game.getTetrion()[i][j].getX() * 30, Game.getTetrion()[i][j].getY() * 30, 30, 30);
-                }
-            }
-        }
-    }
-
-    private void printShape(Shape shape, GraphicsContext context){
-        context.setFill(shape.getBlocks().get(0).getColor());
-        shape.getBlocks().forEach(block -> context.fillRect(block.getX()*30,block.getY()*30,30,30));
-    }
-
-
-    public void printCurrentShape() {
-        printShape(game.getCurrentShape(),graphicsContextForBigPane);
-    }
-
-    public void printNextShapeOnGrid() {
-       printShape(game.getNextShape(),graphicsContextForSmallPane);
-    }
-
 
     //temp method that adds some block to tetrion - to be deleted
     private void TEMP_addBlockToTetrion() {
@@ -161,4 +199,6 @@ public class PlayController extends Controller implements Initializable {
         game.addBlockToTetrion(d3);
         game.addBlockToTetrion(d4);
     }
+
+
 }

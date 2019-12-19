@@ -13,8 +13,8 @@ public class LShape extends Shape {
         super.setRotation(1);
     }
 
-    public void rotate() {
-        if(canRotate()) {
+    public void rotate(Block[][] tetrion) {
+        if(canRotate(tetrion)) {
             if (getRotation() == 1) {
                 translateRealBlockOfGivenShape(0,0,2);
                 translateRealBlockOfGivenShape(1,-1,1);
@@ -39,7 +39,7 @@ public class LShape extends Shape {
         }
     }
 
-    public boolean canRotate() {
+    public boolean canRotate(Block[][] tetrion) {
         initGhostBlocks();
         if (getRotation() == 1) {
             translateGhostBlockOfGivenShape(0,0,2);
@@ -60,12 +60,12 @@ public class LShape extends Shape {
         }
         if(getGhostBlocks().stream().anyMatch(x ->
                 x.getX() < 0 ||
-                        x.getX() > Game.getTetrion().length -1 ||
+                        x.getX() > tetrion.length -1 ||
                         x.getY() < 0 ||
-                        x.getY() > Game.getTetrion()[0].length -1)){
+                        x.getY() > tetrion[0].length -1)){
             return false;
         }
         else return getGhostBlocks().stream().noneMatch(x ->
-                Game.getTetrion()[x.getX()][x.getY()] != null);
+                tetrion[x.getX()][x.getY()] != null);
     }
 }

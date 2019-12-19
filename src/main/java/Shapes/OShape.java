@@ -12,11 +12,11 @@ public class OShape extends Shape {
         super.setRotation(1);
     }
 
-    public void rotate() {
+    public void rotate(Block[][] tetrion) {
         //nothing happens
     }
 
-    public boolean canRotate() {
+    public boolean canRotate(Block[][] tetrion) {
         return false;
     }
 }

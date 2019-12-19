@@ -1,37 +1,24 @@
 package Services;
 
-import Controlers.PlayController;
-import Tetris.Game;
+import Controlers.ControllerManager;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
-public class KeyControls {
-    private PlayController playController;
-    private Game game;
+import java.util.HashMap;
+import java.util.Map;
 
-    public KeyControls(final PlayController playController, final Game game) {
-        this.playController = playController;
-        this.game = game;
+public class KeyControls {
+    private Map<KeyCode, Runnable> actions = new HashMap<>();
+
+    public void addAction(KeyCode k, Runnable r) {
+        actions.put(k, r);
     }
 
     public void addKeyControls() {
-        final Scene scene = playController.getCanvasForBigPane().getScene();
+        final Scene scene = ControllerManager.getPlayController().getCanvasForBigPane().getScene();
         scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.LEFT) {
-                game.getCurrentShape().moveLeft();
-                game.getShapeDynamics().refreshCanvas();
-            } else if (event.getCode() == KeyCode.RIGHT) {
-                game.getCurrentShape().moveRight();
-                game.getShapeDynamics().refreshCanvas();
-            } else if (event.getCode() == KeyCode.UP) {
-                game.getCurrentShape().rotate();
-                game.getShapeDynamics().refreshCanvas();
-            } else if(event.getCode() == KeyCode.DOWN){
-                game.getCurrentShape().fall();
-                game.getShapeDynamics().refreshCanvas();
-                ScoreCounter.INSTANCE.addScore(1);
-            } else {
-                System.out.println(event.getCode());
+            if (actions.containsKey(event.getCode())) {
+                actions.get(event.getCode()).run();
             }
         });
     }
