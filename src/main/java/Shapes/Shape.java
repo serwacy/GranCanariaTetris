@@ -19,22 +19,22 @@ public abstract class Shape {
     public abstract void rotate(Block[][] tetrion);
     public abstract boolean canRotate(Block[][] tetrion);
 
-    public boolean fall(Block[][] tetrion) {
-        if (canFall(tetrion)) {
-            blocks.forEach(block -> block.setY(block.getY() + 1));
-            return true;
-        }
-        return false;
-    }
-
-    private boolean canFall(Block[][] tetrion) {
-        if (blocks.stream().allMatch(block -> block.getY() < tetrion[0].length - 1)) {
-            return blocks.stream()
-                    .allMatch(block -> tetrion[block.getX()][block.getY() + 1] == null);
-        } else {
-            return false;
-        }
-    }
+//    public boolean fall(Block[][] tetrion) {
+//        if (canFall(tetrion)) {
+//            blocks.forEach(block -> block.setY(block.getY() + 1));
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    private boolean canFall(Block[][] tetrion) {
+//        if (blocks.stream().allMatch(block -> block.getY() < tetrion[0].length - 1)) {
+//            return blocks.stream()
+//                    .allMatch(block -> tetrion[block.getX()][block.getY() + 1] == null);
+//        } else {
+//            return false;
+//        }
+//    }
 
     public void moveLeft(Block[][] tetrion) {
         if (canMoveLeft(tetrion)) {

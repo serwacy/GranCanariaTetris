@@ -85,10 +85,9 @@ public class PlayController extends Controller implements Initializable, Observe
 
         engine.addToOnTick(() -> {
             refresh();
-            game.getCurrentShape().fall(game.getTetrion());
+            game.fall(); //only one method called
             counter.addScore(1);
         });
-        TEMP_addBlockToTetrion();
         game.startGame();
     }
     @FXML
@@ -126,7 +125,8 @@ public class PlayController extends Controller implements Initializable, Observe
     }
 
     private void clearCanvas() {
-        getGraphicsContextForBigPane().clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
+        graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
+        graphicsContextForSmallPane.clearRect(0, 0, canvasForSmallPane.getWidth(), canvasForSmallPane.getHeight());
     }
     private void printTetrion() {
         for (int i = 0; i < game.getTetrion().length; i++) {
@@ -166,39 +166,4 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         }
     }
-
-    //temp method that adds some block to tetrion - to be deleted
-    private void TEMP_addBlockToTetrion() {
-        Block b1 = new Block(4, 17, Color.RED);
-        Block b2 = new Block(5, 17, Color.RED);
-        Block b3 = new Block(5, 18, Color.RED);
-        Block b4 = new Block(5, 19, Color.RED);
-
-        game.addBlockToTetrion(b1);
-        game.addBlockToTetrion(b2);
-        game.addBlockToTetrion(b3);
-        game.addBlockToTetrion(b4);
-
-        Block c1 = new Block(7, 17, Color.YELLOW);
-        Block c2 = new Block(7, 18, Color.YELLOW);
-        Block c3 = new Block(6, 18, Color.YELLOW);
-        Block c4 = new Block(6, 19, Color.YELLOW);
-
-        game.addBlockToTetrion(c1);
-        game.addBlockToTetrion(c2);
-        game.addBlockToTetrion(c3);
-        game.addBlockToTetrion(c4);
-
-        Block d1 = new Block(3, 18, Color.MAGENTA);
-        Block d2 = new Block(4, 18, Color.MAGENTA);
-        Block d3 = new Block(3, 19, Color.MAGENTA);
-        Block d4 = new Block(4, 19, Color.MAGENTA);
-
-        game.addBlockToTetrion(d1);
-        game.addBlockToTetrion(d2);
-        game.addBlockToTetrion(d3);
-        game.addBlockToTetrion(d4);
-    }
-
-
 }
