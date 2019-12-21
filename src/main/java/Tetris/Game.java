@@ -8,8 +8,14 @@ import Shapes.Shape;
 import javafx.scene.input.KeyCode;
 import lombok.Builder;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+import static java.util.Objects.isNull;
+
 @Builder
-public class Game{
+public class Game {
     private Block[][] tetrion;
 
     private Shape currentShape = null;
@@ -35,7 +41,80 @@ public class Game{
     public void startGame() {
         counter.resetScore();
         defineActions();
+        //engine.addToOnTick(this::clearLines);
         this.engine.start();
+    }
+
+    public boolean fall() {
+        if (canFall()) {
+            currentShape.getBlocks().forEach(block -> block.setY(block.getY() + 1));
+            return true;
+        } else {
+            copyShapeToTetrion();
+            clearLines();
+            switchShapes();
+            return false;
+        }
+    }
+
+    private boolean canFall() {
+        if (currentShape.getBlocks().stream().allMatch(block -> block.getY() < tetrion[0].length - 1)) {
+            return currentShape.getBlocks().stream()
+                    .allMatch(block -> tetrion[block.getX()][block.getY() + 1] == null);
+        } else {
+            return false;
+        }
+    }
+
+    public void clearLines() {
+        for (int rowIndex = tetrion[0].length - 1; rowIndex > 0; rowIndex--) {
+            if (isLineFull(rowIndex)) {
+                removeLine(rowIndex);
+                moveAllBlocksAboveDown(rowIndex);
+                rowIndex++;
+            }
+        }
+    }
+
+    private boolean isLineFull(final int rowIndex) {
+        for (final Block[] blocks : tetrion) {
+            if (blocks[rowIndex] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void moveAllBlocksAboveDown(final int rowIndex) {
+        for (int row = rowIndex - 1; row > 0; row--) {
+            for (int column = 0; column < tetrion.length; column++) {
+                Optional<Block> presentBlock = Optional.ofNullable(tetrion[column][row]);
+                if (presentBlock.isPresent()) {
+                    Block block = tetrion[column][row];
+                    tetrion[column][row] = null;
+                    block.setY(row + 1);
+                    addBlockToTetrion(block);
+                } else {
+                    tetrion[column][row] = null;
+                }
+            }
+        }
+    }
+
+
+    private void removeLine(final int rowIndex) {
+        for (int columnIndex = 0; columnIndex < tetrion.length; columnIndex++) {
+            tetrion[columnIndex][rowIndex] = null;
+        }
+    }
+
+    private void copyShapeToTetrion() {
+        currentShape.getBlocks().forEach(this::addBlockToTetrion);
+    }
+
+    private void switchShapes() {
+        currentShape = nextShape;
+        nextShape = shapeFactory.createShape();
     }
 
     private void defineActions() {
@@ -52,7 +131,7 @@ public class Game{
             refresh.run();
         });
         this.controls.addAction(KeyCode.DOWN, () -> {
-            if (currentShape.fall(tetrion)) {
+            if (fall()) {
                 refresh.run();
                 counter.addScore(1);
             }
@@ -86,5 +165,13 @@ public class Game{
 
     public Block[][] getTetrion() {
         return tetrion;
+    }
+
+    public void setCurrentShape(final Shape currentShape) {
+        this.currentShape = currentShape;
+    }
+
+    public void setNextShape(final Shape nextShape) {
+        this.nextShape = nextShape;
     }
 }
