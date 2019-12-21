@@ -9,7 +9,10 @@ import javafx.scene.input.KeyCode;
 import lombok.Builder;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
+
+import static java.util.Objects.isNull;
 
 @Builder
 public class Game{
@@ -38,6 +41,7 @@ public class Game{
     public void startGame() {
         counter.resetScore();
         defineActions();
+        engine.addToOnTick(this::clearLines);
         this.engine.start();
     }
 
@@ -47,8 +51,6 @@ public class Game{
             return true;
         }else {
             copyShapeToTetrion();
-            clearLines();
-
             switchShapes();
             return false;
         }
@@ -64,8 +66,9 @@ public class Game{
     }
 
     public void clearLines(){
-        for (int rowIndex = 0; rowIndex < tetrion[0].length; rowIndex++) {
+        for (int rowIndex = tetrion[0].length-1; rowIndex > 0; rowIndex--) {
             if (isLineFull(rowIndex)) {
+                removeLine(rowIndex);
                 moveAllBlocksAboveDown(rowIndex);
             }
         }
@@ -81,13 +84,15 @@ public class Game{
     }
 
     private void moveAllBlocksAboveDown(final int rowIndex) {
-        for (int row = rowIndex; row > 0; row--) {
+        for (int row = rowIndex-1; row > 0 ; row--) {
             for (int column = 0; column < tetrion.length; column++) {
-                tetrion[column][row] = tetrion[column][row-1];
+                Optional<Block> presentBlock = Optional.ofNullable(tetrion[column][row]);
+                if (presentBlock.isPresent()) {
+                    tetrion[column][row].setY(row + 1);
+
+                }else {tetrion[column][row] = null;}
             }
-            refresh.run();
         }
-        removeLine(0);
     }
 
 
