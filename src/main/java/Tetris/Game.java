@@ -8,11 +8,7 @@ import Shapes.Shape;
 import javafx.scene.input.KeyCode;
 import lombok.Builder;
 
-import java.util.Arrays;
 import java.util.Optional;
-import java.util.stream.Stream;
-
-import static java.util.Objects.isNull;
 
 @Builder
 public class Game {

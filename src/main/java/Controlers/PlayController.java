@@ -16,7 +16,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -90,6 +89,7 @@ public class PlayController extends Controller implements Initializable, Observe
         });
         game.startGame();
     }
+
     @FXML
     public void setScoreLabel(int score) {
         scoreLabel.setText(String.format("%04d", score));
@@ -97,8 +97,9 @@ public class PlayController extends Controller implements Initializable, Observe
 
     @Override
     public void update(final Observable o, final Object arg) {
-        setScoreLabel((int)arg);
+        setScoreLabel((int) arg);
     }
+
     @FXML
     public void onButtonClick(ActionEvent event) {
         try {
@@ -107,7 +108,7 @@ public class PlayController extends Controller implements Initializable, Observe
                 showMenu();
             }
             if (event.getSource().equals(pauseButton)) {
-                //game.pauseGame();
+                showScoreSaver();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -117,7 +118,12 @@ public class PlayController extends Controller implements Initializable, Observe
     private void showMenu() throws IOException {
         prepareScene(stopButton, "Menu.fxml");
     }
-    private void refresh(){
+
+    private void showScoreSaver() throws IOException {
+        prepareScene(pauseButton, "SaveScore.fxml");
+    }
+
+    private void refresh() {
         clearCanvas();
         printTetrion();
         printCurrentShape();
@@ -128,6 +134,7 @@ public class PlayController extends Controller implements Initializable, Observe
         graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
         graphicsContextForSmallPane.clearRect(0, 0, canvasForSmallPane.getWidth(), canvasForSmallPane.getHeight());
     }
+
     private void printTetrion() {
         for (int i = 0; i < game.getTetrion().length; i++) {
             for (int j = 0; j < game.getTetrion()[i].length; j++) {
@@ -138,6 +145,7 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         }
     }
+
     private void printCurrentShape() {
         printShape(game.getCurrentShape(), graphicsContextForBigPane);
     }
@@ -145,6 +153,7 @@ public class PlayController extends Controller implements Initializable, Observe
     private void printNextShape() {
         printShape(game.getNextShape(), graphicsContextForSmallPane);
     }
+
     private void printShape(Shape shape, GraphicsContext context) {
         context.setFill(shape.getBlocks().get(0).getColor());
         shape.getBlocks().forEach(block -> context.fillRect(block.getX() * 30, block.getY() * 30, 30, 30));
@@ -165,5 +174,8 @@ public class PlayController extends Controller implements Initializable, Observe
                 pane.add(rec, i, j);
             }
         }
+    }
+    public int getScoreValue(){
+        return Integer.parseInt(scoreLabel.getText());
     }
 }
