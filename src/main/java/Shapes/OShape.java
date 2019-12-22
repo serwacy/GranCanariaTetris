@@ -3,12 +3,12 @@ package Shapes;
 import javafx.scene.paint.Color;
 
 public class OShape extends Shape {
-    public OShape() {
-        super();
-        super.addBlocks(new Block(0, 0, Color.MAGENTA));
-        super.addBlocks(new Block(1, 0, Color.MAGENTA));
-        super.addBlocks(new Block(0, 1, Color.MAGENTA));
-        super.addBlocks(new Block(1, 1, Color.MAGENTA));
+    public OShape(final String colorPath) {
+        super(colorPath);
+        super.addBlocks(new Block(0, 0, this.getColor()));
+        super.addBlocks(new Block(1, 0, this.getColor()));
+        super.addBlocks(new Block(0, 1, this.getColor()));
+        super.addBlocks(new Block(1, 1, this.getColor()));
         super.setRotation(1);
     }
 

@@ -1,7 +1,9 @@
 package Shapes;
 
 import Tetris.Game;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +12,10 @@ public abstract class Shape {
     private List<Block> blocks;
     private List<Block> ghostBlocks;
     private int rotation;
+    private ImagePattern color;
 
-    public Shape() {
+    public Shape(String colorPath) {
+        this.color =  new ImagePattern(new Image(colorPath));
         this.blocks = new ArrayList<>();
         this.ghostBlocks = new ArrayList<>();
     }
@@ -19,7 +23,10 @@ public abstract class Shape {
     public abstract void rotate(Block[][] tetrion);
     public abstract boolean canRotate(Block[][] tetrion);
 
-//    public boolean fall(Block[][] tetrion) {
+    public ImagePattern getColor() {
+        return color;
+    }
+    //    public boolean fall(Block[][] tetrion) {
 //        if (canFall(tetrion)) {
 //            blocks.forEach(block -> block.setY(block.getY() + 1));
 //            return true;
@@ -92,7 +99,7 @@ public abstract class Shape {
     //============================================
     void initGhostBlocks() {
         this.ghostBlocks.clear();
-        this.blocks.forEach(block -> addGhostBlocks(new Block(block.getX(), block.getY(), Color.WHITE)));
+        this.blocks.forEach(block -> addGhostBlocks(new Block(block.getX(), block.getY(), color)));
     }
 
     public void translateBlockOfGivenShape(List<Block> givenBlocks, int blockIndex, int translateX, int translateY) {
