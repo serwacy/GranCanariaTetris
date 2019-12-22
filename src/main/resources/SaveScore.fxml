@@ -95,6 +95,8 @@
         </font>
     </TextField>
     <Button text="Save score"
+            fx:id="saveButton"
+            onAction="#onButtonClick"
             GridPane.columnIndex="0"
             GridPane.rowIndex="5"
             GridPane.halignment="CENTER"
