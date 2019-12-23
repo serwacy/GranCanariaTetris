@@ -35,6 +35,6 @@ public class HighScoresController extends Controller implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        highScores.setText(recordsManager.prepareContentForLabel());
+        highScores.setText(recordsManager.prepareScoreListForLabel());
     }
 }

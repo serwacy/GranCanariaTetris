@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static Controlers.ControllerManager.*;
+
 public class SaveScoreController extends Controller implements Initializable {
     @FXML
     private Label finalScoreLabel;
@@ -17,18 +19,15 @@ public class SaveScoreController extends Controller implements Initializable {
     @FXML
     private Button saveButton;
 
-    PlayController playController;
-
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        PlayController playController = ControllerManager.getPlayController();
+        PlayController playController = getPlayController();
         int scoreValue = playController.getScoreValue();
         setScoreLabel(scoreValue);
     }
 
     public void setScoreLabel(int score) {
-
         finalScoreLabel.setText(String.format("%04d", score));
     }
 
