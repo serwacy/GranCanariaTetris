@@ -84,6 +84,7 @@
         </padding>
     </Label>
     <TextField promptText="-enter your name-"
+               fx:id="nicknameField"
                GridPane.columnIndex="0"
                GridPane.rowIndex="4"
                GridPane.halignment="CENTER"
