@@ -77,9 +77,7 @@ public enum HighestRecordsManager {
     }
 
     public String prepareScoreListForLabel() {
-        return this.scores.stream()
-                .map(record -> record.getNickname() + SEPARATOR + record.getScore() + "\n")
-                .collect(Collectors.joining())
+        return getScoreListAsString()
                 .replace(SEPARATOR, "\t");
     }
 }

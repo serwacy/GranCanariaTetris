@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static Controlers.ControllerManager.*;
-
 public class SaveScoreController extends Controller implements Initializable {
     @FXML
     private Label finalScoreLabel;
@@ -27,7 +25,7 @@ public class SaveScoreController extends Controller implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        PlayController playController = getPlayController();
+        PlayController playController = ControllerManager.getPlayController();
         int scoreValue = playController.getScoreValue();
         setScoreLabel(scoreValue);
     }
