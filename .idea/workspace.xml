@@ -4,7 +4,6 @@
     <list default="true" id="bcadc2fa-7d71-410d-b3f5-a64b89e2bbdb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controlers/PlayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controlers/PlayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Tetris/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tetris/Game.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

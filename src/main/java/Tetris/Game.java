@@ -1,5 +1,6 @@
 package Tetris;
 
+import Controlers.ControllerManager;
 import Services.Engine;
 import Services.KeyControls;
 import Services.ScoreCounter;
@@ -52,10 +53,10 @@ public class Game {
         this.engine.start();
     }
 
-    public boolean fall() {
+    public void fall() {
         if (canFall()) {
             currentShape.getBlocks().forEach(block -> block.setY(block.getY() + 1));
-            return true;
+//            return true;
         } else {
             copyShapeToTetrion();
             clearLines();
@@ -63,11 +64,11 @@ public class Game {
 
             //How to put result of this method in PlayController to stop the game? refresh?
             if(!canFall()){
-                return false;
+                ControllerManager.getPlayController().endGameAndExitToMenu();
             }
 
             raiseGameLevel(counter.getScore());
-            return true;
+//            return false;
         }
     }
 
@@ -182,10 +183,11 @@ public class Game {
             refresh.run();
         });
         this.controls.addAction(KeyCode.DOWN, () -> {
-            if (fall()) {
-                refresh.run();
-                counter.addScore(1);
-            }
+//            if (fall()) {
+            fall();
+            refresh.run();
+            counter.addScore(1);
+//            }
         });
     }
 

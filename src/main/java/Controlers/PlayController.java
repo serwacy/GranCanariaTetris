@@ -16,7 +16,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -110,17 +109,17 @@ public class PlayController extends Controller implements Initializable, Observe
         }
     }
 
-    private void endGameAndExitToMenu(){
+    public void endGameAndExitToMenu(){
+        game.endGame();
+        showMenu();
+    }
+
+    private void showMenu(){
         try {
-            game.endGame();
-            showMenu();
+            prepareScene(stopButton, "Menu.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void showMenu() throws IOException {
-        prepareScene(stopButton, "Menu.fxml");
     }
     private void refresh(){
         clearCanvas();
