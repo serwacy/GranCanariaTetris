@@ -78,6 +78,7 @@ public class PlayController extends Controller implements Initializable, Observe
                 .engine(engine)
                 .shapeFactory(shapeFactory)
                 .refresh(this::refresh)
+                .lastNumberOfLinesCleared(0)
                 .build();
 
         controls.addKeyControls();
@@ -92,7 +93,7 @@ public class PlayController extends Controller implements Initializable, Observe
     }
     @FXML
     public void setScoreLabel(int score) {
-        scoreLabel.setText(String.format("%04d", score));
+        scoreLabel.setText(String.format("%04d", score)); // make score at least 6 digit number
     }
 
     @Override
@@ -101,14 +102,18 @@ public class PlayController extends Controller implements Initializable, Observe
     }
     @FXML
     public void onButtonClick(ActionEvent event) {
+        if (event.getSource().equals(stopButton)) {
+            endGameAndExitToMenu();
+        }
+        if (event.getSource().equals(pauseButton)) {
+            //game.pauseGame();
+        }
+    }
+
+    private void endGameAndExitToMenu(){
         try {
-            if (event.getSource().equals(stopButton)) {
-                game.endGame();
-                showMenu();
-            }
-            if (event.getSource().equals(pauseButton)) {
-                //game.pauseGame();
-            }
+            game.endGame();
+            showMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }

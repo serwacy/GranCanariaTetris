@@ -9,25 +9,32 @@ import javafx.scene.input.KeyCode;
 import lombok.Builder;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
-
-import static java.util.Objects.isNull;
 
 @Builder
 public class Game {
+    //should it be here or in Engine class, where field 'level' is
+    private final static int MAX_LEVEL = 20;
+    private final List<Integer> levelThreshold =
+            Arrays.asList(2000, 6000, 12000, 20000, 30000, 42000, 56000, 72000, 90000, 110000,
+                    132000, 156000, 182000, 210000, 240000, 272000, 306000, 342000, 380000, 420000);
+
     private Block[][] tetrion;
 
-    private Shape currentShape = null;
-    private Shape nextShape = null;
+    private Shape currentShape;
+    private Shape nextShape;
 
     private Engine engine;
     private KeyControls controls;
     private ScoreCounter counter;
     private ShapeFactory shapeFactory;
     private Runnable refresh;
+    private int lastNumberOfLinesCleared;
 
-    public Game(final Block[][] tetrion, Shape currentShape, Shape nextShape, final Engine engine, final KeyControls controls, final ScoreCounter counter, final ShapeFactory shapeFactory, Runnable refresh) {
+    public Game(final Block[][] tetrion, Shape currentShape, Shape nextShape,
+                final Engine engine, final KeyControls controls, final ScoreCounter counter,
+                final ShapeFactory shapeFactory, Runnable refresh, int lastNumberOfLinesCleared) {
         this.tetrion = tetrion;
         this.currentShape = currentShape;
         this.nextShape = nextShape;
@@ -36,12 +43,12 @@ public class Game {
         this.counter = counter;
         this.shapeFactory = shapeFactory;
         this.refresh = refresh;
+        this.lastNumberOfLinesCleared = lastNumberOfLinesCleared;
     }
 
     public void startGame() {
         counter.resetScore();
         defineActions();
-        //engine.addToOnTick(this::clearLines);
         this.engine.start();
     }
 
@@ -53,7 +60,23 @@ public class Game {
             copyShapeToTetrion();
             clearLines();
             switchShapes();
-            return false;
+
+            //How to put result of this method in PlayController to stop the game? refresh?
+            if(!canFall()){
+                return false;
+            }
+
+            raiseGameLevel(counter.getScore());
+            return true;
+        }
+    }
+
+    //temporary place of this method, to change during refactor
+    private void raiseGameLevel (final Integer score){
+        if(engine.getLevel() < MAX_LEVEL) {
+            if (score > levelThreshold.get(engine.getLevel() - 1)) {
+                engine.setLevel(engine.getLevel() + 1);
+            }
         }
     }
 
@@ -66,14 +89,17 @@ public class Game {
         }
     }
 
-    public void clearLines() {
+    private void clearLines() {
+        int numberOfLinesCleared = 0;
         for (int rowIndex = tetrion[0].length - 1; rowIndex > 0; rowIndex--) {
             if (isLineFull(rowIndex)) {
                 removeLine(rowIndex);
                 moveAllBlocksAboveDown(rowIndex);
                 rowIndex++;
+                numberOfLinesCleared++;
             }
         }
+        addScoreForClearingLines(numberOfLinesCleared);
     }
 
     private boolean isLineFull(final int rowIndex) {
@@ -106,6 +132,31 @@ public class Game {
         for (int columnIndex = 0; columnIndex < tetrion.length; columnIndex++) {
             tetrion[columnIndex][rowIndex] = null;
         }
+    }
+
+    private void addScoreForClearingLines (final int linesCleared){
+        switch (linesCleared){
+            case 1:
+                counter.addScore(100*engine.getLevel());
+                break;
+            case 2:
+                counter.addScore(300*engine.getLevel());
+                break;
+            case 3:
+                counter.addScore(500*engine.getLevel());
+                break;
+            case 4:
+                if(lastNumberOfLinesCleared == 4){
+                    counter.addScore(1200*engine.getLevel());
+                } else {
+                    counter.addScore(800*engine.getLevel());
+                }
+//                counter.addScore(800*engine.getLevel());
+                break;
+            default:
+                //do nothing
+        }
+        this.lastNumberOfLinesCleared = linesCleared;
     }
 
     private void copyShapeToTetrion() {
@@ -147,7 +198,7 @@ public class Game {
     }
 
     //TEMP METHOD
-    public void addBlockToTetrion(Block block) {
+    private void addBlockToTetrion(Block block) {
         tetrion[block.getX()][block.getY()] = new Block(block.getX(), block.getY(), block.getColor());
     }
 
