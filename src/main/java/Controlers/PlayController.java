@@ -16,7 +16,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -78,6 +77,7 @@ public class PlayController extends Controller implements Initializable, Observe
                 .engine(engine)
                 .shapeFactory(shapeFactory)
                 .refresh(this::refresh)
+                .lastNumberOfLinesCleared(0)
                 .build();
 
         controls.addKeyControls();
@@ -92,7 +92,7 @@ public class PlayController extends Controller implements Initializable, Observe
     }
     @FXML
     public void setScoreLabel(int score) {
-        scoreLabel.setText(String.format("%04d", score));
+        scoreLabel.setText(String.format("%04d", score)); // make score at least 6 digit number
     }
 
     @Override
@@ -101,21 +101,25 @@ public class PlayController extends Controller implements Initializable, Observe
     }
     @FXML
     public void onButtonClick(ActionEvent event) {
-        try {
-            if (event.getSource().equals(stopButton)) {
-                game.endGame();
-                showMenu();
-            }
-            if (event.getSource().equals(pauseButton)) {
-                //game.pauseGame();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (event.getSource().equals(stopButton)) {
+            endGameAndExitToMenu();
+        }
+        if (event.getSource().equals(pauseButton)) {
+            //game.pauseGame();
         }
     }
 
-    private void showMenu() throws IOException {
-        prepareScene(stopButton, "Menu.fxml");
+    public void endGameAndExitToMenu(){
+        game.endGame();
+        showMenu();
+    }
+
+    private void showMenu(){
+        try {
+            prepareScene(stopButton, "Menu.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     private void refresh(){
         clearCanvas();
