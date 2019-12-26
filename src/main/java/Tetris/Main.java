@@ -1,5 +1,6 @@
 package Tetris;
 
+import Services.MusicPlayer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Menu.fxml"));
         primaryStage.setScene(new Scene(root,550,850));
         primaryStage.setTitle("Gran Canaria Tetris - version 1.0");
+
+        new MusicPlayer().play();
 
         primaryStage.getIcons().add(new Image(new FileInputStream("./src/main/resources/images/horse_icon.jpg")));
         primaryStage.setResizable(false);
