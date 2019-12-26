@@ -100,7 +100,9 @@ public class Game {
                 numberOfLinesCleared++;
             }
         }
-        addScoreForClearingLines(numberOfLinesCleared);
+        if(numberOfLinesCleared > 0) {
+            addScoreForClearingLines(numberOfLinesCleared);
+        }
     }
 
     private boolean isLineFull(final int rowIndex) {
