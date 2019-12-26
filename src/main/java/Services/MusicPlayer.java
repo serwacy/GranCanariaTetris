@@ -9,7 +9,7 @@ public class MusicPlayer {
     public void play(){
 
         try {
-            File file = new File("C:\\Users\\bartm\\OneDrive\\Documents\\IntelijiProjects\\GranCanariaTetris\\src\\main\\resources\\sounds\\korobeinikiSpanish.wav");
+            File file = new File("./src/main/resources/sounds/korobeinikiSpanish.wav");
             Clip clip = AudioSystem.getClip();
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
             clip.open(audioInputStream);
