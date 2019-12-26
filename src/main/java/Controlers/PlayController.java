@@ -112,24 +112,25 @@ public class PlayController extends Controller implements Initializable, Observe
     }
 
     public void endGameAndExitToMenu(){
+        refresh();
         game.endGame();
-        showMenu();
-    }
-
-    private void showMenu(){
         try {
-            prepareScene(stopButton, "Menu.fxml");
-        } catch (IOException e) {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        showScoreSaver();
     }
 
-    private void showMenu() throws IOException {
-        prepareScene(stopButton, "Menu.fxml");
-    }
 
-    private void showScoreSaver() throws IOException {
-        prepareScene(pauseButton, "SaveScore.fxml");
+    private void showScoreSaver() {
+        Platform.runLater(() -> {
+            try {
+                prepareScene(pauseButton, "SaveScore.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void refresh() {

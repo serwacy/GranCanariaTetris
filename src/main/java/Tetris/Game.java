@@ -132,7 +132,6 @@ public class Game {
     private void removeLine(final int rowIndex) {
         for (int columnIndex = 0; columnIndex < tetrion.length; columnIndex++) {
             tetrion[columnIndex][rowIndex] = null;
-            counter.addScore(200);
         }
     }
 
