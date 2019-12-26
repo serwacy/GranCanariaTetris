@@ -1,51 +1,83 @@
 package Services;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.*;
+import lombok.extern.slf4j.Slf4j;
 
-public enum  HighestRecordsManager {
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+@Slf4j
+public enum HighestRecordsManager {
     INSTANCE;
 
-    List<Record> scores = new LinkedList<>();
-    File file = new File("./src/main/resources/scores.txt");
+    private static final int LAST_SCORE_ON_LIST = 9;
+    private static final int SCORE_LIST_LENGTH = 10;
+    private static final String SEPARATOR = ";";
+    private static final String FILEPATH = "./src/main/resources/scores.txt";
+
+    private List<Record> scores = new ArrayList<>();
+    private File file = new File(FILEPATH);
+
+    HighestRecordsManager() {
+        scanScoresFromFile(file);
+    }
 
     private void scanScoresFromFile(File file) {
         try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(file)))) {
             while (scanner.hasNextLine()) {
-                String[] line = scanner.nextLine().split(";");
+                String[] line = scanner.nextLine().split(SEPARATOR);
                 String nickname = line[0];
                 int score = Integer.parseInt(line[1]);
                 this.scores.add(new Record(nickname, score));
             }
         } catch (Exception e) {
-            System.out.println("exception in reading scores");
+            log.warn("cannot read from file " + file.getAbsolutePath());
         }
-        this.scores.sort(new ScoresComparator());
+        sortScores();
     }
-    public String prepareContentForLabel(){
-        scanScoresFromFile(this.file);
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < this.scores.size() && i < 10; i++) {
-            result.append(i+1);
-            result.append(". ");
-            result.append(this.scores.get(i).getNickname());
-            int dots = 20- this.scores.get(i).getNickname().length()-(Integer.toString(this.scores.get(i).getScore())).length();
-            for (int j = 0; j < dots; j++) {
-                result.append(" ");
-            }
-            result.append(this.scores.get(i).getScore());
-            result.append("\n");
-        }
-        System.out.println(result);
-        return result.toString();
+
+    private void sortScores() {
+        this.scores.sort(new ScoresComparator());
     }
 
     static class ScoresComparator implements Comparator<Record> {
         @Override
         public int compare(Record o1, Record o2) {
-            return -(o1.getScore()-o2.getScore());
+            return -(o1.getScore() - o2.getScore());
         }
+    }
+
+    public void addScore(String name, int score) {
+        final Record record = new Record(name, score);
+        if (this.scores.size() < SCORE_LIST_LENGTH) {
+            this.scores.add(record);
+        } else if (record.getScore() > this.scores.get(LAST_SCORE_ON_LIST).getScore()) {
+            this.scores.remove(LAST_SCORE_ON_LIST);
+            this.scores.add(record);
+        }
+        sortScores();
+    }
+
+    public void saveScoresToFile() {
+        final String collect = getScoreListAsString();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH))) {
+            writer.write(collect);
+        } catch (IOException e) {
+            log.warn("cannot write in file " + file.getAbsolutePath());
+        }
+    }
+
+    private String getScoreListAsString(){
+        return this.scores.stream()
+                .map(record -> record.getNickname() + SEPARATOR + record.getScore() + "\n")
+                .collect(Collectors.joining());
+    }
+
+    public String prepareScoreListForLabel() {
+        return getScoreListAsString()
+                .replace(SEPARATOR, "\t");
     }
 }

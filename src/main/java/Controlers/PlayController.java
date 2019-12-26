@@ -90,6 +90,7 @@ public class PlayController extends Controller implements Initializable, Observe
         });
         game.startGame();
     }
+
     @FXML
     public void setScoreLabel(int score) {
         scoreLabel.setText(String.format("%04d", score)); // make score at least 6 digit number
@@ -97,8 +98,9 @@ public class PlayController extends Controller implements Initializable, Observe
 
     @Override
     public void update(final Observable o, final Object arg) {
-        setScoreLabel((int)arg);
+        setScoreLabel((int) arg);
     }
+
     @FXML
     public void onButtonClick(ActionEvent event) {
         if (event.getSource().equals(stopButton)) {
@@ -121,7 +123,16 @@ public class PlayController extends Controller implements Initializable, Observe
             e.printStackTrace();
         }
     }
-    private void refresh(){
+
+    private void showMenu() throws IOException {
+        prepareScene(stopButton, "Menu.fxml");
+    }
+
+    private void showScoreSaver() throws IOException {
+        prepareScene(pauseButton, "SaveScore.fxml");
+    }
+
+    private void refresh() {
         clearCanvas();
         printTetrion();
         printCurrentShape();
@@ -132,6 +143,7 @@ public class PlayController extends Controller implements Initializable, Observe
         graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
         graphicsContextForSmallPane.clearRect(0, 0, canvasForSmallPane.getWidth(), canvasForSmallPane.getHeight());
     }
+
     private void printTetrion() {
         for (int i = 0; i < game.getTetrion().length; i++) {
             for (int j = 0; j < game.getTetrion()[i].length; j++) {
@@ -142,6 +154,7 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         }
     }
+
     private void printCurrentShape() {
         printShape(game.getCurrentShape(), graphicsContextForBigPane);
     }
@@ -149,6 +162,7 @@ public class PlayController extends Controller implements Initializable, Observe
     private void printNextShape() {
         printShape(game.getNextShape(), graphicsContextForSmallPane);
     }
+
     private void printShape(Shape shape, GraphicsContext context) {
         context.setFill(shape.getBlocks().get(0).getColor());
         shape.getBlocks().forEach(block -> context.fillRect(block.getX() * 30, block.getY() * 30, 30, 30));
@@ -169,5 +183,8 @@ public class PlayController extends Controller implements Initializable, Observe
                 pane.add(rec, i, j);
             }
         }
+    }
+    public int getScoreValue(){
+        return Integer.parseInt(scoreLabel.getText());
     }
 }
