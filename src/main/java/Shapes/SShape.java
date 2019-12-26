@@ -4,12 +4,12 @@ import Tetris.Game;
 import javafx.scene.paint.Color;
 
 public class SShape extends Shape {
-    public SShape() {
-        super();
-        super.addBlocks(new Block(2, 0, Color.YELLOW));
-        super.addBlocks(new Block(1, 0, Color.YELLOW));
-        super.addBlocks(new Block(1, 1, Color.YELLOW));
-        super.addBlocks(new Block(0, 1, Color.YELLOW));
+    public SShape(final String colorPath) {
+        super(colorPath);
+        super.addBlocks(new Block(2, 0, this.getColor()));
+        super.addBlocks(new Block(1, 0, this.getColor()));
+        super.addBlocks(new Block(1, 1, this.getColor()));
+        super.addBlocks(new Block(0, 1, this.getColor()));
         super.setRotation(1);
     }
 

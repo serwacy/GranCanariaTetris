@@ -1,14 +1,14 @@
 package Shapes;
 
-import javafx.scene.paint.Color;
-
 public class IShape extends Shape {
-    public IShape() {
-        super();
-        super.addBlocks(new Block(0,0, Color.GREEN));
-        super.addBlocks(new Block(1,0, Color.GREEN));
-        super.addBlocks(new Block(2,0, Color.GREEN));
-        super.addBlocks(new Block(3,0, Color.GREEN));
+
+
+    public IShape(final String colorPath) {
+        super(colorPath);
+        super.addBlocks(new Block(0,0, this.getColor()));
+        super.addBlocks(new Block(1,0, this.getColor()));
+        super.addBlocks(new Block(2,0, this.getColor()));
+        super.addBlocks(new Block(3,0, this.getColor()));
         super.setRotation(1);
     }
 

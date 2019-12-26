@@ -4,12 +4,12 @@ import Tetris.Game;
 import javafx.scene.paint.Color;
 
 public class ZShape extends Shape {
-    public ZShape() {
-        super();
-        super.addBlocks(new Block(0, 0, Color.ORANGE));
-        super.addBlocks(new Block(1, 0, Color.ORANGE));
-        super.addBlocks(new Block(1, 1, Color.ORANGE));
-        super.addBlocks(new Block(2, 1, Color.ORANGE));
+    public ZShape(final String colorPath) {
+        super(colorPath);
+        super.addBlocks(new Block(0, 0, this.getColor()));
+        super.addBlocks(new Block(1, 0, this.getColor()));
+        super.addBlocks(new Block(1, 1, this.getColor()));
+        super.addBlocks(new Block(2, 1, this.getColor()));
         super.setRotation(1);
     }
 

@@ -1,13 +1,14 @@
 package Shapes;
 
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 
 public class Block {
     private int x;
     private int y;
-    private Color color;
+    private ImagePattern color;
 
-    public Block(int x, int y, Color color) {
+    public Block(int x, int y, ImagePattern color) {
         this.x = x;
         this.y = y;
         this.color = color;
@@ -17,7 +18,7 @@ public class Block {
         return x;
     }
 
-    public Color getColor() {
+    public ImagePattern getColor() {
         return color;
     }
 
