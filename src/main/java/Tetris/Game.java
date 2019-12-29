@@ -51,6 +51,7 @@ public class Game {
         counter.resetScore();
         defineActions();
         this.engine.start();
+        moveCurrentShapeToCenter();
     }
 
     public void fall() {
@@ -169,6 +170,7 @@ public class Game {
     private void switchShapes() {
         currentShape = nextShape;
         nextShape = shapeFactory.createShape();
+        moveCurrentShapeToCenter();
     }
 
     private void defineActions() {
@@ -220,6 +222,11 @@ public class Game {
 
     public Block[][] getTetrion() {
         return tetrion;
+    }
+
+    private void moveCurrentShapeToCenter (){
+        currentShape.getBlocks()
+                .forEach(x -> x.setX(x.getX() + 3));
     }
 
     public void setCurrentShape(final Shape currentShape) {
