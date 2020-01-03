@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,9 @@ public abstract class Shape {
     private ImagePattern color;
 
     public Shape(String colorPath) {
-        this.color =  new ImagePattern(new Image(colorPath));
+        //WIP for deploy purposes
+        InputStream inputStream = this.getClass().getResourceAsStream(colorPath);
+        this.color = new ImagePattern(new Image(inputStream));
         this.blocks = new ArrayList<>();
         this.ghostBlocks = new ArrayList<>();
     }

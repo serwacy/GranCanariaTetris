@@ -9,6 +9,9 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.FileInputStream;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main extends Application {
 
@@ -22,7 +25,9 @@ public class Main extends Application {
 
         new MusicPlayer().play();
 
-        primaryStage.getIcons().add(new Image(new FileInputStream("./src/main/resources/images/horse_icon.jpg")));
+        InputStream inputStream = this.getClass().getResourceAsStream("/images/horse_icon.jpg");
+        primaryStage.getIcons().add(new Image(inputStream));
+//        primaryStage.getIcons().add(new Image(new FileInputStream(this.getClass().getResource("/images/horse_icon.jpg").getFile())));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
