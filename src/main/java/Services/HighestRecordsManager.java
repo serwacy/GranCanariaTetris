@@ -16,13 +16,20 @@ public enum HighestRecordsManager {
     private static final int LAST_SCORE_ON_LIST = 9;
     private static final int SCORE_LIST_LENGTH = 10;
     private static final String SEPARATOR = ";";
-    private static final String FILEPATH = "./src/main/resources/scores.txt";
+//    private static final String FILEPATH = "%appdata%/scores.txt";
 
     private List<Record> scores = new ArrayList<>();
-    private File file = new File(FILEPATH);
+//    private File file = new File(FILEPATH);
 
     HighestRecordsManager() {
-        scanScoresFromFile(file);
+        File file = new File(System.getenv("APPDATA") + "/scores.txt");
+        try {
+            if(!file.createNewFile()) {
+                scanScoresFromFile(file);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void scanScoresFromFile(File file) {
@@ -63,10 +70,10 @@ public enum HighestRecordsManager {
 
     public void saveScoresToFile() {
         final String collect = getScoreListAsString();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getenv("APPDATA") + "/scores.txt"))) {
             writer.write(collect);
         } catch (IOException e) {
-            log.warn("cannot write in file " + file.getAbsolutePath());
+            log.warn("cannot write in file ");
         }
     }
 
