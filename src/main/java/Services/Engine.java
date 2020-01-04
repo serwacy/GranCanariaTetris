@@ -1,5 +1,7 @@
 package Services;
 
+import javafx.application.Platform;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -58,6 +60,10 @@ public class Engine extends Observable implements Runnable {
         if(getLevel() < MAX_LEVEL) {
             if (score > LEVEL_THRESHOLD.get(getLevel() - 1)) {
                 setLevel(getLevel() + 1);
+                Platform.runLater(()->{
+                    setChanged();
+                    notifyObservers(level);
+                });
             }
         }
     }

@@ -99,7 +99,7 @@ public class PlayController extends Controller implements Initializable, Observe
     }
     @FXML
     public void setLevelLabel(int level) {
-        levelLabel.setText("Level "+level); // make score at least 6 digit number
+        levelLabel.setText("LEVEL "+level); // make score at least 6 digit number
     }
 
     @Override

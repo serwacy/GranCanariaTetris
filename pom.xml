@@ -53,7 +53,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Tetris.Launcher</mainClass>
+                            <mainClass>Tetris.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

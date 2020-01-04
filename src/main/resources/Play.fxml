@@ -84,9 +84,9 @@
         </padding>
         <Canvas fx:id="canvasForSmallPane" GridPane.columnIndex="0" GridPane.rowIndex="0" width="120" height="90" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.columnSpan="4" GridPane.rowSpan="4"/>
     </GridPane>
-    <Label fx:id="levelLabel" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label text="LEVEL 1" fx:id="levelLabel" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="25" top="10"/>
+            <Insets left="20" top="10" bottom="22"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
@@ -94,7 +94,7 @@
     </Label>
     <Label text="MUSIC" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="6" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="25" top="50"/>
+            <Insets left="25" top="20"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
