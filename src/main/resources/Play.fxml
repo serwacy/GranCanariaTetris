@@ -86,14 +86,14 @@
     </GridPane>
     <Label text="MUSIC" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="25" top="100"/>
+            <Insets left="25" top="105"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
     <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
-        <Button layoutX="30" layoutY="20" fx:id="soundButton" onAction="#onButtonClick">
+        <Button layoutX="30"  fx:id="soundButton" onAction="#onButtonClick">
             <graphic>
                 <ImageView>
                     <Image url="images/audio.png"/>
