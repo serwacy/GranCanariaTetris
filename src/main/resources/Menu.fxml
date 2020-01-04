@@ -34,7 +34,7 @@
             <Font size="60" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Label minHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="1"></Label>
+    <Label minHeight="100" GridPane.columnIndex="0" GridPane.rowIndex="1"></Label>
     <Button fx:id="playButton" text=" Play" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER" onAction="#onButtonClick">
         <font>
             <Font size="30" name="AR CHRISTY"/>
@@ -67,7 +67,7 @@
             </ImageView>
         </graphic>
     </Button>
-    <Button fx:id="soundButton" text=" Music" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="CENTER">
+    <Button fx:id="soundButton" text=" Music  on" prefWidth="225" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="CENTER">
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>

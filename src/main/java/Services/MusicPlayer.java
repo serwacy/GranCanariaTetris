@@ -1,6 +1,5 @@
 package Services;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -8,10 +7,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javax.sound.sampled.*;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
-public class MusicPlayer {
-    private static MusicPlayer Instance = new MusicPlayer();
+public enum  MusicPlayer {
+    INSTANCE;
 
     private final Image mute = new Image(getClass().getResourceAsStream("/images/mute.png"));
     private final Image play = new Image(getClass().getResourceAsStream("/images/audio.png"));
@@ -25,9 +26,11 @@ public class MusicPlayer {
                 if (isPlaying()) {
                     stop();
                     button.setGraphic(new ImageView(mute));
+                    button.setText(" Music off");
                 }else {
                     play();
                     button.setGraphic(new ImageView(play));
+                    button.setText(" Music  on");
                 }
             }
         });
@@ -46,16 +49,12 @@ public class MusicPlayer {
             e.printStackTrace();
         }
     }
-    public void stop(){
+    private void stop(){
         isPlaying = false;
         clip.stop();
     }
 
-    public boolean isPlaying() {
+    private boolean isPlaying() {
         return isPlaying;
-    }
-
-    public static MusicPlayer getInstance() {
-        return Instance;
     }
 }

@@ -20,7 +20,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Observable;
@@ -57,7 +61,7 @@ public class PlayController extends Controller implements Initializable, Observe
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         ControllerManager.setPlayController(this);
-        MusicPlayer.getInstance().bindAudioButtonImage(soundButton);
+        MusicPlayer.INSTANCE.bindAudioButtonImage(soundButton);
         generateGrid(10, 20, bigPane);
         generateGrid(4, 3, smallPane);
         setGraphics();
@@ -121,12 +125,19 @@ public class PlayController extends Controller implements Initializable, Observe
     public void endGameAndExitToMenu(){
         refresh();
         game.endGame();
+        showGameOverLabel();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         showScoreSaver();
+    }
+
+    private void showGameOverLabel(){
+        this.graphicsContextForBigPane.setFont(new Font("AR CHRISTY", 55));
+        this.graphicsContextForBigPane.setFill(Color.DARKSLATEGRAY);
+        this.graphicsContextForBigPane.fillText("GAME OVER!",10,300);
     }
     private void showScoreSaver() {
         Platform.runLater(() -> {
