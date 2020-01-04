@@ -22,7 +22,6 @@ public class SaveScoreController extends Controller implements Initializable {
     @FXML
     private Button saveButton;
 
-
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         PlayController playController = ControllerManager.getPlayController();
@@ -30,18 +29,15 @@ public class SaveScoreController extends Controller implements Initializable {
         setScoreLabel(scoreValue);
     }
 
-    public void setScoreLabel(int score) {
+    private void setScoreLabel(int score) {
         finalScoreLabel.setText(String.format("%04d", score));
     }
-
-    public String getNickname(){
+    private String getNickname(){
         return nicknameField.getText();
     }
-
-    public int getScore(){
+    private int getScore(){
         return Integer.parseInt(finalScoreLabel.getText());
     }
-
 
     @FXML
     public void onButtonClick(ActionEvent event) {
@@ -62,7 +58,6 @@ public class SaveScoreController extends Controller implements Initializable {
         recordsManager.addScore(nickname, score);
         recordsManager.saveScoresToFile();
     }
-
     private void showMenu() throws IOException {
         prepareScene(saveButton, "Menu.fxml");
     }

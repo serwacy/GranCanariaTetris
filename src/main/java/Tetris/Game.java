@@ -8,18 +8,11 @@ import Shapes.Block;
 import Shapes.Shape;
 import javafx.scene.input.KeyCode;
 import lombok.Builder;
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 @Builder
 public class Game {
-    //should it be here or in Engine class, where field 'level' is
-    private final static int MAX_LEVEL = 20;
-    private final List<Integer> levelThreshold =
-            Arrays.asList(2000, 6000, 12000, 20000, 30000, 42000, 56000, 72000, 90000, 110000,
-                    132000, 156000, 182000, 210000, 240000, 272000, 306000, 342000, 380000, 420000);
+    private static int lastNumberOfLinesCleared = 0;
 
     private Block[][] tetrion;
 
@@ -31,11 +24,10 @@ public class Game {
     private ScoreCounter counter;
     private ShapeFactory shapeFactory;
     private Runnable refresh;
-    private int lastNumberOfLinesCleared;
 
     public Game(final Block[][] tetrion, Shape currentShape, Shape nextShape,
                 final Engine engine, final KeyControls controls, final ScoreCounter counter,
-                final ShapeFactory shapeFactory, Runnable refresh, int lastNumberOfLinesCleared) {
+                final ShapeFactory shapeFactory, Runnable refresh) {
         this.tetrion = tetrion;
         this.currentShape = currentShape;
         this.nextShape = nextShape;
@@ -44,7 +36,6 @@ public class Game {
         this.counter = counter;
         this.shapeFactory = shapeFactory;
         this.refresh = refresh;
-        this.lastNumberOfLinesCleared = lastNumberOfLinesCleared;
     }
 
     public void startGame() {
@@ -57,28 +48,15 @@ public class Game {
     public void fall() {
         if (canFall()) {
             currentShape.getBlocks().forEach(block -> block.setY(block.getY() + 1));
-//            return true;
         } else {
             copyShapeToTetrion();
             clearLines();
             switchShapes();
 
-            //How to put result of this method in PlayController to stop the game? refresh?
             if(!canFall()){
                 ControllerManager.getPlayController().endGameAndExitToMenu();
             }
-
-            raiseGameLevel(counter.getScore());
-//            return false;
-        }
-    }
-
-    //temporary place of this method, to change during refactor
-    private void raiseGameLevel (final Integer score){
-        if(engine.getLevel() < MAX_LEVEL) {
-            if (score > levelThreshold.get(engine.getLevel() - 1)) {
-                engine.setLevel(engine.getLevel() + 1);
-            }
+            engine.raiseGameLevel(counter.getScore());
         }
     }
 
@@ -131,7 +109,6 @@ public class Game {
         }
     }
 
-
     private void removeLine(final int rowIndex) {
         for (int columnIndex = 0; columnIndex < tetrion.length; columnIndex++) {
             tetrion[columnIndex][rowIndex] = null;
@@ -155,12 +132,11 @@ public class Game {
                 } else {
                     counter.addScore(800*engine.getLevel());
                 }
-//                counter.addScore(800*engine.getLevel());
                 break;
             default:
                 //do nothing
         }
-        this.lastNumberOfLinesCleared = linesCleared;
+        lastNumberOfLinesCleared = linesCleared;
     }
 
     private void copyShapeToTetrion() {
@@ -187,16 +163,10 @@ public class Game {
             refresh.run();
         });
         this.controls.addAction(KeyCode.DOWN, () -> {
-//            if (fall()) {
             fall();
             refresh.run();
             counter.addScore(1);
-//            }
         });
-    }
-
-    public void pauseGame() {
-        System.out.println("paused game");
     }
 
     public void endGame() {
@@ -212,10 +182,6 @@ public class Game {
         return nextShape;
     }
 
-    public Engine getEngine() {
-        return engine;
-    }
-
     public Shape getCurrentShape() {
         return currentShape;
     }
@@ -227,13 +193,5 @@ public class Game {
     private void moveCurrentShapeToCenter (){
         currentShape.getBlocks()
                 .forEach(x -> x.setX(x.getX() + 3));
-    }
-
-    public void setCurrentShape(final Shape currentShape) {
-        this.currentShape = currentShape;
-    }
-
-    public void setNextShape(final Shape nextShape) {
-        this.nextShape = nextShape;
     }
 }

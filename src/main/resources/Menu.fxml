@@ -67,7 +67,17 @@
             </ImageView>
         </graphic>
     </Button>
-    <Button fx:id="exitButton" text=" Quit Game" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="CENTER"
+    <Button fx:id="soundButton" text=" Music" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="CENTER">
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="images/audio.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="exitButton" text=" Quit Game" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.halignment="CENTER"
             onAction="#onButtonClick">
         <font>
             <Font size="30" name="AR CHRISTY"/>

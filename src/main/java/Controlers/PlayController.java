@@ -2,6 +2,7 @@ package Controlers;
 
 import Services.Engine;
 import Services.KeyControls;
+import Services.MusicPlayer;
 import Services.ScoreCounter;
 import Shapes.Block;
 import Shapes.Shape;
@@ -9,15 +10,17 @@ import Tetris.Game;
 import Tetris.ShapeFactory;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Observable;
@@ -29,9 +32,11 @@ public class PlayController extends Controller implements Initializable, Observe
     @FXML
     private Label scoreLabel;
     @FXML
+    private Label levelLabel;
+    @FXML
     private Button stopButton;
     @FXML
-    private Button pauseButton;
+    private Button soundButton;
     @FXML
     private GridPane smallPane;
     @FXML
@@ -49,13 +54,10 @@ public class PlayController extends Controller implements Initializable, Observe
         return canvasForBigPane;
     }
 
-    public GraphicsContext getGraphicsContextForBigPane() {
-        return graphicsContextForBigPane;
-    }
-
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         ControllerManager.setPlayController(this);
+        MusicPlayer.getInstance().bindAudioButtonImage(soundButton);
         generateGrid(10, 20, bigPane);
         generateGrid(4, 3, smallPane);
         setGraphics();
@@ -77,11 +79,11 @@ public class PlayController extends Controller implements Initializable, Observe
                 .engine(engine)
                 .shapeFactory(shapeFactory)
                 .refresh(this::refresh)
-                .lastNumberOfLinesCleared(0)
                 .build();
 
         controls.addKeyControls();
         counter.addObserver(this);
+        engine.addObserver(this);
 
         engine.addToOnTick(() -> {
             refresh();
@@ -92,13 +94,22 @@ public class PlayController extends Controller implements Initializable, Observe
     }
 
     @FXML
-    public void setScoreLabel(int score) {
-        scoreLabel.setText(String.format("%04d", score)); // make score at least 6 digit number
+    private void setScoreLabel(int score) {
+        scoreLabel.setText(String.format("%04d", score));
+    }
+    @FXML
+    public void setLevelLabel(int level) {
+        levelLabel.setText("LEVEL "+level); // make score at least 6 digit number
     }
 
     @Override
     public void update(final Observable o, final Object arg) {
-        setScoreLabel((int) arg);
+        if (o instanceof ScoreCounter) {
+            setScoreLabel((int) arg);
+        }
+        if (o instanceof Engine) {
+            setLevelLabel((int) arg);
+        }
     }
 
     @FXML
@@ -106,11 +117,7 @@ public class PlayController extends Controller implements Initializable, Observe
         if (event.getSource().equals(stopButton)) {
             endGameAndExitToMenu();
         }
-        if (event.getSource().equals(pauseButton)) {
-            //game.pauseGame();
-        }
     }
-
     public void endGameAndExitToMenu(){
         refresh();
         game.endGame();
@@ -121,30 +128,25 @@ public class PlayController extends Controller implements Initializable, Observe
         }
         showScoreSaver();
     }
-
-
     private void showScoreSaver() {
         Platform.runLater(() -> {
             try {
-                prepareScene(pauseButton, "SaveScore.fxml");
+                prepareScene(soundButton, "SaveScore.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
-
     private void refresh() {
         clearCanvas();
         printTetrion();
         printCurrentShape();
         printNextShape();
     }
-
     private void clearCanvas() {
         graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
         graphicsContextForSmallPane.clearRect(0, 0, canvasForSmallPane.getWidth(), canvasForSmallPane.getHeight());
     }
-
     private void printTetrion() {
         for (int i = 0; i < game.getTetrion().length; i++) {
             for (int j = 0; j < game.getTetrion()[i].length; j++) {
@@ -155,25 +157,20 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         }
     }
-
     private void printCurrentShape() {
         printShape(game.getCurrentShape(), graphicsContextForBigPane);
     }
-
     private void printNextShape() {
         printShape(game.getNextShape(), graphicsContextForSmallPane);
     }
-
     private void printShape(Shape shape, GraphicsContext context) {
         context.setFill(shape.getBlocks().get(0).getColor());
         shape.getBlocks().forEach(block -> context.fillRect(block.getX() * 30, block.getY() * 30, 30, 30));
     }
-
     private void setGraphics() {
         graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
         graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
     }
-
     private void generateGrid(int width, int height, GridPane pane) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
