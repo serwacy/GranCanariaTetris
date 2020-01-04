@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Observable;
@@ -73,7 +72,6 @@ public class PlayController extends Controller implements Initializable, Observe
                 .engine(engine)
                 .shapeFactory(shapeFactory)
                 .refresh(this::refresh)
-                .lastNumberOfLinesCleared(0)
                 .build();
 
         controls.addKeyControls();
@@ -89,7 +87,7 @@ public class PlayController extends Controller implements Initializable, Observe
 
     @FXML
     private void setScoreLabel(int score) {
-        scoreLabel.setText(String.format("%04d", score)); // make score at least 6 digit number
+        scoreLabel.setText(String.format("%04d", score));
     }
 
     @Override
