@@ -21,7 +21,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Observable;
@@ -55,10 +54,6 @@ public class PlayController extends Controller implements Initializable, Observe
         return canvasForBigPane;
     }
 
-    public GraphicsContext getGraphicsContextForBigPane() {
-        return graphicsContextForBigPane;
-    }
-
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         ControllerManager.setPlayController(this);
@@ -84,7 +79,6 @@ public class PlayController extends Controller implements Initializable, Observe
                 .engine(engine)
                 .shapeFactory(shapeFactory)
                 .refresh(this::refresh)
-                .lastNumberOfLinesCleared(0)
                 .build();
 
         controls.addKeyControls();
@@ -100,8 +94,8 @@ public class PlayController extends Controller implements Initializable, Observe
     }
 
     @FXML
-    public void setScoreLabel(int score) {
-        scoreLabel.setText(String.format("%04d", score)); // make score at least 6 digit number
+    private void setScoreLabel(int score) {
+        scoreLabel.setText(String.format("%04d", score));
     }
     @FXML
     public void setLevelLabel(int level) {
@@ -123,11 +117,7 @@ public class PlayController extends Controller implements Initializable, Observe
         if (event.getSource().equals(stopButton)) {
             endGameAndExitToMenu();
         }
-        if (event.getSource().equals(soundButton)) {
-        }
     }
-
-
     public void endGameAndExitToMenu(){
         refresh();
         game.endGame();
@@ -138,8 +128,6 @@ public class PlayController extends Controller implements Initializable, Observe
         }
         showScoreSaver();
     }
-
-
     private void showScoreSaver() {
         Platform.runLater(() -> {
             try {
@@ -149,19 +137,16 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         });
     }
-
     private void refresh() {
         clearCanvas();
         printTetrion();
         printCurrentShape();
         printNextShape();
     }
-
     private void clearCanvas() {
         graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
         graphicsContextForSmallPane.clearRect(0, 0, canvasForSmallPane.getWidth(), canvasForSmallPane.getHeight());
     }
-
     private void printTetrion() {
         for (int i = 0; i < game.getTetrion().length; i++) {
             for (int j = 0; j < game.getTetrion()[i].length; j++) {
@@ -172,25 +157,20 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         }
     }
-
     private void printCurrentShape() {
         printShape(game.getCurrentShape(), graphicsContextForBigPane);
     }
-
     private void printNextShape() {
         printShape(game.getNextShape(), graphicsContextForSmallPane);
     }
-
     private void printShape(Shape shape, GraphicsContext context) {
         context.setFill(shape.getBlocks().get(0).getColor());
         shape.getBlocks().forEach(block -> context.fillRect(block.getX() * 30, block.getY() * 30, 30, 30));
     }
-
     private void setGraphics() {
         graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
         graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
     }
-
     private void generateGrid(int width, int height, GridPane pane) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {

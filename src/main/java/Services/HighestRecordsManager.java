@@ -1,7 +1,6 @@
 package Services;
 
 import lombok.extern.slf4j.Slf4j;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,11 +15,10 @@ public enum HighestRecordsManager {
     private static final int LAST_SCORE_ON_LIST = 9;
     private static final int SCORE_LIST_LENGTH = 10;
     private static final String SEPARATOR = ";";
-//    private static final String FILEPATH = "%appdata%/scores.txt";
 
     private List<Record> scores = new ArrayList<>();
-//    private File file = new File(FILEPATH);
 
+    //Should we pack contents of constructor into separate method?
     HighestRecordsManager() {
         File file = new File(System.getenv("APPDATA") + "/scores.txt");
         try {
@@ -70,10 +68,11 @@ public enum HighestRecordsManager {
 
     public void saveScoresToFile() {
         final String collect = getScoreListAsString();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getenv("APPDATA") + "/scores.txt"))) {
+        try (BufferedWriter writer =
+                     new BufferedWriter(new FileWriter(System.getenv("APPDATA") + "/scores.txt"))) {
             writer.write(collect);
         } catch (IOException e) {
-            log.warn("cannot write in file ");
+            log.warn("cannot write in file");
         }
     }
 

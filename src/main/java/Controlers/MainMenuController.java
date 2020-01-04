@@ -59,9 +59,7 @@ public class MainMenuController extends Controller implements Initializable {
     private void showScores() throws IOException {
         prepareScene(highScoresButton, "HighScores.fxml");
     }
-
     private void exitProgram() {
         Platform.exit();
     }
-
 }

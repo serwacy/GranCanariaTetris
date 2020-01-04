@@ -1,11 +1,6 @@
 package Tetris;
 
 import Shapes.*;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-
-import java.io.File;
-import java.net.MalformedURLException;
 import java.util.Random;
 
 public class ShapeFactory {
@@ -38,13 +33,4 @@ public class ShapeFactory {
                 return null;
         }
     }
-//    private String assignColor(String colorPath){
-//         String color = "";
-//            try {
-//               color = new File(colorPath).toURI().toURL().toString();
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            }
-//            return color;
-//    }
 }
