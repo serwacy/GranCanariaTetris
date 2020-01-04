@@ -31,7 +31,7 @@ public class Game {
     private ScoreCounter counter;
     private ShapeFactory shapeFactory;
     private Runnable refresh;
-    private int lastNumberOfLinesCleared;
+    private int lastNumberOfLinesCleared; //try this as static?
 
     public Game(final Block[][] tetrion, Shape currentShape, Shape nextShape,
                 final Engine engine, final KeyControls controls, final ScoreCounter counter,
@@ -57,19 +57,15 @@ public class Game {
     public void fall() {
         if (canFall()) {
             currentShape.getBlocks().forEach(block -> block.setY(block.getY() + 1));
-//            return true;
         } else {
             copyShapeToTetrion();
             clearLines();
             switchShapes();
 
-            //How to put result of this method in PlayController to stop the game? refresh?
             if(!canFall()){
                 ControllerManager.getPlayController().endGameAndExitToMenu();
             }
-
             raiseGameLevel(counter.getScore());
-//            return false;
         }
     }
 
@@ -131,7 +127,6 @@ public class Game {
         }
     }
 
-
     private void removeLine(final int rowIndex) {
         for (int columnIndex = 0; columnIndex < tetrion.length; columnIndex++) {
             tetrion[columnIndex][rowIndex] = null;
@@ -155,7 +150,6 @@ public class Game {
                 } else {
                     counter.addScore(800*engine.getLevel());
                 }
-//                counter.addScore(800*engine.getLevel());
                 break;
             default:
                 //do nothing
@@ -187,16 +181,10 @@ public class Game {
             refresh.run();
         });
         this.controls.addAction(KeyCode.DOWN, () -> {
-//            if (fall()) {
             fall();
             refresh.run();
             counter.addScore(1);
-//            }
         });
-    }
-
-    public void pauseGame() {
-        System.out.println("paused game");
     }
 
     public void endGame() {
@@ -212,10 +200,6 @@ public class Game {
         return nextShape;
     }
 
-    public Engine getEngine() {
-        return engine;
-    }
-
     public Shape getCurrentShape() {
         return currentShape;
     }
@@ -227,13 +211,5 @@ public class Game {
     private void moveCurrentShapeToCenter (){
         currentShape.getBlocks()
                 .forEach(x -> x.setX(x.getX() + 3));
-    }
-
-    public void setCurrentShape(final Shape currentShape) {
-        this.currentShape = currentShape;
-    }
-
-    public void setNextShape(final Shape nextShape) {
-        this.nextShape = nextShape;
     }
 }

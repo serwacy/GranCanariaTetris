@@ -1,7 +1,5 @@
 package Shapes;
 
-import javafx.scene.paint.Color;
-
 public class OShape extends Shape {
     public OShape(final String colorPath) {
         super(colorPath);

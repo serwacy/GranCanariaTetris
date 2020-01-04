@@ -1,8 +1,5 @@
 package Shapes;
 
-import Tetris.Game;
-import javafx.scene.paint.Color;
-
 public class SShape extends Shape {
     public SShape(final String colorPath) {
         super(colorPath);

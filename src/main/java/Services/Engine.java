@@ -9,10 +9,7 @@ public class Engine implements Runnable {
     private AtomicBoolean running = new AtomicBoolean(false);
     private int interval;
     private int level;
-
-    private void setInterval(int level) {
-        this.interval = 1000/level;
-    }
+    private List<Runnable> onTick = new LinkedList<>();
 
     public void start(){
         Thread gameFlow = new Thread(this);
@@ -24,8 +21,6 @@ public class Engine implements Runnable {
         running.set(false);
     }
 
-    private List<Runnable> onTick = new LinkedList<>();
-
     public void addToOnTick(Runnable r){
         onTick.add(r);
     }
@@ -33,7 +28,6 @@ public class Engine implements Runnable {
     @Override
     public void run() {
         running.set(true);
-//        setInterval(level);
         while (running.get()) {
             try {
                 setInterval(level);
@@ -45,10 +39,13 @@ public class Engine implements Runnable {
         }
     }
 
+    private void setInterval(int level) {
+        this.interval = 1000/level;
+    }
+
     public int getLevel() {
         return level;
     }
-
     public void setLevel(final int level) {
         this.level = level;
     }

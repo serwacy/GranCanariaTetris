@@ -1,6 +1,5 @@
 package Shapes;
 
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
 public class Block {

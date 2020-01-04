@@ -1,8 +1,6 @@
 package Shapes;
 
 public class IShape extends Shape {
-
-
     public IShape(final String colorPath) {
         super(colorPath);
         super.addBlocks(new Block(0,0, this.getColor()));

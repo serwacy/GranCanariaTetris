@@ -16,7 +16,6 @@ public class MainMenuController extends Controller {
     @FXML
     private Button exitButton;
 
-
     @FXML
     public void onButtonClick(ActionEvent event) {
         try {
@@ -49,9 +48,7 @@ public class MainMenuController extends Controller {
     private void showScores() throws IOException {
         prepareScene(highScoresButton, "HighScores.fxml");
     }
-
     private void exitProgram() {
         Platform.exit();
     }
-
 }
