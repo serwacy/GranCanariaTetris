@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root,550,850));
         primaryStage.setTitle("Gran Canaria Tetris - version 1.0");
 
-        new MusicPlayer().play();
+        MusicPlayer.getInstance().play();
 
         InputStream inputStream = this.getClass().getResourceAsStream("/images/horse_icon.jpg");
         primaryStage.getIcons().add(new Image(inputStream));

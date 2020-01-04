@@ -84,19 +84,19 @@
         </padding>
         <Canvas fx:id="canvasForSmallPane" GridPane.columnIndex="0" GridPane.rowIndex="0" width="120" height="90" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.columnSpan="4" GridPane.rowSpan="4"/>
     </GridPane>
-    <Label text="PAUSE" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label text="MUSIC" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="25" top="85"/>
+            <Insets left="25" top="100"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
     <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
-        <Button layoutX="30" layoutY="20" fx:id="pauseButton" onAction="#onButtonClick">
+        <Button layoutX="30" layoutY="20" fx:id="soundButton" onAction="#onButtonClick">
             <graphic>
                 <ImageView>
-                    <Image url="images/pause.png"/>
+                    <Image url="images/audio.png"/>
                 </ImageView>
             </graphic>
         </Button>

@@ -2,6 +2,7 @@ package Controlers;
 
 import Services.Engine;
 import Services.KeyControls;
+import Services.MusicPlayer;
 import Services.ScoreCounter;
 import Shapes.Block;
 import Shapes.Shape;
@@ -9,12 +10,15 @@ import Tetris.Game;
 import Tetris.ShapeFactory;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 
@@ -31,7 +35,7 @@ public class PlayController extends Controller implements Initializable, Observe
     @FXML
     private Button stopButton;
     @FXML
-    private Button pauseButton;
+    private Button soundButton;
     @FXML
     private GridPane smallPane;
     @FXML
@@ -56,6 +60,7 @@ public class PlayController extends Controller implements Initializable, Observe
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         ControllerManager.setPlayController(this);
+        MusicPlayer.getInstance().bindAudioButtonImage(soundButton);
         generateGrid(10, 20, bigPane);
         generateGrid(4, 3, smallPane);
         setGraphics();
@@ -106,10 +111,10 @@ public class PlayController extends Controller implements Initializable, Observe
         if (event.getSource().equals(stopButton)) {
             endGameAndExitToMenu();
         }
-        if (event.getSource().equals(pauseButton)) {
-            //game.pauseGame();
+        if (event.getSource().equals(soundButton)) {
         }
     }
+
 
     public void endGameAndExitToMenu(){
         refresh();
@@ -126,7 +131,7 @@ public class PlayController extends Controller implements Initializable, Observe
     private void showScoreSaver() {
         Platform.runLater(() -> {
             try {
-                prepareScene(pauseButton, "SaveScore.fxml");
+                prepareScene(soundButton, "SaveScore.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
