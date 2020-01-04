@@ -2,9 +2,10 @@ package Services;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Engine implements Runnable {
+public class Engine extends Observable implements Runnable {
 
     private AtomicBoolean running = new AtomicBoolean(false);
     private int interval;

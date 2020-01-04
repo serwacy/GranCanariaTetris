@@ -33,6 +33,8 @@ public class PlayController extends Controller implements Initializable, Observe
     @FXML
     private Label scoreLabel;
     @FXML
+    private Label levelLabel;
+    @FXML
     private Button stopButton;
     @FXML
     private Button soundButton;
@@ -87,6 +89,7 @@ public class PlayController extends Controller implements Initializable, Observe
 
         controls.addKeyControls();
         counter.addObserver(this);
+        engine.addObserver(this);
 
         engine.addToOnTick(() -> {
             refresh();
@@ -100,10 +103,19 @@ public class PlayController extends Controller implements Initializable, Observe
     public void setScoreLabel(int score) {
         scoreLabel.setText(String.format("%04d", score)); // make score at least 6 digit number
     }
+    @FXML
+    public void setLevelLabel(int level) {
+        levelLabel.setText("Level "+level); // make score at least 6 digit number
+    }
 
     @Override
     public void update(final Observable o, final Object arg) {
-        setScoreLabel((int) arg);
+        if (o instanceof ScoreCounter) {
+            setScoreLabel((int) arg);
+        }
+        if (o instanceof Engine) {
+            setLevelLabel((int) arg);
+        }
     }
 
     @FXML

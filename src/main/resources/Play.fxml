@@ -48,7 +48,7 @@
             </ImageView>
         </graphic>
     </Label>
-    <GridPane fx:id="bigPane" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="9"  >
+    <GridPane fx:id="bigPane" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="10"  >
         <padding>
             <Insets top="50" left="55"/>
         </padding>
@@ -84,15 +84,23 @@
         </padding>
         <Canvas fx:id="canvasForSmallPane" GridPane.columnIndex="0" GridPane.rowIndex="0" width="120" height="90" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.columnSpan="4" GridPane.rowSpan="4"/>
     </GridPane>
-    <Label text="MUSIC" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label fx:id="levelLabel" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
-            <Insets left="25" top="105"/>
+            <Insets left="25" top="10"/>
         </padding>
         <font>
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label text="MUSIC" maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="6" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+        <padding>
+            <Insets left="25" top="50"/>
+        </padding>
+        <font>
+            <Font size="30" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <Button layoutX="30"  fx:id="soundButton" onAction="#onButtonClick">
             <graphic>
                 <ImageView>
@@ -101,7 +109,7 @@
             </graphic>
         </Button>
     </Pane>
-    <Label maxWidth="200" text="STOP" GridPane.columnIndex="1" GridPane.rowIndex="7" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Label maxWidth="200" text="STOP" GridPane.columnIndex="1" GridPane.rowIndex="8" alignment="TOP_LEFT" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <padding>
             <Insets left="35" top="0"/>
         </padding>
@@ -109,7 +117,7 @@
             <Font size="30" name="AR CHRISTY"/>
         </font>
     </Label>
-    <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
+    <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
         <Button layoutX="30" layoutY="0" fx:id="stopButton" onAction="#onButtonClick">
             <graphic>
                 <ImageView>
