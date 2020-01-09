@@ -11,7 +11,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public enum  MusicPlayer {
+public enum MusicPlayer {
     INSTANCE;
 
     private final Image mute = new Image(getClass().getResourceAsStream("/images/mute.png"));
@@ -20,23 +20,22 @@ public enum  MusicPlayer {
     private Clip clip;
     private boolean isPlaying = true;
 
-    public void bindAudioButtonImage(Button button){
+    public void bindAudioButtonImage(Button button) {
+        updateMusicButton(button);
         button.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 if (isPlaying()) {
                     stop();
-                    button.setGraphic(new ImageView(mute));
-                    button.setText(" Music off");
-                }else {
+                    turnMusicButtonOff(button);
+                } else {
                     play();
-                    button.setGraphic(new ImageView(play));
-                    button.setText(" Music  on");
+                    turnMusicButtonOn(button);
                 }
             }
         });
     }
 
-    public void play(){
+    public void play() {
         isPlaying = true;
         try (InputStream inputStream = getClass().getResourceAsStream("/sounds/korobeinikiSpanish.wav")) {
             InputStream bufferedInputStream = new BufferedInputStream(inputStream);
@@ -49,9 +48,34 @@ public enum  MusicPlayer {
             e.printStackTrace();
         }
     }
-    private void stop(){
+
+    private void stop() {
         isPlaying = false;
         clip.stop();
+    }
+
+    private void updateMusicButton(Button button) {
+        if (isPlaying) {
+            turnMusicButtonOn(button);
+        } else {
+            turnMusicButtonOff(button);
+        }
+    }
+
+    private void turnMusicButtonOn(Button button) {
+        button.setGraphic(new ImageView(play));
+        if (button.getText().isEmpty()) {
+            return;
+        }
+        button.setText(" Music  on");
+    }
+
+    private void turnMusicButtonOff(Button button) {
+        button.setGraphic(new ImageView(mute));
+        if (button.getText().isEmpty()) {
+            return;
+        }
+        button.setText(" Music off");
     }
 
     private boolean isPlaying() {
