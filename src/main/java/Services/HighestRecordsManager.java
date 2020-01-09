@@ -1,6 +1,7 @@
 package Services;
 
 import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -23,7 +24,7 @@ public enum HighestRecordsManager {
     HighestRecordsManager() {
         File file = new File(System.getenv("APPDATA") + "/scores.txt");
         try {
-            if(!file.createNewFile()) {
+            if (!file.createNewFile()) {
                 scanScoresFromFile(file);
             }
         } catch (IOException e) {
@@ -57,6 +58,7 @@ public enum HighestRecordsManager {
     }
 
     public void addScore(String name, int score) {
+        name = name.replaceAll("[\\+\\.\\^:,!?\\\\/]", "");
         final Record record = new Record(name, score);
         if (this.scores.size() < SCORE_LIST_LENGTH) {
             this.scores.add(record);
@@ -77,7 +79,7 @@ public enum HighestRecordsManager {
         }
     }
 
-    private String getScoreListAsString(){
+    private String getScoreListAsString() {
         return this.scores.stream()
                 .map(record -> record.getNickname() + SEPARATOR + record.getScore() + "\n")
                 .collect(Collectors.joining());

@@ -1,6 +1,7 @@
 package Controlers;
 
 import Services.HighestRecordsManager;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +28,8 @@ public class SaveScoreController extends Controller implements Initializable {
         PlayController playController = ControllerManager.getPlayController();
         int scoreValue = playController.getScoreValue();
         setScoreLabel(scoreValue);
+        saveButton.disableProperty().bind(Bindings.createBooleanBinding(()->
+                nicknameField.getText().trim().length()<3 || nicknameField.getText().length()>15, nicknameField.textProperty()));
     }
 
     private void setScoreLabel(int score) {
