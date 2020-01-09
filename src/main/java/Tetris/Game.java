@@ -54,6 +54,7 @@ public class Game {
             switchShapes();
 
             if(!canFall()){
+                controls.removeKeyControls();
                 ControllerManager.getPlayController().endGameAndExitToMenu();
             }
             engine.raiseGameLevel(counter.getScore());

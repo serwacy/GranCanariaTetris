@@ -21,4 +21,8 @@ public class KeyControls {
             }
         });
     }
+
+    public void removeKeyControls(){
+        actions.clear();
+    }
 }
