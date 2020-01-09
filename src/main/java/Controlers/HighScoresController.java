@@ -16,7 +16,9 @@ public class HighScoresController extends Controller implements Initializable {
     @FXML
     private Button backButton;
     @FXML
-    private Label highScores;
+    private Label highScoresNames;
+    @FXML
+    private Label highScoresValues;
     private HighestRecordsManager recordsManager = HighestRecordsManager.INSTANCE;
 
     @FXML
@@ -35,6 +37,7 @@ public class HighScoresController extends Controller implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        highScores.setText(recordsManager.prepareScoreListForLabel());
+        highScoresNames.setText(recordsManager.prepareListNamesForLabel());
+        highScoresValues.setText(recordsManager.prepareListValuesForLabel());
     }
 }
