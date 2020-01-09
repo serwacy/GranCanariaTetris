@@ -26,10 +26,12 @@ public enum  MusicPlayer {
                 if (isPlaying()) {
                     stop();
                     button.setGraphic(new ImageView(mute));
+                    if (button.getText().isEmpty()){return;}
                     button.setText(" Music off");
                 }else {
                     play();
                     button.setGraphic(new ImageView(play));
+                    if (button.getText().isEmpty()){return;}
                     button.setText(" Music  on");
                 }
             }
