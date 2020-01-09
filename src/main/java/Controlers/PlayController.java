@@ -8,6 +8,8 @@ import Shapes.Block;
 import Shapes.Shape;
 import Tetris.Game;
 import Tetris.ShapeFactory;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,6 +26,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -101,9 +104,10 @@ public class PlayController extends Controller implements Initializable, Observe
     private void setScoreLabel(int score) {
         scoreLabel.setText(String.format("%04d", score));
     }
+
     @FXML
     public void setLevelLabel(int level) {
-        levelLabel.setText("LEVEL "+level); // make score at least 6 digit number
+        levelLabel.setText("LEVEL " + level); // make score at least 6 digit number
     }
 
     @Override
@@ -122,23 +126,25 @@ public class PlayController extends Controller implements Initializable, Observe
             endGameAndExitToMenu();
         }
     }
-    public void endGameAndExitToMenu(){
+
+    public void endGameAndExitToMenu() {
         refresh();
         game.endGame();
-        showGameOverLabel();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        showScoreSaver();
+        Platform.runLater(this::showGameOverLabel);
+        Timeline timer = new Timeline(
+                new KeyFrame(Duration.seconds(2), event -> {
+                    showScoreSaver();
+                }
+                ));
+        timer.play();
     }
 
-    private void showGameOverLabel(){
+    private void showGameOverLabel() {
         this.graphicsContextForBigPane.setFont(new Font("AR CHRISTY", 55));
         this.graphicsContextForBigPane.setFill(Color.DARKSLATEGRAY);
-        this.graphicsContextForBigPane.fillText("GAME OVER!",10,300);
+        this.graphicsContextForBigPane.fillText("GAME OVER!", 10, 300);
     }
+
     private void showScoreSaver() {
         Platform.runLater(() -> {
             try {
@@ -148,16 +154,19 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         });
     }
+
     private void refresh() {
         clearCanvas();
         printTetrion();
         printCurrentShape();
         printNextShape();
     }
+
     private void clearCanvas() {
         graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
         graphicsContextForSmallPane.clearRect(0, 0, canvasForSmallPane.getWidth(), canvasForSmallPane.getHeight());
     }
+
     private void printTetrion() {
         for (int i = 0; i < game.getTetrion().length; i++) {
             for (int j = 0; j < game.getTetrion()[i].length; j++) {
@@ -168,20 +177,25 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         }
     }
+
     private void printCurrentShape() {
         printShape(game.getCurrentShape(), graphicsContextForBigPane);
     }
+
     private void printNextShape() {
         printShape(game.getNextShape(), graphicsContextForSmallPane);
     }
+
     private void printShape(Shape shape, GraphicsContext context) {
         context.setFill(shape.getBlocks().get(0).getColor());
         shape.getBlocks().forEach(block -> context.fillRect(block.getX() * 30, block.getY() * 30, 30, 30));
     }
+
     private void setGraphics() {
         graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
         graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
     }
+
     private void generateGrid(int width, int height, GridPane pane) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -193,7 +207,8 @@ public class PlayController extends Controller implements Initializable, Observe
             }
         }
     }
-    public int getScoreValue(){
+
+    public int getScoreValue() {
         return Integer.parseInt(scoreLabel.getText());
     }
 }

@@ -8,6 +8,7 @@ import Shapes.Block;
 import Shapes.Shape;
 import javafx.scene.input.KeyCode;
 import lombok.Builder;
+
 import java.util.Optional;
 
 @Builder
@@ -53,8 +54,7 @@ public class Game {
             clearLines();
             switchShapes();
 
-            if(!canFall()){
-                controls.removeKeyControls();
+            if (!canFall()) {
                 ControllerManager.getPlayController().endGameAndExitToMenu();
             }
             engine.raiseGameLevel(counter.getScore());
@@ -80,7 +80,7 @@ public class Game {
                 numberOfLinesCleared++;
             }
         }
-        if(numberOfLinesCleared > 0) {
+        if (numberOfLinesCleared > 0) {
             addScoreForClearingLines(numberOfLinesCleared);
         }
     }
@@ -116,22 +116,22 @@ public class Game {
         }
     }
 
-    private void addScoreForClearingLines (final int linesCleared){
-        switch (linesCleared){
+    private void addScoreForClearingLines(final int linesCleared) {
+        switch (linesCleared) {
             case 1:
-                counter.addScore(100*engine.getLevel());
+                counter.addScore(100 * engine.getLevel());
                 break;
             case 2:
-                counter.addScore(300*engine.getLevel());
+                counter.addScore(300 * engine.getLevel());
                 break;
             case 3:
-                counter.addScore(500*engine.getLevel());
+                counter.addScore(500 * engine.getLevel());
                 break;
             case 4:
-                if(lastNumberOfLinesCleared == 4){
-                    counter.addScore(1200*engine.getLevel());
+                if (lastNumberOfLinesCleared == 4) {
+                    counter.addScore(1200 * engine.getLevel());
                 } else {
-                    counter.addScore(800*engine.getLevel());
+                    counter.addScore(800 * engine.getLevel());
                 }
                 break;
             default:
@@ -171,6 +171,7 @@ public class Game {
     }
 
     public void endGame() {
+        controls.removeKeyControls();
         engine.stop();
     }
 
@@ -191,7 +192,7 @@ public class Game {
         return tetrion;
     }
 
-    private void moveCurrentShapeToCenter (){
+    private void moveCurrentShapeToCenter() {
         currentShape.getBlocks()
                 .forEach(x -> x.setX(x.getX() + 3));
     }
