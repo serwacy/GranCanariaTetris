@@ -1,4 +1,4 @@
-package Services;
+package Services.Records;
 
 public class Record {
     private String nickname;

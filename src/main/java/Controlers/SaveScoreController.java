@@ -1,6 +1,6 @@
 package Controlers;
 
-import Services.HighestRecordsManager;
+import Services.Records.RecordManager;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,18 +28,17 @@ public class SaveScoreController extends Controller implements Initializable {
         PlayController playController = ControllerManager.getPlayController();
         int scoreValue = playController.getScoreValue();
         setScoreLabel(scoreValue);
-        saveButton.disableProperty().bind(Bindings.createBooleanBinding(()->
-                nicknameField.getText().trim().length()<3 || nicknameField.getText().length()>15, nicknameField.textProperty()));
+        validateNicknameLength();
     }
 
     private void setScoreLabel(int score) {
         finalScoreLabel.setText(String.format("%04d", score));
     }
-    private String getNickname(){
-        return nicknameField.getText();
-    }
-    private int getScore(){
-        return Integer.parseInt(finalScoreLabel.getText());
+
+    private void validateNicknameLength() {
+        saveButton.disableProperty().bind(Bindings.createBooleanBinding(() ->
+                nicknameField.getText().trim().length() < 3 ||
+                        nicknameField.getText().length() > 15, nicknameField.textProperty()));
     }
 
     @FXML
@@ -47,21 +46,21 @@ public class SaveScoreController extends Controller implements Initializable {
         try {
             if (event.getSource().equals(saveButton)) {
                 saveNewScore();
-                showMenu();
+                showMenu(saveButton);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void saveNewScore(){
-        HighestRecordsManager recordsManager = HighestRecordsManager.INSTANCE;
-        final String nickname = getNickname();
-        final int score = getScore();
-        recordsManager.addScore(nickname, score);
-        recordsManager.saveScoresToFile();
+    private void saveNewScore() {
+        final String nickname = nicknameField.getText();
+        final int score = Integer.parseInt(finalScoreLabel.getText());
+        saveNewScore(nickname, score);
     }
-    private void showMenu() throws IOException {
-        prepareScene(saveButton, "Menu.fxml");
+
+    private void saveNewScore(final String nickname, final int score){
+        RecordManager recordsManager = RecordManager.INSTANCE;
+        recordsManager.saveScore(nickname, score);
     }
 }

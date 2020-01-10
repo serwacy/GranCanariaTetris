@@ -1,6 +1,6 @@
 package Controlers;
 
-import Services.HighestRecordsManager;
+import Services.Records.RecordManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,20 +19,17 @@ public class HighScoresController extends Controller implements Initializable {
     private Label highScoresNames;
     @FXML
     private Label highScoresValues;
-    private HighestRecordsManager recordsManager = HighestRecordsManager.INSTANCE;
+    private RecordManager recordsManager = RecordManager.INSTANCE;
 
     @FXML
     public void onButtonClick(ActionEvent event){
         try {
             if (event.getSource().equals(backButton)){
-                showMenu();
+                showMenu(backButton);
             }
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
-    private void showMenu() throws IOException {
-        prepareScene(backButton, "Menu.fxml");
     }
 
     @Override

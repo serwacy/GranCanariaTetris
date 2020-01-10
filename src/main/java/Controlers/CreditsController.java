@@ -13,13 +13,10 @@ public class CreditsController extends Controller {
     public void onButtonClick(ActionEvent event){
         try {
             if (event.getSource().equals(backButton)){
-                showMenu();
+                showMenu(backButton);
             }
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
-    private void showMenu() throws IOException {
-        prepareScene(backButton, "Menu.fxml");
     }
 }
