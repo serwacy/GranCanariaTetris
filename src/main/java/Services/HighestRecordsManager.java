@@ -17,12 +17,25 @@ public enum HighestRecordsManager {
     private static final int LAST_SCORE_ON_LIST = 9;
     private static final int SCORE_LIST_LENGTH = 10;
     private static final String SEPARATOR = ";";
+    private static final String SCORES_DIRECTORY_PATH = "/GranCanariaTetris";
+    private static final String SCORES_FILE_PATH = SCORES_DIRECTORY_PATH + "/scores.sav";
 
     private List<Record> scores = new ArrayList<>();
 
     //Should we pack contents of constructor into separate method?
     HighestRecordsManager() {
-        File file = new File(System.getenv("APPDATA") + "/scores.txt");
+        createDirectoryForSavingScores();
+        initializeSaveScoresFile();
+    }
+
+    private void createDirectoryForSavingScores(){
+        File directory = new File(System.getProperty("user.home") + SCORES_DIRECTORY_PATH);
+        if(!directory.exists()){
+            directory.mkdirs();
+        }
+    }
+    private void initializeSaveScoresFile(){
+        File file = new File(System.getProperty("user.home") + SCORES_FILE_PATH);
         try {
             if (!file.createNewFile()) {
                 scanScoresFromFile(file);
@@ -72,7 +85,7 @@ public enum HighestRecordsManager {
     public void saveScoresToFile() {
         final String collect = getScoreListAsString();
         try (BufferedWriter writer =
-                     new BufferedWriter(new FileWriter(System.getenv("APPDATA") + "/scores.txt"))) {
+                     new BufferedWriter(new FileWriter(System.getProperty("user.home") + SCORES_FILE_PATH))) {
             writer.write(collect);
         } catch (IOException e) {
             log.warn("cannot write to file");
