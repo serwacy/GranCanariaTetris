@@ -1,6 +1,6 @@
 package Controlers;
 
-import Services.HighestRecordsManager;
+import Services.Records.RecordManager;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,8 +60,7 @@ public class SaveScoreController extends Controller implements Initializable {
     }
 
     private void saveNewScore(final String nickname, final int score){
-        HighestRecordsManager recordsManager = HighestRecordsManager.INSTANCE;
-        recordsManager.addScore(nickname, score);
-        recordsManager.saveScoresToFile();
+        RecordManager recordsManager = RecordManager.INSTANCE;
+        recordsManager.saveScore(nickname, score);
     }
 }
