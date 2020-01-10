@@ -46,13 +46,38 @@ public class Game {
         moveCurrentShapeToCenter();
     }
 
-    public void fall() {
+    private void moveCurrentShapeToCenter() {
+        currentShape.getBlocks()
+                .forEach(x -> x.setX(x.getX() + 3));
+    }
+
+    private void defineActions() {
+        this.controls.addAction(KeyCode.LEFT, () -> {
+            currentShape.moveLeft(tetrion);
+            refresh.run();
+        });
+        this.controls.addAction(KeyCode.RIGHT, () -> {
+            currentShape.moveRight(tetrion);
+            refresh.run();
+        });
+        this.controls.addAction(KeyCode.UP, () -> {
+            currentShape.rotate(tetrion);
+            refresh.run();
+        });
+        this.controls.addAction(KeyCode.DOWN, () -> {
+            invokeShapeFall();
+            refresh.run();
+            counter.addScore(1);
+        });
+    }
+
+    public void invokeShapeFall() {
         if (canFall()) {
             currentShape.getBlocks().forEach(block -> block.setY(block.getY() + 1));
         } else {
             copyShapeToTetrion();
             clearLines();
-            switchShapes();
+            switchShapeReferencesAndGenerateNewShape();
 
             if (!canFall()) {
                 ControllerManager.getPlayController().endGameAndExitToMenu();
@@ -70,6 +95,14 @@ public class Game {
         }
     }
 
+    private void copyShapeToTetrion() {
+        currentShape.getBlocks().forEach(this::addBlockToTetrion);
+    }
+
+    private void addBlockToTetrion(Block block) {
+        tetrion[block.getX()][block.getY()] = new Block(block.getX(), block.getY(), block.getColor());
+    }
+
     private void clearLines() {
         int numberOfLinesCleared = 0;
         for (int rowIndex = tetrion[0].length - 1; rowIndex > 0; rowIndex--) {
@@ -82,6 +115,12 @@ public class Game {
         }
         if (numberOfLinesCleared > 0) {
             addScoreForClearingLines(numberOfLinesCleared);
+        }
+    }
+
+    private void removeLine(final int rowIndex) {
+        for (int columnIndex = 0; columnIndex < tetrion.length; columnIndex++) {
+            tetrion[columnIndex][rowIndex] = null;
         }
     }
 
@@ -110,12 +149,6 @@ public class Game {
         }
     }
 
-    private void removeLine(final int rowIndex) {
-        for (int columnIndex = 0; columnIndex < tetrion.length; columnIndex++) {
-            tetrion[columnIndex][rowIndex] = null;
-        }
-    }
-
     private void addScoreForClearingLines(final int linesCleared) {
         switch (linesCleared) {
             case 1:
@@ -140,44 +173,15 @@ public class Game {
         lastNumberOfLinesCleared = linesCleared;
     }
 
-    private void copyShapeToTetrion() {
-        currentShape.getBlocks().forEach(this::addBlockToTetrion);
-    }
-
-    private void switchShapes() {
+    private void switchShapeReferencesAndGenerateNewShape() {
         currentShape = nextShape;
         nextShape = shapeFactory.createShape();
         moveCurrentShapeToCenter();
     }
 
-    private void defineActions() {
-        this.controls.addAction(KeyCode.LEFT, () -> {
-            currentShape.moveLeft(tetrion);
-            refresh.run();
-        });
-        this.controls.addAction(KeyCode.RIGHT, () -> {
-            currentShape.moveRight(tetrion);
-            refresh.run();
-        });
-        this.controls.addAction(KeyCode.UP, () -> {
-            currentShape.rotate(tetrion);
-            refresh.run();
-        });
-        this.controls.addAction(KeyCode.DOWN, () -> {
-            fall();
-            refresh.run();
-            counter.addScore(1);
-        });
-    }
-
     public void endGame() {
         controls.removeKeyControls();
         engine.stop();
-    }
-
-    //TEMP METHOD
-    private void addBlockToTetrion(Block block) {
-        tetrion[block.getX()][block.getY()] = new Block(block.getX(), block.getY(), block.getColor());
     }
 
     public Shape getNextShape() {
@@ -192,8 +196,4 @@ public class Game {
         return tetrion;
     }
 
-    private void moveCurrentShapeToCenter() {
-        currentShape.getBlocks()
-                .forEach(x -> x.setX(x.getX() + 3));
-    }
 }

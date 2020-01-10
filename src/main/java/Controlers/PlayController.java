@@ -77,7 +77,7 @@ public class PlayController extends Controller implements Initializable, Observe
 
         engine.addToOnTick(() -> {
             refresh();
-            game.fall(); //only one method called
+            game.invokeShapeFall(); //only one method called
             counter.addScore(1);
         });
         game.startGame();
