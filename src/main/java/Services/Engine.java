@@ -15,22 +15,19 @@ public class Engine extends Observable implements Runnable {
                     132000, 156000, 182000, 210000, 240000, 272000, 306000, 342000, 380000, 420000);
 
     private AtomicBoolean running = new AtomicBoolean(false);
-    private int interval;
-    private int level;
     private List<Runnable> onTick = new LinkedList<>();
 
-    public void start(){
+    private int interval;
+    private int level;
+
+    public void addToOnTick(Runnable runnable) {
+        onTick.add(runnable);
+    }
+
+    public void start() {
         Thread gameFlow = new Thread(this);
         this.level = 1;
         gameFlow.start();
-    }
-
-    public void stop(){
-        running.set(false);
-    }
-
-    public void addToOnTick(Runnable r){
-        onTick.add(r);
     }
 
     @Override
@@ -48,23 +45,26 @@ public class Engine extends Observable implements Runnable {
     }
 
     private void setInterval(int level) {
-        this.interval = 1000/level;
+        this.interval = 1000 / level;
     }
-    public int getLevel() {
-        return level;
+
+    public void stop() {
+        running.set(false);
     }
-    private void setLevel(final int level) {
-        this.level = level;
-    }
-    public void raiseGameLevel (final Integer score){
-        if(getLevel() < MAX_LEVEL) {
-            if (score > LEVEL_THRESHOLD.get(getLevel() - 1)) {
-                setLevel(getLevel() + 1);
-                Platform.runLater(()->{
+
+    public void raiseGameLevel(final Integer score) {
+        if (this.level < MAX_LEVEL) {
+            if (score > LEVEL_THRESHOLD.get(this.level - 1)) {
+                this.level++;
+                Platform.runLater(() -> {
                     setChanged();
                     notifyObservers(level);
                 });
             }
         }
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
