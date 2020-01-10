@@ -12,20 +12,16 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -56,10 +52,6 @@ public class PlayController extends Controller implements Initializable, Observe
     private GraphicsContext graphicsContextForSmallPane;
 
     private Game game;
-
-    public Canvas getCanvasForBigPane() {
-        return canvasForBigPane;
-    }
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -133,7 +125,7 @@ public class PlayController extends Controller implements Initializable, Observe
         Platform.runLater(this::showGameOverLabel);
         Timeline timer = new Timeline(
                 new KeyFrame(Duration.seconds(2), event -> {
-                    showScoreSaver();
+                    goToScoreSaver();
                 }
                 ));
         timer.play();
@@ -145,10 +137,10 @@ public class PlayController extends Controller implements Initializable, Observe
         this.graphicsContextForBigPane.fillText("GAME OVER!", 10, 300);
     }
 
-    private void showScoreSaver() {
+    private void goToScoreSaver() {
         Platform.runLater(() -> {
             try {
-                prepareScene(soundButton, "SaveScore.fxml");
+               showScoreSaver(soundButton);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -210,5 +202,9 @@ public class PlayController extends Controller implements Initializable, Observe
 
     public int getScoreValue() {
         return Integer.parseInt(scoreLabel.getText());
+    }
+
+    public Canvas getCanvasForBigPane() {
+        return canvasForBigPane;
     }
 }

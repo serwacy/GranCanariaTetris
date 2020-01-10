@@ -31,13 +31,13 @@ public class MainMenuController extends Controller implements Initializable {
     public void onButtonClick(ActionEvent event) {
         try {
             if (event.getSource().equals(playButton)) {
-                showGame();
+                showGame(playButton);
             }
             if (event.getSource().equals(creditsButton)) {
-                showCredits();
+                showCredits(creditsButton);
             }
             if (event.getSource().equals(highScoresButton)) {
-                showScores();
+                showScores(highScoresButton);
             }
             if (event.getSource().equals(exitButton)) {
                 exitProgram();
@@ -45,21 +45,5 @@ public class MainMenuController extends Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    // BELOW ARE THE METHODS RESPONSIBLE FOR SCENE CHANGING - I KNOW IT IS CODE REPETITION - TO BE FIXED LATER
-    private void showGame() throws IOException {
-        prepareScene(playButton, "Play.fxml");
-    }
-
-    private void showCredits() throws IOException {
-        prepareScene(creditsButton, "Credits.fxml");
-    }
-
-    private void showScores() throws IOException {
-        prepareScene(highScoresButton, "HighScores.fxml");
-    }
-    private void exitProgram() {
-        Platform.exit();
     }
 }
