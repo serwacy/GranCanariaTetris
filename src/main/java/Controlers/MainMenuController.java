@@ -1,6 +1,6 @@
 package Controlers;
 
-import Services.MusicPlayer;
+import Services.Music.MusicManager;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +24,7 @@ public class MainMenuController extends Controller implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        Platform.runLater(()->MusicPlayer.INSTANCE.bindAudioButtonImage(soundButton));
+        Platform.runLater(()-> MusicManager.INSTANCE.bindAudioButtonImage(soundButton));
     }
 
     @FXML
