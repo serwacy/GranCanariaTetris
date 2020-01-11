@@ -1,13 +1,15 @@
 package Tetris;
 
-import Services.MusicPlayer;
+import Services.Music.MusicManager;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import java.io.InputStream;
 
 public class Main extends Application {
@@ -18,11 +20,12 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root,550,850));
         primaryStage.setTitle("Gran Canaria Tetris - version 1.0");
 
-        MusicPlayer.INSTANCE.play();
+        MusicManager.INSTANCE.initMusic();
 
         InputStream inputStream = this.getClass().getResourceAsStream("/images/horse_icon.jpg");
         primaryStage.getIcons().add(new Image(inputStream));
 
+        primaryStage.setOnCloseRequest(event -> Platform.exit());
         primaryStage.setResizable(false);
         primaryStage.show();
     }

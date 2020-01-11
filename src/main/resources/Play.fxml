@@ -101,7 +101,7 @@
         </font>
     </Label>
     <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
-        <Button layoutX="30"  fx:id="soundButton" onAction="#onButtonClick">
+        <Button layoutX="30" fx:id="soundButton" onAction="#onButtonClick" focusTraversable="false">
             <graphic>
                 <ImageView>
                     <Image url="images/audio.png"/>
@@ -118,7 +118,7 @@
         </font>
     </Label>
     <Pane maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.valignment="TOP" GridPane.halignment="RIGHT">
-        <Button layoutX="30" layoutY="0" fx:id="stopButton" onAction="#onButtonClick">
+        <Button layoutX="30" layoutY="0" fx:id="stopButton" onAction="#onButtonClick" focusTraversable="false">
             <graphic>
                 <ImageView>
                     <Image url="images/stop.png"/>

@@ -35,7 +35,7 @@
     <Label GridPane.columnIndex="0"
            GridPane.halignment="CENTER"
            GridPane.rowIndex="1"
-           GridPane.rowSpan="5"
+           GridPane.rowSpan="6"
            GridPane.columnSpan="1">
         <graphic>
             <ImageView>
@@ -80,7 +80,7 @@
             <Font size="30" name="AR CHRISTY"/>
         </font>
         <padding>
-            <Insets bottom="50"/>
+            <Insets bottom="30"/>
         </padding>
     </Label>
     <TextField promptText="-enter your name-"
@@ -90,16 +90,29 @@
                GridPane.halignment="CENTER"
                GridPane.valignment="TOP"
                maxWidth="200"
-               focusTraversable="false">
+               focusTraversable="false"
+                >
         <font>
             <Font size="20" name="AR CHRISTY"/>
         </font>
     </TextField>
+    <Label text="min 3 max 15 letters"
+           textFill="darkslategray"
+           wrapText="true"
+           textAlignment="CENTER"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="5"
+           GridPane.halignment="CENTER"
+           GridPane.valignment="TOP">
+        <font>
+            <Font size="12" name="AR CHRISTY"/>
+        </font>
+    </Label>
     <Button text="Save score"
             fx:id="saveButton"
             onAction="#onButtonClick"
             GridPane.columnIndex="0"
-            GridPane.rowIndex="5"
+            GridPane.rowIndex="6"
             GridPane.halignment="CENTER"
             GridPane.valignment="TOP">
         <font>

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -52,9 +49,28 @@
         </font>
     </Label>
 
-    <Label fx:id="highScores" minHeight="420" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER" textFill="darkslategray">
+    <Label fx:id="highScoresNames"
+           minHeight="420"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="2"
+           GridPane.halignment="LEFT"
+           textFill="darkslategray">
         <padding>
-            <Insets bottom="30"/>
+            <Insets bottom="30" left="120"/>
+        </padding>
+        <font>
+            <Font size="24" name="AR CHRISTY"/>
+        </font>
+    </Label>
+    <Label fx:id="highScoresValues"
+           minHeight="420"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="2"
+           GridPane.halignment="RIGHT"
+           textAlignment="RIGHT"
+           textFill="darkslategray">
+        <padding>
+            <Insets bottom="30" right="120"/>
         </padding>
         <font>
             <Font size="24" name="AR CHRISTY"/>

@@ -1,29 +1,21 @@
 package Controlers;
 
-import Services.Engine;
-import Services.KeyControls;
-import Services.MusicPlayer;
-import Services.ScoreCounter;
+import Services.*;
+import Services.Music.MusicManager;
 import Shapes.Block;
-import Shapes.Shape;
 import Tetris.Game;
 import Tetris.ShapeFactory;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,25 +39,19 @@ public class PlayController extends Controller implements Initializable, Observe
     private GridPane bigPane;
     @FXML
     private Canvas canvasForBigPane;
-    private GraphicsContext graphicsContextForBigPane;
     @FXML
     private Canvas canvasForSmallPane;
-    private GraphicsContext graphicsContextForSmallPane;
 
     private Game game;
-
-    public Canvas getCanvasForBigPane() {
-        return canvasForBigPane;
-    }
+    private Graphics graphics;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         ControllerManager.setPlayController(this);
-        MusicPlayer.INSTANCE.bindAudioButtonImage(soundButton);
-        generateGrid(10, 20, bigPane);
-        generateGrid(4, 3, smallPane);
-        setGraphics();
+        MusicManager.INSTANCE.bindAudioButtonImage(soundButton);
         Platform.runLater(this::initGame);
+        graphics = new Graphics(canvasForBigPane, canvasForSmallPane);
+        graphics.setUpGraphics(bigPane, smallPane);
     }
 
     private void initGame() {
@@ -91,29 +77,17 @@ public class PlayController extends Controller implements Initializable, Observe
 
         engine.addToOnTick(() -> {
             refresh();
-            game.fall(); //only one method called
+            game.invokeShapeFall(); //only one method called
             counter.addScore(1);
         });
         game.startGame();
     }
 
-    @FXML
-    private void setScoreLabel(int score) {
-        scoreLabel.setText(String.format("%04d", score));
-    }
-    @FXML
-    public void setLevelLabel(int level) {
-        levelLabel.setText("LEVEL "+level); // make score at least 6 digit number
-    }
-
-    @Override
-    public void update(final Observable o, final Object arg) {
-        if (o instanceof ScoreCounter) {
-            setScoreLabel((int) arg);
-        }
-        if (o instanceof Engine) {
-            setLevelLabel((int) arg);
-        }
+    private void refresh() {
+        graphics.clearCanvas();
+        graphics.printTetrion(game);
+        graphics.printCurrentShape(game);
+        graphics.printNextShape(game);
     }
 
     @FXML
@@ -122,78 +96,48 @@ public class PlayController extends Controller implements Initializable, Observe
             endGameAndExitToMenu();
         }
     }
-    public void endGameAndExitToMenu(){
+
+    public void endGameAndExitToMenu() {
         refresh();
         game.endGame();
-        showGameOverLabel();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        showScoreSaver();
+        Platform.runLater(graphics::showGameOverLabel);
+        Timeline timer = new Timeline(new KeyFrame(Duration.seconds(2), this::goToScoreSaver));
+        timer.play();
     }
 
-    private void showGameOverLabel(){
-        this.graphicsContextForBigPane.setFont(new Font("AR CHRISTY", 55));
-        this.graphicsContextForBigPane.setFill(Color.DARKSLATEGRAY);
-        this.graphicsContextForBigPane.fillText("GAME OVER!",10,300);
-    }
-    private void showScoreSaver() {
+    private void goToScoreSaver(ActionEvent event) {
         Platform.runLater(() -> {
             try {
-                prepareScene(soundButton, "SaveScore.fxml");
+                showScoreSaver(soundButton);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
-    private void refresh() {
-        clearCanvas();
-        printTetrion();
-        printCurrentShape();
-        printNextShape();
-    }
-    private void clearCanvas() {
-        graphicsContextForBigPane.clearRect(0, 0, canvasForBigPane.getWidth(), canvasForBigPane.getHeight());
-        graphicsContextForSmallPane.clearRect(0, 0, canvasForSmallPane.getWidth(), canvasForSmallPane.getHeight());
-    }
-    private void printTetrion() {
-        for (int i = 0; i < game.getTetrion().length; i++) {
-            for (int j = 0; j < game.getTetrion()[i].length; j++) {
-                if (game.getTetrion()[i][j] != null) {
-                    this.graphicsContextForBigPane.setFill(game.getTetrion()[i][j].getColor());
-                    this.graphicsContextForBigPane.fillRect(game.getTetrion()[i][j].getX() * 30, game.getTetrion()[i][j].getY() * 30, 30, 30);
-                }
-            }
+
+    @Override
+    public void update(final Observable observable, final Object arg) {
+        if (observable instanceof ScoreCounter) {
+            setScoreLabel((int) arg);
+        }
+        if (observable instanceof Engine) {
+            setLevelLabel((int) arg);
         }
     }
-    private void printCurrentShape() {
-        printShape(game.getCurrentShape(), graphicsContextForBigPane);
+
+    private void setScoreLabel(int score) {
+        scoreLabel.setText(String.format("%04d", score));
     }
-    private void printNextShape() {
-        printShape(game.getNextShape(), graphicsContextForSmallPane);
+
+    private void setLevelLabel(int level) {
+        levelLabel.setText("LEVEL " + level);
     }
-    private void printShape(Shape shape, GraphicsContext context) {
-        context.setFill(shape.getBlocks().get(0).getColor());
-        shape.getBlocks().forEach(block -> context.fillRect(block.getX() * 30, block.getY() * 30, 30, 30));
-    }
-    private void setGraphics() {
-        graphicsContextForBigPane = canvasForBigPane.getGraphicsContext2D();
-        graphicsContextForSmallPane = canvasForSmallPane.getGraphicsContext2D();
-    }
-    private void generateGrid(int width, int height, GridPane pane) {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Rectangle rec = new Rectangle();
-                rec.setWidth(29);
-                rec.setHeight(29);
-                rec.setStyle("-fx-fill: rgba(0,0,0,0); -fx-stroke: grey; -fx-stroke-width: 0.5");
-                pane.add(rec, i, j);
-            }
-        }
-    }
-    public int getScoreValue(){
+
+    public int getScoreValue() {
         return Integer.parseInt(scoreLabel.getText());
+    }
+
+    public Canvas getCanvasForBigPane() {
+        return canvasForBigPane;
     }
 }

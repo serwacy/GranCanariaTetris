@@ -1,6 +1,6 @@
 package Controlers;
 
-import Services.MusicPlayer;
+import Services.Music.MusicManager;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,20 +24,20 @@ public class MainMenuController extends Controller implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        Platform.runLater(()->MusicPlayer.INSTANCE.bindAudioButtonImage(soundButton));
+        Platform.runLater(()-> MusicManager.INSTANCE.bindAudioButtonImage(soundButton));
     }
 
     @FXML
     public void onButtonClick(ActionEvent event) {
         try {
             if (event.getSource().equals(playButton)) {
-                showGame();
+                showGame(playButton);
             }
             if (event.getSource().equals(creditsButton)) {
-                showCredits();
+                showCredits(creditsButton);
             }
             if (event.getSource().equals(highScoresButton)) {
-                showScores();
+                showScores(highScoresButton);
             }
             if (event.getSource().equals(exitButton)) {
                 exitProgram();
@@ -45,21 +45,5 @@ public class MainMenuController extends Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    // BELOW ARE THE METHODS RESPONSIBLE FOR SCENE CHANGING - I KNOW IT IS CODE REPETITION - TO BE FIXED LATER
-    private void showGame() throws IOException {
-        prepareScene(playButton, "Play.fxml");
-    }
-
-    private void showCredits() throws IOException {
-        prepareScene(creditsButton, "Credits.fxml");
-    }
-
-    private void showScores() throws IOException {
-        prepareScene(highScoresButton, "HighScores.fxml");
-    }
-    private void exitProgram() {
-        Platform.exit();
     }
 }
