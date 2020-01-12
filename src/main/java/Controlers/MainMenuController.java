@@ -31,16 +31,16 @@ public class MainMenuController extends Controller implements Initializable {
     public void onButtonClick(ActionEvent event) {
         try {
             if (event.getSource().equals(playButton)) {
-                showGame(playButton);
+                prepareScene(playButton, "Play.fxml");
             }
             if (event.getSource().equals(creditsButton)) {
-                showCredits(creditsButton);
+                prepareScene(creditsButton, "Credits.fxml");
             }
             if (event.getSource().equals(highScoresButton)) {
-                showScores(highScoresButton);
+                prepareScene(highScoresButton, "HighScores.fxml");
             }
             if (event.getSource().equals(exitButton)) {
-                exitProgram();
+                Platform.exit();
             }
         } catch (IOException e) {
             e.printStackTrace();

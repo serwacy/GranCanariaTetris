@@ -22,12 +22,12 @@ public class HighScoresController extends Controller implements Initializable {
     private RecordManager recordsManager = RecordManager.INSTANCE;
 
     @FXML
-    public void onButtonClick(ActionEvent event){
+    public void onButtonClick(ActionEvent event) {
         try {
-            if (event.getSource().equals(backButton)){
-                showMenu(backButton);
+            if (event.getSource().equals(backButton)) {
+                prepareScene(backButton, "Menu.fxml");
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

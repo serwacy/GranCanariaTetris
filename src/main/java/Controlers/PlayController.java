@@ -108,7 +108,7 @@ public class PlayController extends Controller implements Initializable, Observe
     private void goToScoreSaver(ActionEvent event) {
         Platform.runLater(() -> {
             try {
-                showScoreSaver(soundButton);
+                prepareScene(soundButton, "SaveScore.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
