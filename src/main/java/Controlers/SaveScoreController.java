@@ -46,7 +46,7 @@ public class SaveScoreController extends Controller implements Initializable {
         try {
             if (event.getSource().equals(saveButton)) {
                 saveNewScore();
-                showMenu(saveButton);
+                prepareScene(saveButton, "Menu.fxml");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,7 +59,7 @@ public class SaveScoreController extends Controller implements Initializable {
         saveNewScore(nickname, score);
     }
 
-    private void saveNewScore(final String nickname, final int score){
+    private void saveNewScore(final String nickname, final int score) {
         RecordManager recordsManager = RecordManager.INSTANCE;
         recordsManager.saveScore(nickname, score);
     }
